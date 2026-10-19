@@ -496,6 +496,102 @@ html.escuro .leaflet-tooltip { background: #1e293b; color: #e2e8f0; border-color
 .rel-assin2 .ln { border-top: 1px solid #0f172a; padding-top: 5px; font-weight: 700; }
 .rel-assin2 .cg { font-size: 9.5px; color: #475569; }
 @media print { .rel-folha.paisagem { width: auto; } .rel-tab thead { display: table-header-group; } .rel-tit { page-break-after: avoid; } }
+
+/* ===== animações e interatividade ===== */
+@keyframes sobeSuave { from { opacity: 0; transform: translateY(14px); } }
+@keyframes entraAba { from { opacity: 0; transform: translateY(10px); } }
+@keyframes cresce { from { transform: scaleX(0); } }
+@keyframes popIn { from { transform: scale(0); opacity: 0; } }
+@keyframes popPino { from { transform: rotate(-45deg) scale(0); opacity: 0; } }
+@keyframes onda { to { transform: scale(2.6); opacity: 0; } }
+@keyframes pulsa { 0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,.55); } 60% { box-shadow: 0 0 0 7px rgba(220,38,38,0); } }
+@keyframes brilho { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@media (prefers-reduced-motion: no-preference) {
+    .aba:not(.hidden) > .heroi h2, .aba:not(.hidden) > .heroi p { animation: entraAba .45s cubic-bezier(.16,1,.3,1) both; }
+    .aba:not(.hidden) > .heroi p { animation-delay: .06s; }
+    body.animar .kpis > *, body.animar .cards > *, body.animar .grade > *, body.animar .lista > .item, body.animar .barras-ic > *, body.animar .leg-ic-lista > *, body.animar .funil > .funil-et, body.animar .tab tbody tr:nth-child(-n+14) {
+        animation: sobeSuave .5s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--i, 0) * 40ms); }
+    .duplo .tr span, .barra span, .barra-empilhada span, .funil-et::before { animation: cresce .9s cubic-bezier(.16,1,.3,1) both; transform-origin: left center; }
+    .mk-mun span { animation: popIn .35s cubic-bezier(.34,1.56,.64,1) backwards; }
+    .mk-obra span { animation: popPino .35s cubic-bezier(.34,1.56,.64,1) backwards; }
+    .lat-btn .bolha:not(.qtd) { animation: pulsa 2s infinite; }
+    .card { transition: box-shadow .25s, border-color .25s; }
+    .card:hover { box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 14px 34px -18px rgba(15,23,42,.35); }
+    .item { transition: background .15s, padding-left .2s; }
+    .item:hover { padding-left: 18px; }
+    .lat-btn i { transition: transform .2s; }
+    .lat-btn:hover i { transform: scale(1.18); }
+    button.kpi .r i, .kpi .r i { transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+    .kpi:hover .r i { transform: scale(1.3) rotate(-10deg); }
+    .chip { transition: transform .15s, background .15s, color .15s, border-color .15s; }
+    .chip:hover { transform: translateY(-1px); }
+    .btn { transition: filter .15s, background .15s, border-color .15s, transform .12s; }
+    .btn:active { transform: scale(.97); }
+    .selo { transition: transform .15s; }
+    tr:hover .selo, .item:hover .selo { transform: scale(1.05); }
+}
+.btn, .lat-btn, button.kpi, .rl-modelo, .funil-et { position: relative; overflow: hidden; }
+html.menu-recolhido .lat-btn { overflow: visible; }
+.onda { position: absolute; border-radius: 50%; background: currentColor; opacity: .18; transform: scale(0); animation: onda .6s ease-out; pointer-events: none; }
+html.tema-transicao, html.tema-transicao * { transition: background-color .35s, color .35s, border-color .35s, fill .35s !important; }
+.tab tbody tr.clic:hover td { background: color-mix(in srgb, var(--prim) 6%, var(--card)); }
+.ic-obj { color: var(--muted); margin-right: 5px; width: 14px; text-align: center; }
+.confete { position: fixed; inset: 0; z-index: 500; pointer-events: none; }
+/* legenda com ícones (painel) */
+.leg-ic-lista { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 8px; }
+.leg-ic-lista button { display: grid; grid-template-columns: 22px 1fr auto auto; gap: 6px; align-items: center; padding: 6px 8px; border-radius: 9px; text-align: left; font-size: 12px; color: var(--texto2); transition: background .15s; }
+.leg-ic-lista button:hover { background: color-mix(in srgb, var(--c) 10%, transparent); }
+.leg-ic-lista i { color: var(--c); text-align: center; }
+.leg-ic-lista span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.leg-ic-lista em { font-style: normal; color: var(--muted); font-size: 11px; }
+/* barras com ícones (tipo de obra) */
+.barras-ic { display: grid; gap: 4px; }
+.barras-ic button { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 7px 8px; border-radius: 10px; text-align: left; transition: background .15s; }
+.barras-ic button:hover { background: var(--suave); }
+.barras-ic .ic { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #0891b2; background: color-mix(in srgb, #0891b2 12%, transparent); transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+.barras-ic button:hover .ic { transform: scale(1.12) rotate(-6deg); }
+.barras-ic .tx { min-width: 0; }
+.barras-ic .tx b { display: block; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+.barras-ic .vl { text-align: right; }
+.barras-ic .vl b { display: block; font-size: 15px; }
+.barras-ic .vl em { font-style: normal; font-size: 11px; color: var(--muted); }
+/* funil de inauguração */
+.funil { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.funil-et { width: var(--w); min-width: 230px; display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 9px 14px; border-radius: 12px; background: color-mix(in srgb, var(--c) 12%, var(--card)); border: 1px solid color-mix(in srgb, var(--c) 30%, transparent); text-align: left; transition: transform .2s, box-shadow .2s; }
+.funil-et:hover { transform: scale(1.03); box-shadow: 0 8px 20px -10px var(--c); }
+.funil-et .ic { width: 30px; height: 30px; border-radius: 9px; background: var(--c); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.funil-et .rt { font-size: 12.5px; font-weight: 700; color: var(--texto2); }
+.funil-et b { font-size: 18px; color: var(--c); }
+.funil-seta { color: var(--muted2); font-size: 10px; }
+/* busca rápida */
+#paleta { position: fixed; inset: 0; z-index: 380; background: rgba(2,6,23,.55); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: flex-start; padding: 10vh 16px 16px; animation: fade .15s; }
+.paleta-caixa { width: min(640px, 100%); background: var(--card); border-radius: 16px; box-shadow: 0 30px 70px -20px rgba(0,0,0,.6); overflow: hidden; animation: sobe .25s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; max-height: 75vh; }
+.paleta-busca { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--borda); }
+.paleta-busca i { color: var(--muted); }
+.paleta-busca input { flex: 1; border: 0; outline: none; background: none; font-size: 16px; }
+kbd { font-family: inherit; font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 5px; border: 1px solid var(--borda2); background: var(--suave); color: var(--muted); }
+.paleta-res { overflow-y: auto; padding: 6px; }
+.paleta-g { font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted2); padding: 10px 10px 4px; }
+.paleta-it { width: 100%; display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 10px; text-align: left; }
+.paleta-it .ic { width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
+.paleta-it .tx { flex: 1; min-width: 0; }
+.paleta-it .tx b { display: block; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.paleta-it .tx span { display: block; font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.paleta-it .ent { color: var(--muted2); opacity: 0; font-size: 11px; }
+.paleta-it.ativo { background: var(--prim-claro); }
+.paleta-it.ativo .ent { opacity: 1; }
+.paleta-pe { display: flex; gap: 14px; flex-wrap: wrap; padding: 9px 14px; border-top: 1px solid var(--borda); font-size: 11px; color: var(--muted); background: var(--suave); }
+.lat-busca { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); margin-bottom: 4px; }
+.lat-busca .atalho { background: rgba(255,255,255,.08) !important; color: #94a3b8 !important; font-size: 9.5px !important; letter-spacing: .03em; }
+/* relatório com ícones */
+.rel-tit i { margin-right: 4px; }
+.rel-graf-t i { color: #f97316; margin-right: 3px; }
+.rel-sub i { color: #f97316; }
+.rel-kpis2 small i { margin-right: 2px; }
+.rel-tab .grp td i { margin-right: 4px; }
+.rel-dest2 { width: 100%; border-collapse: collapse; }
+.rel-dest2 td { padding: 4px 0; vertical-align: top; line-height: 1.5; color: #334155; }
+.rel-dest2 td.i { width: 24px; text-align: center; padding-top: 5px; }
 </style>
 </head>
 <body>
@@ -551,6 +647,7 @@ html.escuro .leaflet-tooltip { background: #1e293b; color: #e2e8f0; border-color
         <div class="marca-txt">GAB<span>Obras</span></div>
     </div>
     <nav class="lat-nav" id="lat-nav">
+        <button class="lat-btn lat-busca" onclick="abrirBusca()" title="Busca rápida (Ctrl+K)"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar...</span><span class="bolha qtd atalho">Ctrl K</span></button>
         <div class="lat-grupo">Visão geral</div>
         <button class="lat-btn" data-aba="painel" onclick="irPara('painel')"><i class="fa-solid fa-chart-pie"></i><span>Painel</span></button>
         <button class="lat-btn" data-aba="inauguracoes" onclick="irPara('inauguracoes')"><i class="fa-solid fa-ribbon"></i><span>Inaugurações</span></button>
@@ -586,6 +683,7 @@ html.escuro .leaflet-tooltip { background: #1e293b; color: #e2e8f0; border-color
         <div class="lat-ic" style="width:32px;height:32px;border-radius:9px"><i class="fa-solid fa-helmet-safety"></i></div>
         <div class="marca-txt">GAB<span>Obras</span></div>
         <div class="esp"></div>
+        <button class="ic-btn" onclick="abrirBusca()" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
         <button class="ic-btn" onclick="irPara('alertas')" aria-label="Alertas"><i class="fa-solid fa-bell"></i></button>
     </header>
 
@@ -712,7 +810,7 @@ html.escuro .leaflet-tooltip { background: #1e293b; color: #e2e8f0; border-color
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.2.0';
+const VERSAO_APP = '2.3.0';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -1272,7 +1370,9 @@ function irPara(aba) {
     menuMovel(false);
     if (location.hash !== '#' + aba) history.replaceState(null, '', '#' + aba);
     const c = document.querySelector(`#aba-${aba} .conteudo`); if (c) c.scrollTop = 0;
+    document.body.classList.add('animar'); clearTimeout(irPara.t); irPara.t = setTimeout(() => document.body.classList.remove('animar'), 1300);
     renderAtual();
+    contarNumeros(document.getElementById('aba-' + aba));
 }
 function renderAtual() {
     atualizarContadores();
@@ -1374,18 +1474,19 @@ function renderPainel() {
         $('painel-corpo').innerHTML = h; return;
     }
     h += `<div class="grade g3">
-        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-traffic-light"></i></span><div><h3>Andamento</h3><p>Pelo STATUS de cada obra</p></div></div><div style="height:260px;position:relative"><canvas id="g-grupo"></canvas></div></div>
+        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-traffic-light"></i></span><div><h3>Andamento</h3><p>Pelo STATUS de cada obra</p></div></div><div style="height:200px;position:relative"><canvas id="g-grupo"></canvas></div><div id="leg-grupo" class="leg-ic-lista"></div></div>
         <div class="card card-pad" style="grid-column:span 2"><div class="card-tit"><span class="ico" style="--c:#7c3aed"><i class="fa-solid fa-calendar-days"></i></span><div><h3>Previsão de conclusão</h3><p>Obras em execução por mês previsto (PREVISÃO CONCLUSÃO OBRA)</p></div></div><div style="height:260px;position:relative"><canvas id="g-prev"></canvas></div></div>
     </div>
     <div class="grade g2">
-        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#0891b2"><i class="fa-solid fa-shapes"></i></span><div><h3>Por objeto</h3><p>Quantidade de obras por OBJETO RESUMO</p></div></div><div style="height:270px;position:relative"><canvas id="g-obj"></canvas></div></div>
+        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#0891b2"><i class="fa-solid fa-shapes"></i></span><div><h3>Por tipo de obra</h3><p>OBJETO RESUMO · clique para ver as obras</p></div></div><div id="pn-obj" class="barras-ic"></div></div>
         <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#f97316"><i class="fa-solid fa-location-dot"></i></span><div><h3>Investimento por município</h3><p>10 maiores valores</p></div></div><div style="height:270px;position:relative"><canvas id="g-mun"></canvas></div></div>
     </div>
     <div class="grade g2">
         <div class="card"><div class="card-pad" style="padding-bottom:6px"><div class="card-tit" style="margin:0"><span class="ico" style="--c:#dc2626"><i class="fa-solid fa-fire"></i></span><div><h3>Precisam de atenção</h3><p>Paralisadas, rescisões e previsões vencidas</p></div><button class="btn btn-s btn-sm dir" onclick="irPara('alertas')">Ver alertas</button></div></div><div class="lista" id="pn-atencao"></div></div>
         <div class="card"><div class="card-pad" style="padding-bottom:6px"><div class="card-tit" style="margin:0"><span class="ico" style="--c:#16a34a"><i class="fa-solid fa-flag-checkered"></i></span><div><h3>Próximas conclusões</h3><p>Em execução com previsão nos próximos 3 meses</p></div></div></div><div class="lista" id="pn-proximas"></div></div>
     </div>
-    <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-lightbulb"></i></span><div><h3>Leitura rápida</h3><p>Destaques calculados automaticamente</p></div></div><div class="destaques"><ul id="pn-destaques"></ul></div></div>`;
+    <div class="grade g2"><div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#16a34a"><i class="fa-solid fa-ribbon"></i></span><div><h3>Caminho até a inauguração</h3><p>Da execução ao ato de inauguração · clique numa etapa</p></div></div><div id="pn-funil" class="funil"></div></div>
+    <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-lightbulb"></i></span><div><h3>Leitura rápida</h3><p>Destaques calculados automaticamente</p></div></div><div class="destaques"><ul id="pn-destaques"></ul></div></div></div>`;
     $('painel-corpo').innerHTML = h;
 
     const crit = L.filter(x => x.grupo === 'paralisada' || x.prevVencida || (x.grupo === 'rescisao' && norm(x.r.status).startsWith('em '))).sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || b.valor - a.valor).slice(0, 8);
@@ -1407,9 +1508,20 @@ function renderPainel() {
     $('pn-destaques').innerHTML = d.map(([c, ic, t]) => `<li><i class="fa-solid ${ic}" style="--c:${c}"></i><span>${t}</span></li>`).join('');
 
     const gs = Object.keys(GRUPOS).filter(k => cnt(k));
-    grafico('g-grupo', { type: 'doughnut', data: { labels: gs.map(k => GRUPOS[k].rot), datasets: [{ data: gs.map(cnt), backgroundColor: gs.map(k => GRUPOS[k].cor), borderColor: corCard(), borderWidth: 2, hoverOffset: 8 }] },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, usePointStyle: true, padding: 10 } }, tooltip: DICA },
-            onClick: (e, els) => { if (els.length) secFiltro(gs[els[0].index]); } } });
+    const totG = gs.reduce((a, k) => a + cnt(k), 0);
+    grafico('g-grupo', { type: 'doughnut', data: { labels: gs.map(k => GRUPOS[k].rot), datasets: [{ data: gs.map(cnt), backgroundColor: gs.map(k => GRUPOS[k].cor), borderColor: corCard(), borderWidth: 3, hoverOffset: 12, borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, cutout: '66%', animation: { animateRotate: true, animateScale: true, duration: 1100, easing: 'easeOutQuart' },
+            plugins: { legend: { display: false }, tooltip: { ...DICA, callbacks: { label: c => ` ${c.label}: ${c.raw} (${pct(c.raw / totG * 100)})` } } },
+            onClick: (e, els) => { if (els.length) secFiltro(gs[els[0].index]); } },
+        plugins: [{ id: 'centro', afterDraw(ch) {
+            const a = ch.getActiveElements()[0], { ctx, chartArea: ca } = ch; if (!ca) return;
+            const x = (ca.left + ca.right) / 2, y = (ca.top + ca.bottom) / 2;
+            const val = a ? ch.data.datasets[0].data[a.index] : totG, rot = a ? ch.data.labels[a.index] : 'obras';
+            ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillStyle = a ? ch.data.datasets[0].backgroundColor[a.index] : corVar('--texto'); ctx.font = '800 26px Inter, sans-serif'; ctx.fillText(val.toLocaleString('pt-BR'), x, y - 7);
+            ctx.fillStyle = corVar('--muted'); ctx.font = '600 11px Inter, sans-serif'; ctx.fillText(rot.length > 18 ? rot.slice(0, 17) + '…' : rot, x, y + 14); ctx.restore();
+        } }] });
+    $('leg-grupo').innerHTML = gs.map((k, n) => `<button onmouseenter="realcarGrafico('g-grupo', ${n})" onmouseleave="realcarGrafico('g-grupo', -1)" onclick="secFiltro('${k}')" style="--c:${GRUPOS[k].cor}"><i class="fa-solid ${GRUPOS[k].ic}"></i><span>${GRUPOS[k].rot}</span><b>${cnt(k)}</b><em>${pct(cnt(k) / totG * 100)}</em></button>`).join('');
 
     const meses = []; const h0 = new Date(); for (let i = 0; i < 12; i++) { const d0 = new Date(h0.getFullYear(), h0.getMonth() + i, 1); meses.push(iso(d0).slice(0, 7)); }
     const rotulos = ['Vencidas', ...meses.map(m => nomeMes(m + '-01')), 'Sem previsão'];
@@ -1419,10 +1531,17 @@ function renderPainel() {
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } }, tooltip: DICA },
             scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } } } } });
 
-    const objs = {}; L.forEach(x => { const k = str(x.r.objeto).trim() || '(sem objeto)'; objs[k] = (objs[k] || 0) + 1; });
-    const ob = Object.entries(objs).sort((a, b) => b[1] - a[1]).slice(0, 10);
-    grafico('g-obj', { type: 'bar', data: { labels: ob.map(x => x[0]), datasets: [{ data: ob.map(x => x[1]), backgroundColor: '#0891b2', borderRadius: 5, maxBarThickness: 18 }] },
-        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: DICA }, scales: { x: { beginAtZero: true, ticks: { precision: 0 } }, y: { grid: { display: false }, ticks: { autoSkip: false, font: { size: 10.5 } } } } } });
+    const objs = {}; L.forEach(x => { const k = str(x.r.objeto).trim() || '(sem objeto)'; objs[k] = objs[k] || { n: 0, v: 0, ex: 0 }; objs[k].n++; objs[k].v += x.valor; if (x.grupo === 'execucao') objs[k].ex++; });
+    const ob = Object.entries(objs).sort((a, b) => b[1].n - a[1].n).slice(0, 9), mxO = Math.max(1, ...ob.map(o => o[1].n));
+    $('pn-obj').innerHTML = ob.map(([k, o], n) => { const [ic] = iconeObjeto(k); return `<button style="--i:${n}" onclick="GE.objeto=${jsArg(k === '(sem objeto)' ? '' : k)};GE.tipo=pfTipo;GE.grupo='';GE.municipio=v('pf-municipio');irPara('gestao')" title="${o.ex} em execução · ${moeda(o.v)}">
+        <span class="ic"><i class="fa-solid ${ic}"></i></span><span class="tx"><b>${esc(k)}</b><span class="barra"><span style="width:${o.n / mxO * 100}%;background:#0891b2"></span></span></span><span class="vl"><b>${o.n}</b><em>${moeda(o.v, true)}</em></span></button>`; }).join('');
+    const fu = [['execucao', 'Em execução', 'fa-person-digging', '#2563eb', L.filter(x => x.grupo === 'execucao' && x.inaug !== 'inaugurada').length, "secFiltro('execucao')"],
+        ['prox', 'Conclusão em até 3 meses', 'fa-flag-checkered', '#0891b2', L.filter(x => x.grupo === 'execucao' && x.mesesAte !== null && x.mesesAte >= 0 && x.mesesAte <= 3).length, "irPara('inauguracoes')"],
+        ['verif', 'Em verificação', 'fa-magnifying-glass', '#d97706', L.filter(x => x.inaug === 'verificacao').length, "GE.inaug='verificacao';GE.grupo='';irPara('gestao')"],
+        ['apta', 'Prontas para inaugurar', 'fa-champagne-glasses', '#f97316', L.filter(x => x.inaug === 'apta').length, "GE.inaug='apta';GE.grupo='';irPara('gestao')"],
+        ['inaug', 'Inauguradas', 'fa-ribbon', '#16a34a', L.filter(x => x.inaug === 'inaugurada').length, "GE.inaug='inaugurada';GE.grupo='';irPara('gestao')"]];
+    const mxF = Math.max(1, ...fu.map(f => f[4]));
+    $('pn-funil').innerHTML = fu.map(([k, r, ic, c, n, cl], i) => `<button class="funil-et" style="--c:${c};--w:${Math.max(28, n / mxF * 100)}%;--i:${i}" onclick="${cl}"><span class="ic"><i class="fa-solid ${ic}"></i></span><span class="rt">${r}</span><b>${n}</b></button>`).join('<i class="fa-solid fa-chevron-down funil-seta"></i>');
 
     const mun = top.slice(0, 10);
     grafico('g-mun', { type: 'bar', data: { labels: mun.map(x => x[0]), datasets: [{ data: mun.map(x => x[1]), backgroundColor: '#f97316', borderRadius: 5, maxBarThickness: 18 }] },
@@ -1597,7 +1716,7 @@ function listarSecao(t) {
             <td class="mut num">${numItem.get(r.id)}</td>
             <td><b class="mono" style="font-size:12.5px">${esc(x.cod)}</b>${t === 'contratos' ? `<div class="peq mut">${esc(r.instrumento || '')}</div>` : `<div class="peq mut">${esc(r.dre || '')}</div>`}</td>
             <td style="max-width:300px"><b class="trunc" style="display:block" title="${esc(r.unidadeEscolar)}">${esc(r.unidadeEscolar || '—')}</b><span class="peq mut">${esc(r.municipio || '—')}${t === 'convenios' && r.unidade ? ' · ' + esc(r.unidade) : ''}</span></td>
-            <td class="peq" style="max-width:170px">${esc(r.objeto || '—')}</td>
+            <td class="peq" style="max-width:170px"><i class="fa-solid ${iconeObjeto(r.objeto)[0]} ic-obj"></i>${esc(r.objeto || '—')}</td>
             <td class="peq" style="max-width:190px"><span class="trunc" style="display:block" title="${esc(r.empresa)}">${esc(r.empresa || '—')}</span></td>
             <td style="max-width:190px">${seloGrupo(x.grupo)}<div class="peq mut" style="margin-top:3px">${esc(r.status || '')}</div></td>
             <td class="dir num"><b>${r.valor ? moeda(r.valor) : '—'}</b></td>
@@ -1766,7 +1885,9 @@ function salvarForm(t, id) {
     const dup = DB[t].find(x => x.id !== r.id && norm(x[T.chave]) === norm(r[T.chave]));
     if (dup && !confirmar(`Já existe ${T.rot.toLowerCase()} com ${T.campos[1].rot} "${r[T.chave]}" (${dup.unidadeEscolar || ''}). Salvar mesmo assim?`)) return;
     r.atualizadoEm = agoraISO(); r.atualizadoPor = sessao.usuario;
+    const virouInaugurada = estadoInaug(r) === 'inaugurada' && (!ant || estadoInaug(ant) !== 'inaugurada');
     gravar(t, r);
+    if (virouInaugurada) setTimeout(() => { confete(); toast('🎉 Obra inaugurada!'); }, 250);
     if (!ant) registrarHistorico(T.ref, r.id, `${T.rot} cadastrado.`, 'cadastro');
     else {
         const mud = CAMPOS_HIST.map(k => T.campos.find(c => c.k === k)).filter(c => c && str(ant[c.k]) !== str(r[c.k]))
@@ -2099,7 +2220,7 @@ function categoriasRel(l) {
 // ---------- montagem ----------
 const fmtDataExtenso = d => d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 function relCabecalho(titulo, filtrosTxt) {
-    return `<table class="rel-cab2" cellspacing="0"><tr><td class="nm">GAB<span>Obras</span><div class="sub">Contratos, convênios e inaugurações</div></td>
+    return `<table class="rel-cab2" cellspacing="0"><tr><td class="nm"><i class="fa-solid fa-helmet-safety" style="color:#f97316;margin-right:6px"></i>GAB<span>Obras</span><div class="sub">Contratos, convênios e inaugurações</div></td>
         <td class="dir"><b>Governo de Mato Grosso</b><br>Secretaria de Estado de Educação<br>Emitido em ${new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} por ${esc(sessao.usuario)}</td></tr></table>
         <div class="rel-faixa"></div><div class="rel-h1">${esc(titulo)}</div><div class="rel-filtros">${filtrosTxt}</div>`;
 }
@@ -2107,27 +2228,33 @@ function relAssinatura(nome, cargo, local) {
     return `<table class="rel-assin2" cellspacing="0"><tr><td class="esq">Documento gerado pelo GABObras a partir da base de dados oficial.<br>${esc(local || 'Cuiabá-MT')}, ${fmtDataExtenso(new Date())}.</td>
         ${nome ? `<td class="ass"><div class="ln">${esc(nome)}</div>${cargo ? `<div class="cg">${esc(cargo)}</div>` : ''}</td>` : ''}</tr></table>`;
 }
-function relKpis(itens) {   // [[rótulo, valor, detalhe, cor]] em tabela (funciona no Word)
+function relKpis(itens) {   // [[rótulo, valor, detalhe, cor, ícone]] em tabela (funciona no Word)
     const linhas = []; for (let i = 0; i < itens.length; i += 4) linhas.push(itens.slice(i, i + 4));
-    return `<table class="rel-kpis2" cellspacing="6">${linhas.map(l => `<tr>${l.map(([r, val, d, c]) => `<td style="border-top:3px solid ${c}"><small>${r}</small><b>${val}</b>${d ? `<em>${d}</em>` : ''}</td>`).join('')}</tr>`).join('')}</table>`;
+    return `<table class="rel-kpis2" cellspacing="6">${linhas.map(l => `<tr>${l.map(([r, val, d, c, ic]) => `<td style="border-top:3px solid ${c}"><small>${ic ? `<i class="fa-solid ${ic}" style="color:${c}"></i> ` : ''}${r}</small><b>${val}</b>${d ? `<em>${d}</em>` : ''}</td>`).join('')}</tr>`).join('')}</table>`;
 }
-function relBarras(titulo, itens, fmt = n => n) {   // [[rótulo, valor, cor]]
+const relTit = (ic, t, cor) => `<div class="rel-tit"${cor ? ` style="border-color:${cor}"` : ''}><i class="fa-solid ${ic}" style="color:${cor || '#f97316'}"></i> ${t}</div>`;
+function icCategoria(t) { const s = norm(t); return s.includes('prontas') ? 'fa-champagne-glasses' : s.includes('verifica') ? 'fa-magnifying-glass' : s.includes('proximas') ? 'fa-flag-checkered' : s.includes('sem definicao') ? 'fa-question'
+    : s.includes('inauguradas') ? 'fa-ribbon' : s.includes('entregues') ? 'fa-box-open' : s.includes('paralisad') ? 'fa-circle-pause' : s.includes('vencida') ? 'fa-calendar-xmark' : s.includes('rescisao') ? 'fa-file-circle-xmark' : 'fa-scale-unbalanced'; }
+function relBarras(titulo, itens, fmt = n => n, icTit) {   // [[rótulo, valor, cor, ícone]]
     const max = Math.max(1, ...itens.map(i => i[1]));
-    return `<div class="rel-graf"><div class="rel-graf-t">${titulo}</div><table class="rel-barras" cellspacing="0">${itens.map(([r, val, c]) => { const p = Math.max(.6, val / max * 100); return `<tr><td class="r">${esc(r)}</td><td class="b"><table cellspacing="0" style="width:100%"><tr><td style="width:${p}%;background:${c || '#f97316'}" bgcolor="${c || '#f97316'}"></td><td></td></tr></table></td><td class="v">${fmt(val)}</td></tr>`; }).join('')}</table></div>`;
+    return `<div class="rel-graf"><div class="rel-graf-t">${icTit ? `<i class="fa-solid ${icTit}"></i> ` : ''}${titulo}</div><table class="rel-barras" cellspacing="0">${itens.map(([r, val, c, ic]) => { const p = Math.max(.6, val / max * 100); return `<tr><td class="r">${ic ? `<i class="fa-solid ${ic}" style="color:${c};width:14px;text-align:center"></i> ` : ''}${esc(r)}</td><td class="b"><table cellspacing="0" style="width:100%"><tr><td style="width:${p}%;background:${c || '#f97316'}" bgcolor="${c || '#f97316'}"></td><td></td></tr></table></td><td class="v">${fmt(val)}</td></tr>`; }).join('')}</table></div>`;
 }
 function relEmpilhada(itens) {   // barra 100% por andamento
     const tot = itens.reduce((s, i) => s + i[1], 0) || 1;
     return `<table class="rel-empilhada" cellspacing="0"><tr>${itens.filter(i => i[1]).map(([r, val, c]) => `<td style="width:${val / tot * 100}%;background:${c}" bgcolor="${c}" title="${esc(r)}">${val / tot >= .07 ? val : ''}</td>`).join('')}</tr></table>
-        <div class="rel-leg">${itens.filter(i => i[1]).map(([r, val, c]) => `<span><i style="background:${c}"></i>${esc(r)}: <b>${val}</b> (${pct(val / tot * 100)})</span>`).join('')}</div>`;
+        <div class="rel-leg">${itens.filter(i => i[1]).map(([r, val, c, ic]) => `<span>${ic ? `<i class="fa-solid ${ic}" style="color:${c};background:none;width:auto;height:auto;border-radius:0"></i>` : `<i style="background:${c}"></i>`} ${esc(r)}: <b>${val}</b> (${pct(val / tot * 100)})</span>`).join('')}</div>`;
 }
 function relTabela(l, comObs) {
     const cols = RL.colunas.map(k => COL_REL[k]).filter(Boolean);
     const celula = (c, x) => {
         let t = esc(c[2](x));
-        if (c[0] === 'status' || c[0] === 'andamento') t = `<span style="color:${GRUPOS[x.grupo].cor};font-weight:700">${t}</span>`;
-        if (c[0] === 'previsao' && x.prevVencida) t = `<span style="color:#dc2626;font-weight:700">${t}</span>`;
+        const ic = (cls, cor) => `<i class="fa-solid ${cls}" style="color:${cor};margin-right:3px"></i>`;
+        if (c[0] === 'status' || c[0] === 'andamento') t = `<span style="color:${GRUPOS[x.grupo].cor};font-weight:700">${ic(GRUPOS[x.grupo].ic, GRUPOS[x.grupo].cor)}${t}</span>`;
+        if (c[0] === 'previsao' && x.prevVencida) t = `<span style="color:#dc2626;font-weight:700">${ic('fa-calendar-xmark', '#dc2626')}${t}</span>`;
         if (c[0] === 'codigo') t = `<b>${t}</b>`;
-        if (c[0] === 'inaug') t = `<span style="color:${INAUG[x.inaug].cor === '#cbd5e1' ? '#94a3b8' : INAUG[x.inaug].cor};font-weight:600">${t}</span>`;
+        if (c[0] === 'tipo') t = ic(x.T.ic, x.T.cor) + t;
+        if (c[0] === 'objeto' && t) t = ic(iconeObjeto(x.r.objeto)[0], '#64748b') + t;
+        if (c[0] === 'inaug') { const cr = INAUG[x.inaug].cor === '#cbd5e1' ? '#94a3b8' : INAUG[x.inaug].cor; t = `<span style="color:${cr};font-weight:600">${ic(INAUG[x.inaug].ic, cr)}${t}</span>`; }
         return `<td${c[3] ? ' class="dir"' : ''}>${t}</td>`;
     };
     const linha = x => {
@@ -2144,7 +2271,7 @@ function relTabela(l, comObs) {
     if (RL.agrupar) {
         const grupos = new Map(); l.forEach(x => { const k = chaveGrupoRel(x); if (!grupos.has(k)) grupos.set(k, []); grupos.get(k).push(x); });
         [...grupos.entries()].sort((a, b) => a[0].localeCompare(b[0], 'pt-BR')).forEach(([k, g]) => {
-            corpo += `<tr class="grp"><td colspan="${cols.length}">${esc(k)} <span>— ${g.length} obra(s) · ${moeda(g.reduce((s, x) => s + x.valor, 0))}</span></td></tr>${g.map(linha).join('')}`;
+            corpo += `<tr class="grp"><td colspan="${cols.length}"><i class="fa-solid ${{ municipio: 'fa-location-dot', dre: 'fa-sitemap', objeto: 'fa-shapes', andamento: 'fa-bars-progress', status: 'fa-flag', tipo: 'fa-layer-group', inaug: 'fa-ribbon', empresa: 'fa-helmet-safety' }[RL.agrupar] || 'fa-folder'}"></i> ${esc(k)} <span>— ${g.length} obra(s) · ${moeda(g.reduce((s, x) => s + x.valor, 0))}</span></td></tr>${g.map(linha).join('')}`;
         });
     } else corpo = l.map(linha).join('');
     return `<table class="rel-tab ${RL.compacto ? 'compacto' : ''}" cellspacing="0"><thead><tr>${cols.map(c => `<th${c[3] ? ' class="dir"' : ''}>${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${corpo}${total(l, 'Total')}</tbody></table>`;
@@ -2154,16 +2281,16 @@ function relDestaques(L) {
     const c = f => L.filter(f);
     const venc = c(x => x.prevVencida), par = c(x => x.grupo === 'paralisada'), apt = c(x => x.inaug === 'apta'), ina = c(x => x.inaug === 'inaugurada');
     const exec = c(x => x.grupo === 'execucao');
-    d.push(`Estão acompanhadas <b>${L.length}</b> obras (${c(x => x.tipo === 'contratos').length} por contrato e ${c(x => x.tipo === 'convenios').length} por convênio), somando <b>${moeda(L.reduce((s, x) => s + x.valor, 0))}</b>.`);
-    if (exec.length) d.push(`<b>${exec.length}</b> obras estão em execução, com execução física média de <b>${pct(media(exec.map(x => x.fisico)))}</b>.`);
-    if (par.length) d.push(`<b>${par.length}</b> obras estão paralisadas ou com pendência de execução, somando ${moeda(par.reduce((s, x) => s + x.valor, 0))}.`);
-    if (venc.length) d.push(`<b>${venc.length}</b> obras em execução estão com a previsão de conclusão vencida.`);
-    if (apt.length) d.push(`<b>${apt.length}</b> obras estão prontas para inaugurar, aguardando o ato de inauguração.`);
-    if (ina.length) d.push(`<b>${ina.length}</b> obras já foram inauguradas.`);
+    d.push(['fa-building', '#0f172a', `Estão acompanhadas <b>${L.length}</b> obras (${c(x => x.tipo === 'contratos').length} por contrato e ${c(x => x.tipo === 'convenios').length} por convênio), somando <b>${moeda(L.reduce((s, x) => s + x.valor, 0))}</b>.`]);
+    if (exec.length) d.push(['fa-person-digging', '#2563eb', `<b>${exec.length}</b> obras estão em execução, com execução física média de <b>${pct(media(exec.map(x => x.fisico)))}</b>.`]);
+    if (par.length) d.push(['fa-circle-pause', '#7c3aed', `<b>${par.length}</b> obras estão paralisadas ou com pendência de execução, somando ${moeda(par.reduce((s, x) => s + x.valor, 0))}.`]);
+    if (venc.length) d.push(['fa-calendar-xmark', '#dc2626', `<b>${venc.length}</b> obras em execução estão com a previsão de conclusão vencida.`]);
+    if (apt.length) d.push(['fa-champagne-glasses', '#f97316', `<b>${apt.length}</b> obras estão prontas para inaugurar, aguardando o ato de inauguração.`]);
+    if (ina.length) d.push(['fa-ribbon', '#16a34a', `<b>${ina.length}</b> obras já foram inauguradas.`]);
     const porMun = {}; L.forEach(x => { if (x.r.municipio) porMun[x.r.municipio] = (porMun[x.r.municipio] || 0) + x.valor; });
     const top = Object.entries(porMun).sort((a, b) => b[1] - a[1]);
-    if (top.length) d.push(`As obras estão em <b>${top.length}</b> municípios; <b>${esc(top[0][0])}</b> concentra o maior investimento (${moeda(top[0][1])}).`);
-    return `<div class="rel-tit">Leitura rápida</div><ul class="rel-dest">${d.map(t => `<li>${t}</li>`).join('')}</ul>`;
+    if (top.length) d.push(['fa-location-dot', '#ea580c', `As obras estão em <b>${top.length}</b> municípios; <b>${esc(top[0][0])}</b> concentra o maior investimento (${moeda(top[0][1])}).`]);
+    return relTit('fa-lightbulb', 'Leitura rápida') + `<table class="rel-dest2" cellspacing="0">${d.map(([ic, c, t]) => `<tr><td class="i"><i class="fa-solid ${ic}" style="color:${c}"></i></td><td>${t}</td></tr>`).join('')}</table>`;
 }
 function montarRelatorio() {
     const L = ordenarRel(obrasRelatorio());
@@ -2174,35 +2301,35 @@ function montarRelatorio() {
     const S = RL.secoes;
     if (S.resumo) {
         const c = k => L.filter(x => x.grupo === k).length, ex = L.filter(x => x.grupo === 'execucao');
-        h += `<div class="rel-tit">Resumo</div>` + relKpis([
-            ['Obras', L.length, `${L.filter(x => x.tipo === 'contratos').length} contratos · ${L.filter(x => x.tipo === 'convenios').length} convênios`, '#0f172a'],
-            ['Valor total', moeda(L.reduce((s, x) => s + x.valor, 0), true), moeda(L.reduce((s, x) => s + x.valor, 0)), '#f97316'],
-            ['Em execução', ex.length, ex.length ? `execução média ${pct(media(ex.map(x => x.fisico)))}` : '', '#2563eb'],
-            ['Concluídas', c('concluida'), L.length ? pct(c('concluida') / L.length * 100) + ' do total' : '', '#16a34a'],
-            ['Paralisadas / pendência', c('paralisada'), '', '#7c3aed'], ['Rescisão', c('rescisao'), '', '#dc2626'],
-            ['Prontas para inaugurar', L.filter(x => x.inaug === 'apta').length, '', '#ea580c'], ['Inauguradas', L.filter(x => x.inaug === 'inaugurada').length, `${L.filter(x => x.prevVencida).length} com previsão vencida`, '#15803d']]);
+        h += relTit('fa-gauge-high', 'Resumo') + relKpis([
+            ['Obras', L.length, `${L.filter(x => x.tipo === 'contratos').length} contratos · ${L.filter(x => x.tipo === 'convenios').length} convênios`, '#0f172a', 'fa-building'],
+            ['Valor total', moeda(L.reduce((s, x) => s + x.valor, 0), true), moeda(L.reduce((s, x) => s + x.valor, 0)), '#f97316', 'fa-sack-dollar'],
+            ['Em execução', ex.length, ex.length ? `execução média ${pct(media(ex.map(x => x.fisico)))}` : '', '#2563eb', 'fa-person-digging'],
+            ['Concluídas', c('concluida'), L.length ? pct(c('concluida') / L.length * 100) + ' do total' : '', '#16a34a', 'fa-circle-check'],
+            ['Paralisadas / pendência', c('paralisada'), '', '#7c3aed', 'fa-circle-pause'], ['Rescisão', c('rescisao'), '', '#dc2626', 'fa-file-circle-xmark'],
+            ['Prontas para inaugurar', L.filter(x => x.inaug === 'apta').length, '', '#ea580c', 'fa-champagne-glasses'], ['Inauguradas', L.filter(x => x.inaug === 'inaugurada').length, `${L.filter(x => x.prevVencida).length} com previsão vencida`, '#15803d', 'fa-ribbon']]);
     }
     if (S.destaques) h += relDestaques(L);
     if (S.graficos && L.length) {
-        h += `<div class="rel-tit">Gráficos</div><div class="rel-sub">Andamento das obras</div>` + relEmpilhada(Object.keys(GRUPOS).map(k => [GRUPOS[k].rot, L.filter(x => x.grupo === k).length, GRUPOS[k].cor]));
+        h += relTit('fa-chart-column', 'Gráficos') + `<div class="rel-sub"><i class="fa-solid fa-bars-progress"></i> Andamento das obras</div>` + relEmpilhada(Object.keys(GRUPOS).map(k => [GRUPOS[k].rot, L.filter(x => x.grupo === k).length, GRUPOS[k].cor, GRUPOS[k].ic]));
         const objs = {}; L.forEach(x => { const k = x.r.objeto || '(sem objeto)'; objs[k] = (objs[k] || 0) + 1; });
         const porChave = (fn) => { const o = {}; L.forEach(x => { const k = fn(x); if (k) o[k] = (o[k] || 0) + x.valor; }); return Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, 10); };
         const segundo = RL.agrupar === 'dre' || RL.modelo === 'dre' ? ['Investimento por DRE', porChave(x => dreDe(x).replace(/^DRE /, ''))] : ['Investimento por município (10 maiores)', porChave(x => x.r.municipio)];
-        h += `<table class="rel-duas" cellspacing="0"><tr><td>${relBarras('Obras por objeto', Object.entries(objs).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, n]) => [k, n, '#0891b2']))}</td>
-            <td>${relBarras(segundo[0], segundo[1].map(([k, n]) => [k, n, '#f97316']), n => moeda(n, true))}</td></tr></table>`;
+        h += `<table class="rel-duas" cellspacing="0"><tr><td>${relBarras('Obras por tipo de obra', Object.entries(objs).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, n]) => [k, n, '#0891b2', iconeObjeto(k)[0]]), n => n, 'fa-shapes')}</td>
+            <td>${relBarras(segundo[0], segundo[1].map(([k, n]) => [k, n, '#f97316', RL.modelo === 'dre' || RL.agrupar === 'dre' ? 'fa-sitemap' : 'fa-location-dot']), n => moeda(n, true), 'fa-sack-dollar')}</td></tr></table>`;
         const ex = L.filter(x => x.grupo === 'execucao'); const meses = [];
         const h0 = new Date(); for (let i = 0; i < 6; i++) meses.push(iso(new Date(h0.getFullYear(), h0.getMonth() + i, 1)).slice(0, 7));
-        h += relBarras('Conclusões previstas (obras em execução)', [['Vencidas', ex.filter(x => x.prevVencida).length, '#dc2626'], ...meses.map(m => [nomeMes(m + '-01'), ex.filter(x => x.prev && x.prev.slice(0, 7) === m).length, '#2563eb']), ['Sem previsão', ex.filter(x => !x.prev).length, '#94a3b8']]);
+        h += relBarras('Conclusões previstas (obras em execução)', [['Vencidas', ex.filter(x => x.prevVencida).length, '#dc2626', 'fa-calendar-xmark'], ...meses.map(m => [nomeMes(m + '-01'), ex.filter(x => x.prev && x.prev.slice(0, 7) === m).length, '#2563eb', 'fa-calendar-day']), ['Sem previsão', ex.filter(x => !x.prev).length, '#94a3b8', 'fa-circle-question']], n => n, 'fa-calendar-days');
     }
     if (S.lista) {
         const cats = categoriasRel(L);
-        if (cats) cats.forEach(([t, d, c, l]) => { h += `<div class="rel-tit" style="border-color:${c}">${esc(t)} <span style="color:#64748b;font-weight:600">(${l.length})</span></div>${d ? `<div class="rel-sub">${esc(d)}</div>` : ''}${l.length ? relTabela(l, S.obs) : '<p class="rel-vazio">Nenhuma obra nesta situação.</p>'}`; });
-        else h += `<div class="rel-tit">Lista de obras${RL.agrupar ? ' por ' + AGRUPAR.find(a => a[0] === RL.agrupar)[1].toLowerCase() : ''}</div>${L.length ? relTabela(L, S.obs) : '<p class="rel-vazio">Nenhuma obra com esses filtros.</p>'}`;
+        if (cats) cats.forEach(([t, d, c, l]) => { h += relTit(icCategoria(t), `${esc(t)} <span style="color:#64748b;font-weight:600">(${l.length})</span>`, c) + `${d ? `<div class="rel-sub">${esc(d)}</div>` : ''}${l.length ? relTabela(l, S.obs) : '<p class="rel-vazio">Nenhuma obra nesta situação.</p>'}`; });
+        else h += relTit('fa-list-ul', `Lista de obras${RL.agrupar ? ' por ' + AGRUPAR.find(a => a[0] === RL.agrupar)[1].toLowerCase() : ''}`) + `${L.length ? relTabela(L, S.obs) : '<p class="rel-vazio">Nenhuma obra com esses filtros.</p>'}`;
     }
     if (S.atencao) {
         const al = calcularAlertas(L).filter(a => a.nivel !== 'baixa');
         const lim = RL.modelo === 'executivo' ? 12 : 150;
-        h += `<div class="rel-tit">Pontos de atenção (${al.length})</div>${al.length ? `<table class="rel-tab" cellspacing="0"><tbody>${al.slice(0, lim).map(a => `<tr><td style="width:70px;color:${NIVEL[a.nivel].cor};font-weight:800">${NIVEL[a.nivel].rot}</td><td><b>${esc(a.titulo)}</b><br><span style="color:#475569">${esc(a.desc)}</span></td></tr>`).join('')}</tbody></table>${al.length > lim ? `<p class="rel-vazio">… e mais ${al.length - lim} ponto(s). Veja a tela de Alertas.</p>` : ''}` : '<p style="color:#16a34a;font-weight:700">Nenhum ponto de atenção.</p>'}`;
+        h += relTit('fa-triangle-exclamation', `Pontos de atenção (${al.length})`, '#dc2626') + `${al.length ? `<table class="rel-tab" cellspacing="0"><tbody>${al.slice(0, lim).map(a => `<tr><td style="width:84px;color:${NIVEL[a.nivel].cor};font-weight:800"><i class="fa-solid ${a.ic}"></i> ${NIVEL[a.nivel].rot}</td><td><b>${esc(a.titulo)}</b><br><span style="color:#475569">${esc(a.desc)}</span></td></tr>`).join('')}</tbody></table>${al.length > lim ? `<p class="rel-vazio">… e mais ${al.length - lim} ponto(s). Veja a tela de Alertas.</p>` : ''}` : '<p style="color:#16a34a;font-weight:700">Nenhum ponto de atenção.</p>'}`;
     }
     h += relAssinatura(RL.assina, RL.cargo, RL.local);
     $('area-relatorio').innerHTML = `<div class="rel-folha${RL.paisagem ? ' paisagem' : ''}${RL.compacto ? ' compacto' : ''}">${h}</div>`;
@@ -2668,7 +2795,7 @@ function listarGestao() {
             <td>${seloTipo(x.tipo)}</td>
             <td><b class="mono" style="font-size:12.5px">${esc(x.cod)}</b><div class="peq mut">${esc(x.tipo === 'contratos' ? r.instrumento || '' : r.dre || '')}</div></td>
             <td style="max-width:300px"><b class="trunc" style="display:block" title="${esc(r.unidadeEscolar)}">${esc(r.unidadeEscolar || '—')}</b><span class="peq mut">${esc(r.municipio || '—')}${r.unidade ? ' · ' + esc(r.unidade) : ''}</span></td>
-            <td class="peq" style="max-width:170px">${esc(r.objeto || '—')}</td>
+            <td class="peq" style="max-width:170px"><i class="fa-solid ${iconeObjeto(r.objeto)[0]} ic-obj"></i>${esc(r.objeto || '—')}</td>
             <td class="peq" style="max-width:190px"><span class="trunc" style="display:block" title="${esc(r.empresa)}">${esc(r.empresa || '—')}</span></td>
             <td style="max-width:190px">${seloGrupo(x.grupo)}<div class="peq mut" style="margin-top:3px">${esc(r.status || '')}</div></td>
             <td class="dir num"><b>${r.valor ? moeda(r.valor) : '—'}</b></td>
@@ -2973,6 +3100,148 @@ function recolherMenu(forcar) {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lat-btn').forEach(b => { const t = b.querySelector('span'); if (t && !b.title) b.title = t.textContent; });
     if (document.documentElement.classList.contains('menu-recolhido')) recolherMenu(true);
+});
+</script>
+<script>
+// =====================================================================================
+// ANIMAÇÕES E INTERATIVIDADE
+// =====================================================================================
+const semMovimento = () => window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Números dos indicadores "contam" até o valor final. */
+function contarNumeros(raiz) {
+    if (!raiz || semMovimento()) return;
+    raiz.querySelectorAll('.kpi .v').forEach(el => {
+        const fim = el.textContent.trim();
+        let m, fmt, alvo;
+        if ((m = fim.match(/^(\d{1,3}(?:\.\d{3})*|\d+)$/))) { alvo = +m[1].replace(/\./g, ''); fmt = n => Math.round(n).toLocaleString('pt-BR'); }
+        else if ((m = fim.match(/^R\$ ([\d.,]+) (mi|bi|mil)$/))) { alvo = num(m[1]); const casas = (m[1].split(',')[1] || '').length; fmt = n => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }) + ' ' + m[2]; }
+        else if ((m = fim.match(/^([\d.,]+)%$/))) { alvo = num(m[1]); const casas = (m[1].split(',')[1] || '').length; fmt = n => n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }) + '%'; }
+        else return;
+        if (!alvo) return;
+        const t0 = performance.now(), dur = 850;
+        const passo = agora => {
+            if (!el.isConnected) return;
+            const p = Math.min(1, (agora - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = p < 1 ? fmt(alvo * e) : fim;
+            if (p < 1) requestAnimationFrame(passo);
+        };
+        requestAnimationFrame(passo);
+    });
+}
+/** Destaca uma fatia/barra do gráfico ao passar o mouse na legenda. */
+function realcarGrafico(id, i) {
+    const ch = graficos[id]; if (!ch) return;
+    const el = i < 0 ? [] : [{ datasetIndex: 0, index: i }];
+    ch.setActiveElements(el);
+    if (ch.tooltip) ch.tooltip.setActiveElements(el, { x: 0, y: 0 });
+    ch.update();
+}
+// Entrada escalonada: cada item recebe sua posição (--i) para o atraso da animação
+new MutationObserver(lista => {
+    if (!document.body.classList.contains('animar')) return;
+    lista.forEach(m => m.addedNodes.forEach(n => {
+        if (n.nodeType !== 1) return;
+        const conts = n.matches && n.matches('.kpis,.cards,.grade,.lista,.barras-ic,.leg-ic-lista') ? [n] : [];
+        n.querySelectorAll && conts.push(...n.querySelectorAll('.kpis,.cards,.grade,.lista,.barras-ic,.leg-ic-lista'));
+        conts.forEach(c => [...c.children].forEach((x, i) => x.style.setProperty('--i', Math.min(i, 14))));
+    }));
+}).observe(document.documentElement, { childList: true, subtree: true });
+const tirarAnimacao = () => { clearTimeout(irPara.t); irPara.t = setTimeout(() => document.body.classList.remove('animar'), 1300); };
+// Efeito de "onda" ao clicar nos botões
+document.addEventListener('pointerdown', e => {
+    const b = e.target.closest('.btn, .lat-btn, button.kpi, .rl-modelo, .funil-et'); if (!b || semMovimento()) return;
+    const r = b.getBoundingClientRect(), d = Math.max(r.width, r.height);
+    const o = document.createElement('span'); o.className = 'onda';
+    o.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - r.left - d / 2}px;top:${e.clientY - r.top - d / 2}px`;
+    b.appendChild(o); setTimeout(() => o.remove(), 600);
+});
+// Troca de tema suave
+const alternarTemaBase = alternarTema;
+alternarTema = function () {
+    document.documentElement.classList.add('tema-transicao');
+    alternarTemaBase();
+    setTimeout(() => document.documentElement.classList.remove('tema-transicao'), 450);
+};
+// Gráficos com animação mais suave
+if (window.Chart) { Chart.defaults.animation.duration = 900; Chart.defaults.animation.easing = 'easeOutQuart'; }
+
+/** Chuva de confete (quando uma obra é marcada como inaugurada). */
+function confete() {
+    if (semMovimento()) return;
+    const c = document.createElement('canvas'); c.className = 'confete';
+    c.width = innerWidth; c.height = innerHeight; document.body.appendChild(c);
+    const ctx = c.getContext('2d'), cores = ['#f97316', '#16a34a', '#2563eb', '#facc15', '#db2777', '#7c3aed'];
+    const ps = Array.from({ length: 160 }, () => ({ x: innerWidth / 2 + (Math.random() - .5) * 200, y: innerHeight * .35, vx: (Math.random() - .5) * 16, vy: -Math.random() * 15 - 4,
+        r: Math.random() * 6 + 4, c: cores[Math.floor(Math.random() * cores.length)], a: Math.random() * 6, va: (Math.random() - .5) * .4 }));
+    const t0 = performance.now();
+    const quadro = agora => {
+        const t = agora - t0; ctx.clearRect(0, 0, c.width, c.height);
+        ps.forEach(p => { p.vy += .35; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.a += p.va;
+            ctx.save(); ctx.globalAlpha = Math.max(0, 1 - t / 2200); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.c; ctx.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); ctx.restore(); });
+        if (t < 2200) requestAnimationFrame(quadro); else c.remove();
+    };
+    requestAnimationFrame(quadro);
+}
+
+// =====================================================================================
+// BUSCA RÁPIDA (Ctrl+K): telas, ações, obras e municípios
+// =====================================================================================
+let paleta = { itens: [], sel: 0 };
+function abrirBusca() {
+    if ($('paleta')) return;
+    const d = document.createElement('div'); d.id = 'paleta';
+    d.innerHTML = `<div class="paleta-caixa" role="dialog" aria-label="Busca rápida"><div class="paleta-busca"><i class="fa-solid fa-magnifying-glass"></i><input id="paleta-in" placeholder="Buscar obra, município, código, empresa ou tela..." autocomplete="off"><kbd>Esc</kbd></div><div id="paleta-res" class="paleta-res"></div>
+        <div class="paleta-pe"><span><kbd>↑</kbd><kbd>↓</kbd> navegar</span><span><kbd>Enter</kbd> abrir</span><span><kbd>Ctrl</kbd>+<kbd>K</kbd> abrir a busca de qualquer tela</span></div></div>`;
+    d.addEventListener('mousedown', e => { if (e.target === d) fecharBusca(); });
+    document.body.appendChild(d);
+    const inp = $('paleta-in');
+    inp.addEventListener('input', () => { paleta.sel = 0; buscarPaleta(inp.value); });
+    inp.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); paleta.sel = Math.min(paleta.itens.length - 1, paleta.sel + 1); marcarPaleta(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); paleta.sel = Math.max(0, paleta.sel - 1); marcarPaleta(); }
+        else if (e.key === 'Enter') { e.preventDefault(); executarPaleta(paleta.sel); }
+        else if (e.key === 'Escape') { e.preventDefault(); fecharBusca(); }
+    });
+    buscarPaleta(''); setTimeout(() => inp.focus(), 30);
+}
+function fecharBusca() { const d = $('paleta'); if (d) d.remove(); }
+function buscarPaleta(q) {
+    const t = norm(q), itens = [];
+    const telas = [['painel', 'Painel', 'fa-chart-pie'], ['gestao', 'Gestão de obras', 'fa-list-check'], ['mapa', 'Mapa das obras', 'fa-map-location-dot'], ['inauguracoes', 'Inaugurações', 'fa-ribbon'],
+        ['alertas', 'Alertas', 'fa-bell'], ['contratos', 'Contratos', 'fa-file-contract'], ['convenios', 'Convênios', 'fa-handshake'], ['relatorios', 'Relatórios', 'fa-file-pdf'], ['config', 'Configurações', 'fa-gear']];
+    if (pode.usuarios()) telas.push(['usuarios', 'Usuários', 'fa-user-shield']);
+    const acoes = [['Alternar modo claro/escuro', 'fa-circle-half-stroke', () => alternarTema()], ['Recolher/expandir menu', 'fa-angles-left', () => recolherMenu()]];
+    if (pode.tudo()) acoes.unshift(['Novo contrato', 'fa-file-circle-plus', () => abrirForm('contratos')], ['Novo convênio', 'fa-file-circle-plus', () => abrirForm('convenios')], ['Importar planilha (.xlsx)', 'fa-file-import', () => abrirImportar('contratos')]);
+    telas.filter(([, r]) => !t || norm(r).includes(t)).forEach(([k, r, ic]) => itens.push({ g: 'Telas', ic, cor: '#2563eb', t: r, s: 'Ir para a tela', f: () => irPara(k) }));
+    acoes.filter(([r]) => !t || norm(r).includes(t)).forEach(([r, ic, f]) => itens.push({ g: 'Ações', ic, cor: '#f97316', t: r, s: '', f }));
+    if (t.length >= 2) {
+        const termos = t.split(/\s+/).filter(Boolean);
+        const obras = todos().filter(x => { const txt = norm([x.cod, x.r.unidadeEscolar, x.r.municipio, x.r.empresa, x.r.objeto, x.r.status, x.r.dre].join(' ')); return termos.every(p => txt.includes(p)); })
+            .sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso).slice(0, 12);
+        obras.forEach(x => itens.push({ g: `Obras`, ic: iconeObjeto(x.r.objeto)[0], cor: GRUPOS[x.grupo].cor, t: x.nome, s: `${x.T.rot} ${x.cod} · ${x.r.municipio || ''} · ${GRUPOS[x.grupo].rot}${x.fisico !== null ? ' · ' + pct(x.fisico) : ''}`, f: () => abrirRegistro(x.tipo, x.r.id) }));
+        GEO_MT.mun.filter(m => norm(m.n).includes(t)).slice(0, 5).forEach(m => {
+            const n = todos().filter(x => chaveMun(x.r.municipio) === chaveMun(m.n)).length;
+            itens.push({ g: 'Municípios', ic: 'fa-location-dot', cor: '#ea580c', t: m.n, s: `${n} obra(s) · ver no mapa`, f: () => { irPara('mapa'); setTimeout(() => selecionarMunicipio(m.n), 200); } });
+        });
+    }
+    paleta.itens = itens;
+    let h = '', grupo = '';
+    itens.forEach((it, i) => {
+        if (it.g !== grupo) { grupo = it.g; h += `<div class="paleta-g">${it.g}</div>`; }
+        h += `<button class="paleta-it" data-i="${i}" onmouseenter="paleta.sel=${i};marcarPaleta()" onclick="executarPaleta(${i})"><span class="ic" style="--c:${it.cor}"><i class="fa-solid ${it.ic}"></i></span><span class="tx"><b>${esc(it.t)}</b>${it.s ? `<span>${esc(it.s)}</span>` : ''}</span><i class="fa-solid fa-arrow-turn-down fa-rotate-90 ent"></i></button>`;
+    });
+    $('paleta-res').innerHTML = h || `<div class="vazio" style="padding:30px"><i class="fa-solid fa-magnifying-glass"></i>Nada encontrado para "${esc(q)}".</div>`;
+    marcarPaleta();
+}
+function marcarPaleta() {
+    document.querySelectorAll('.paleta-it').forEach(b => b.classList.toggle('ativo', +b.dataset.i === paleta.sel));
+    const a = document.querySelector('.paleta-it.ativo'); if (a) a.scrollIntoView({ block: 'nearest' });
+}
+function executarPaleta(i) { const it = paleta.itens[i]; if (!it) return; fecharBusca(); it.f(); }
+document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { if (!iniciado) return; e.preventDefault(); $('paleta') ? fecharBusca() : abrirBusca(); }
+    else if (e.key === '/' && iniciado && !$('paleta') && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) && !$('modal-host').firstElementChild) { e.preventDefault(); abrirBusca(); }
 });
 </script>
 </body>
