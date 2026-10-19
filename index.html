@@ -403,6 +403,99 @@ html.escuro .contorno-mt { stroke: #e2e8f0; }
     .kpi .v { font-size: 21px; }
     .heroi .barra-filtros .btn { flex: 1; }
 }
+
+/* mapa: ícones, rótulos e tela cheia */
+.mk-mun span { transition: transform .15s; }
+.mk-mun span:hover { transform: scale(1.12); }
+.mk-obra { position: relative; }
+.mk-obra span { position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--c); border: 2px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.mk-obra span i { transform: rotate(45deg); color: #fff; font-size: 12px; }
+.mk-obra:hover span { filter: brightness(1.1); }
+.mk-selo { position: absolute; right: -6px; top: -6px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; color: #fff; font-size: 7px; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.mk-rotulo span { display: block; text-align: center; font-size: 10.5px; font-weight: 800; color: #0f172a; text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 4px #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -.01em; }
+html.escuro .mk-rotulo span { color: #f1f5f9; text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 4px #000; }
+.mp-botoes a { display: flex !important; align-items: center; justify-content: center; color: #334155 !important; font-size: 13px; }
+.leg-ic { width: 20px; height: 20px; border-radius: 6px; background: #475569; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
+.leg-selo { width: 14px; height: 14px; border-radius: 50%; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; }
+.barra-empilhada { display: flex; height: 10px; border-radius: 6px; overflow: hidden; gap: 2px; }
+.pop-obra { font-size: 12.5px; line-height: 1.5; }
+.pop-obra .btn { height: 30px; }
+#mp-card.mapa-cheio { position: fixed; inset: 0; z-index: 250; border-radius: 0; display: flex; flex-direction: column; }
+#mp-card.mapa-cheio #mapa-mt { flex: 1; height: auto; }
+html.escuro .leaflet-bar a { background: #1e293b; color: #e2e8f0 !important; border-color: #334155; }
+html.escuro .leaflet-popup-content-wrapper, html.escuro .leaflet-popup-tip { background: var(--card); color: var(--texto); }
+html.escuro .leaflet-tooltip { background: #1e293b; color: #e2e8f0; border-color: #334155; }
+/* relatórios: configuração */
+.rel-grade { display: grid; grid-template-columns: 360px minmax(0,1fr); gap: 14px; align-items: start; }
+@media (max-width: 1150px) { .rel-grade { grid-template-columns: minmax(0,1fr); } }
+#rl-config { position: sticky; top: 0; max-height: calc(100vh - 120px); overflow-y: auto; padding: 14px 16px; }
+@media (max-width: 1150px) { #rl-config { position: static; max-height: none; } }
+.rl-bloco + .rl-bloco { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--borda); }
+.rl-tit { font-size: 11.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--marca2); margin-bottom: 9px; }
+.rl-modelos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.rl-modelo { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 4px; border-radius: 10px; border: 1px solid var(--borda); background: var(--card); font-size: 11.5px; font-weight: 700; color: var(--texto2); text-align: center; line-height: 1.2; }
+.rl-modelo i { font-size: 16px; color: var(--muted); }
+.rl-modelo:hover { border-color: var(--borda2); }
+.rl-modelo.ativo { border-color: var(--marca); background: color-mix(in srgb, var(--marca) 9%, var(--card)); color: var(--marca2); }
+.rl-modelo.ativo i { color: var(--marca); }
+.rl-grade2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.rl-grade2 .campo { font-size: 12.5px; height: 36px; }
+.rl-chks { display: grid; gap: 6px; }
+.rl-chk { display: flex; gap: 8px; align-items: center; font-size: 13px; cursor: pointer; }
+.rl-colunas { display: flex; flex-wrap: wrap; gap: 5px; }
+.rl-col { display: inline-flex; align-items: center; gap: 5px; height: 27px; padding: 0 9px 0 6px; border-radius: 999px; border: 1px dashed var(--borda2); font-size: 11.5px; font-weight: 600; color: var(--muted); background: var(--card); }
+.rl-col i { font-size: 9px; }
+.rl-col.ativo { border-style: solid; border-color: var(--prim); background: var(--prim-claro); color: var(--prim); }
+.rl-col.ativo b { width: 17px; height: 17px; border-radius: 50%; background: var(--prim); color: #fff; font-size: 9.5px; display: inline-flex; align-items: center; justify-content: center; }
+.rel-preview { background: var(--suave2); border-radius: 14px; padding: 18px; overflow-x: auto; }
+/* relatórios: folha */
+.rel-folha.paisagem { width: 1123px; }
+.rel-preview .rel-folha { max-width: none; }
+.rel-tab { table-layout: auto; }
+.rel-folha.compacto { font-size: 9.5px; }
+.rel-cab2 { width: 100%; background: #0f172a; color: #fff; border-radius: 12px; border-collapse: separate; }
+.rel-cab2 td { padding: 14px 18px; vertical-align: middle; }
+.rel-cab2 .nm { font-size: 22px; font-weight: 900; letter-spacing: -.03em; }
+.rel-cab2 .nm span { color: #f97316; }
+.rel-cab2 .sub { font-size: 10px; font-weight: 600; color: #cbd5e1; letter-spacing: 0; }
+.rel-cab2 .dir { text-align: right; font-size: 10px; color: #cbd5e1; line-height: 1.6; }
+.rel-cab2 .dir b { color: #fff; }
+.rel-nota { margin-top: 10px; padding: 10px 12px; border-left: 3px solid #f97316; background: #fff7ed; white-space: pre-wrap; font-size: 11px; color: #334155; }
+.rel-sub { font-size: 10px; color: #64748b; margin: -4px 0 8px; font-weight: 600; }
+.rel-kpis2 { width: 100%; border-collapse: separate; margin: 0 -6px; table-layout: fixed; }
+.rel-kpis2 td { border: 1px solid #e2e8f0; border-radius: 9px; padding: 8px 10px; vertical-align: top; }
+.rel-kpis2 small { display: block; color: #64748b; font-size: 9.5px; font-weight: 600; }
+.rel-kpis2 b { display: block; font-size: 16px; margin-top: 2px; }
+.rel-kpis2 em { display: block; font-style: normal; color: #64748b; font-size: 9px; margin-top: 1px; }
+.rel-dest { margin: 0; padding-left: 18px; line-height: 1.6; color: #334155; }
+.rel-graf { margin-bottom: 10px; }
+.rel-graf-t { font-size: 10.5px; font-weight: 700; color: #334155; margin-bottom: 5px; }
+.rel-barras { width: 100%; border-collapse: collapse; }
+.rel-barras td { padding: 2px 0; font-size: 9.5px; vertical-align: middle; }
+.rel-barras .r { width: 36%; padding-right: 8px; color: #475569; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+.rel-barras .b td { height: 10px; border-radius: 3px; padding: 0; }
+.rel-barras .v { width: 70px; text-align: right; font-weight: 700; padding-left: 6px; white-space: nowrap; }
+.rel-duas { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 10px; }
+.rel-duas > tbody > tr > td { vertical-align: top; padding-right: 14px; }
+.rel-duas > tbody > tr > td + td { padding-right: 0; padding-left: 14px; }
+.rel-empilhada { width: 100%; border-collapse: collapse; height: 18px; border-radius: 6px; overflow: hidden; }
+.rel-empilhada td { color: #fff; font-size: 9px; font-weight: 800; text-align: center; padding: 2px 0; }
+.rel-leg { margin-top: 5px; font-size: 9.5px; color: #475569; }
+.rel-leg span { display: inline-block; margin-right: 12px; }
+.rel-leg i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.rel-tab .grp td { background: #fff7ed; color: #9a3412; font-weight: 800; font-size: 10.5px; padding-top: 7px; border-top: 2px solid #fed7aa; }
+.rel-tab .grp td span { color: #64748b; font-weight: 600; }
+.rel-tab .tot td { background: #f1f5f9; font-size: 10px; border-top: 2px solid #cbd5e1; }
+.rel-tab .obs td { color: #475569; font-size: 9px; white-space: pre-wrap; padding-top: 0; background: #fafafa; }
+.rel-tab .dir { text-align: right; white-space: nowrap; }
+.rel-tab.compacto td, .rel-tab.compacto th { padding: 3px 4px; font-size: 8.5px; }
+.rel-vazio { color: #64748b; font-style: italic; }
+.rel-assin2 { width: 100%; margin-top: 36px; border-collapse: collapse; }
+.rel-assin2 .esq { font-size: 9px; color: #64748b; vertical-align: bottom; }
+.rel-assin2 .ass { width: 290px; text-align: center; vertical-align: bottom; }
+.rel-assin2 .ln { border-top: 1px solid #0f172a; padding-top: 5px; font-weight: 700; }
+.rel-assin2 .cg { font-size: 9.5px; color: #475569; }
+@media print { .rel-folha.paisagem { width: auto; } .rel-tab thead { display: table-header-group; } .rel-tit { page-break-after: avoid; } }
 </style>
 </head>
 <body>
@@ -532,12 +625,12 @@ html.escuro .contorno-mt { stroke: #e2e8f0; }
 
     <section class="aba hidden" id="aba-mapa">
         <div class="heroi"><div class="heroi-linha">
-            <div><h2><i class="fa-solid fa-map-location-dot"></i>Mapa das obras</h2><p>Somente o Estado de Mato Grosso. As obras são localizadas pelo MUNICÍPIO informado na planilha.</p></div>
+            <div><h2><i class="fa-solid fa-map-location-dot"></i>Mapa das obras</h2><p>Somente o Estado de Mato Grosso. Cada obra aparece no seu MUNICÍPIO, com ícone do tipo de obra e cor do andamento.</p></div>
         </div></div>
         <div class="conteudo"><div class="pilha">
             <div class="card card-pad barra-filtros" id="mp-filtros"></div>
             <div class="mapa-grade">
-                <div class="card card-pad"><div id="mapa-mt"></div><div class="legenda" id="mp-legenda" style="margin-top:10px"></div><div class="peq mut" id="mp-resumo" style="margin-top:6px"></div></div>
+                <div class="card card-pad" id="mp-card"><div id="mapa-mt"></div><div id="mp-legenda" style="margin-top:10px"></div><div class="peq mut" id="mp-resumo" style="margin-top:6px"></div></div>
                 <div class="card card-pad" id="mp-lista"></div>
             </div>
         </div></div>
@@ -576,27 +669,16 @@ html.escuro .contorno-mt { stroke: #e2e8f0; }
 
     <section class="aba hidden" id="aba-relatorios">
         <div class="heroi"><div class="heroi-linha">
-            <div><h2><i class="fa-solid fa-file-pdf"></i>Relatórios</h2><p>Relatório pronto para imprimir ou salvar em PDF.</p></div>
-            <button class="btn btn-l" onclick="imprimirRelatorio()"><i class="fa-solid fa-print"></i>Imprimir / Salvar PDF</button>
-        </div></div>
-        <div class="conteudo"><div class="pilha">
-            <div class="card card-pad">
-                <div class="form-grade" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-                    <label><span class="rot">Título</span><input id="rl-titulo" class="campo" value="Relatório de situação das obras" oninput="renderRelatorio()"></label>
-                    <label><span class="rot">Incluir</span><select id="rl-tipo" class="campo" onchange="renderRelatorio()"><option value="">Contratos e convênios</option><option value="contratos">Somente contratos</option><option value="convenios">Somente convênios</option></select></label>
-                    <label><span class="rot">Andamento</span><select id="rl-grupo" class="campo" onchange="renderRelatorio()"></select></label>
-                    <label><span class="rot">Inauguração</span><select id="rl-inaug" class="campo" onchange="renderRelatorio()"></select></label>
-                    <label><span class="rot">Município</span><select id="rl-municipio" class="campo" onchange="renderRelatorio()"></select></label>
-                    <label><span class="rot">Quem assina</span><input id="rl-assina" class="campo" oninput="renderRelatorio()"></label>
-                </div>
-                <div class="barra-filtros" style="margin-top:12px">
-                    <label class="chip"><input type="checkbox" id="rl-inc-resumo" checked onchange="renderRelatorio()"> Resumo</label>
-                    <label class="chip"><input type="checkbox" id="rl-inc-lista" checked onchange="renderRelatorio()"> Lista de obras</label>
-                    <label class="chip"><input type="checkbox" id="rl-inc-obs" onchange="renderRelatorio()"> Observações dos setores</label>
-                    <label class="chip"><input type="checkbox" id="rl-inc-alertas" checked onchange="renderRelatorio()"> Pontos de atenção</label>
-                </div>
+            <div><h2><i class="fa-solid fa-file-pdf"></i>Relatórios</h2><p>Escolha um modelo, ajuste filtros, colunas e agrupamento, e gere em PDF, Word ou Excel. <span id="rl-contagem" style="color:#fdba74"></span></p></div>
+            <div class="barra-filtros">
+                <button class="btn btn-v" onclick="baixarExcelRelatorio()"><i class="fa-solid fa-file-excel"></i>Excel</button>
+                <button class="btn btn-v" onclick="baixarWordRelatorio()"><i class="fa-solid fa-file-word"></i>Word</button>
+                <button class="btn btn-l" onclick="imprimirRelatorio()"><i class="fa-solid fa-print"></i>Imprimir / PDF</button>
             </div>
-            <div style="background:var(--suave2);border-radius:14px;padding:18px;overflow-x:auto"><div id="area-relatorio"></div></div>
+        </div></div>
+        <div class="conteudo"><div class="rel-grade">
+            <div class="card card-pad" id="rl-config"></div>
+            <div class="rel-preview"><div id="area-relatorio"></div></div>
         </div></div>
     </section>
 
@@ -630,7 +712,7 @@ html.escuro .contorno-mt { stroke: #e2e8f0; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.1.0';
+const VERSAO_APP = '2.2.0';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -1882,67 +1964,294 @@ function renderAlertas() {
 }
 
 // =====================================================================================
-// RELATÓRIOS
+// RELATÓRIOS — modelos prontos, colunas à escolha, agrupamento e exportação (PDF, Word, Excel)
 // =====================================================================================
+const dreDe = x => str(x.r.dre).trim() || dreDoMunicipio(x.r.municipio) || '';
+/** Colunas disponíveis: [chave, título, valor em texto, alinhamento] */
+const COLS_REL = [
+    ['tipo', 'Tipo', x => x.T.rot], ['codigo', 'Código', x => x.cod], ['instrumento', 'Instrumento', x => x.r.instrumento || ''], ['dre', 'DRE', x => dreDe(x).replace(/^DRE /, '')],
+    ['municipio', 'Município', x => x.r.municipio || ''], ['unidade', 'Unidade escolar', x => x.r.unidadeEscolar || ''], ['rede', 'Rede (unidade)', x => x.r.unidade || ''],
+    ['objeto', 'Objeto', x => x.r.objeto || ''], ['salas', 'Salas', x => x.r.salas || ''], ['alunos', 'Alunos', x => x.r.alunos || ''], ['empresa', 'Empresa', x => x.r.empresa || ''],
+    ['status', 'Status', x => x.r.status || ''], ['andamento', 'Andamento', x => GRUPOS[x.grupo].rot], ['valor', 'Valor', x => x.valor ? moeda(x.valor) : '', 'dir'],
+    ['exec', 'Exec. física', x => x.fisico === null ? '' : pct(x.fisico), 'dir'], ['financ', 'Exec. financ.', x => x.financeiro === null ? '' : pct(x.financeiro), 'dir'],
+    ['previsao', 'Previsão', x => str(x.r.previsao).trim() ? fmtPrev(x.r.previsao) : ''], ['situacao', 'Situação', x => x.r.situacao || ''],
+    ['inaug', 'Inauguração', x => INAUG[x.inaug].rot], ['inaugurarSuob', 'Inaugurar (SUOB)', x => x.r.inaugurarSuob || ''], ['aptaSpat', 'Apta (SPAT)', x => x.r.aptaSpat || ''],
+    ['aptaSagr', 'Apta (SAGR)', x => x.r.aptaSagr || ''], ['atoGs', 'Ato (GS)', x => x.r.atoGs || ''], ['dataInaug', 'Data inauguração', x => normData(x.r.dataInauguracao) ? fmtData(x.r.dataInauguracao) : (x.r.dataInauguracao || '')],
+    ['dataPrevista', 'Data prevista', x => x.r.dataPrevista || ''], ['obsSuob', 'Obs. SUOB', x => x.r.observacaoSuob || ''], ['obsSpat', 'Obs. SPAT', x => x.r.observacaoSpat || x.r.obsSpat || ''],
+    ['obsSagr', 'Obs. SAGR', x => x.r.observacaoSagr || x.r.obsSagr || '']
+];
+const COL_REL = Object.fromEntries(COLS_REL.map(c => [c[0], c]));
+const AGRUPAR = [['', 'Sem agrupamento'], ['municipio', 'Município'], ['dre', 'DRE'], ['objeto', 'Objeto'], ['andamento', 'Andamento'], ['status', 'Status'], ['tipo', 'Tipo (contrato/convênio)'], ['inaug', 'Inauguração'], ['empresa', 'Empresa']];
+const ORDENS = [['municipio', 'Município e unidade'], ['valor', 'Maior valor'], ['exec', 'Menor execução'], ['previsao', 'Previsão mais próxima'], ['codigo', 'Código'], ['risco', 'Mais críticas primeiro']];
+const MODELOS = {
+    geral: { rot: 'Situação geral', ic: 'fa-clipboard-list', desc: 'Resumo, gráficos, lista completa e pontos de atenção.', titulo: 'Relatório de situação das obras',
+        agrupar: '', ordem: 'municipio', secoes: { resumo: 1, graficos: 1, lista: 1, atencao: 1, obs: 0 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'objeto', 'status', 'valor', 'exec', 'previsao', 'inaug'] },
+    municipio: { rot: 'Por município', ic: 'fa-location-dot', desc: 'Obras agrupadas por município, com subtotais.', titulo: 'Obras por município',
+        agrupar: 'municipio', ordem: 'municipio', secoes: { resumo: 1, graficos: 1, lista: 1, atencao: 0, obs: 0 }, colunas: ['tipo', 'codigo', 'unidade', 'objeto', 'empresa', 'status', 'valor', 'exec', 'previsao', 'inaug'] },
+    dre: { rot: 'Por DRE', ic: 'fa-sitemap', desc: 'Obras por Diretoria Regional, com subtotais.', titulo: 'Obras por Diretoria Regional de Educação',
+        agrupar: 'dre', ordem: 'municipio', secoes: { resumo: 1, graficos: 1, lista: 1, atencao: 0, obs: 0 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'objeto', 'status', 'valor', 'exec', 'previsao'] },
+    inauguracoes: { rot: 'Agenda de inaugurações', ic: 'fa-ribbon', desc: 'Prontas, em verificação, próximas e já inauguradas.', titulo: 'Agenda de inaugurações',
+        agrupar: '', ordem: 'previsao', categorias: 'inaug', secoes: { resumo: 1, graficos: 0, lista: 1, atencao: 0, obs: 0 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'objeto', 'exec', 'previsao', 'inaugurarSuob', 'atoGs', 'dataPrevista', 'dataInaug'] },
+    criticas: { rot: 'Obras críticas', ic: 'fa-triangle-exclamation', desc: 'Paralisadas, rescisões, previsões vencidas e desembolso à frente.', titulo: 'Obras que precisam de atenção',
+        agrupar: '', ordem: 'valor', categorias: 'criticas', secoes: { resumo: 1, graficos: 0, lista: 1, atencao: 0, obs: 1 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'empresa', 'status', 'valor', 'exec', 'financ', 'previsao'] },
+    executivo: { rot: 'Resumo executivo', ic: 'fa-briefcase', desc: 'Uma visão de 1 a 2 páginas para a gestão superior.', titulo: 'Resumo executivo das obras',
+        agrupar: '', ordem: 'valor', secoes: { resumo: 1, graficos: 1, lista: 0, atencao: 1, obs: 0, destaques: 1 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'status', 'valor', 'exec', 'previsao'] }
+};
+const RL_PADRAO = { modelo: 'geral', titulo: MODELOS.geral.titulo, tituloEditado: false, nota: '', tipo: '', grupo: '', inaug: '', municipio: '', dre: '', objeto: '', status: '',
+    agrupar: '', ordem: 'municipio', colunas: MODELOS.geral.colunas.slice(), secoes: { ...MODELOS.geral.secoes }, paisagem: false, compacto: false, assina: '', cargo: '', local: 'Cuiabá-MT' };
+let RL = (() => { try { return { ...RL_PADRAO, ...JSON.parse(LS.get('gob_relatorio') || '{}') }; } catch (e) { return { ...RL_PADRAO }; } })();
+const salvarRL = () => LS.set('gob_relatorio', JSON.stringify(RL));
+function aplicarModelo(k) {
+    const M = MODELOS[k];
+    Object.assign(RL, { modelo: k, agrupar: M.agrupar, ordem: M.ordem, colunas: M.colunas.slice(), secoes: { resumo: 0, graficos: 0, lista: 0, atencao: 0, obs: 0, destaques: 0, ...M.secoes } });
+    if (!RL.tituloEditado) RL.titulo = M.titulo;
+    if (k === 'inauguracoes' || k === 'criticas') RL.grupo = RL.inaug = '';
+    RL.paisagem = RL.colunas.length > 9;
+    salvarRL(); renderRelatorio(true);
+}
+
+// ---------- tela de configuração ----------
+function renderRelatorioConfig() {
+    if (!RL.assina) RL.assina = sessao.usuario;
+    const sel = (campo, lista, vazio) => `<select class="campo" onchange="RL.${campo}=this.value;salvarRL();renderRelatorio()">${opcoes(lista, vazio, RL[campo])}</select>`;
+    const uniao = k => [...new Set(TIPO_LISTA.filter(t => !RL.tipo || t === RL.tipo).flatMap(t => distintos(t, k)))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const chk = (k, rot) => `<label class="rl-chk"><input type="checkbox" ${RL.secoes[k] ? 'checked' : ''} onchange="RL.secoes.${k}=this.checked?1:0;salvarRL();renderRelatorio()"> ${rot}</label>`;
+    $('rl-config').innerHTML = `
+        <div class="rl-bloco"><div class="rl-tit">1. Modelo</div>
+            <div class="rl-modelos">${Object.entries(MODELOS).map(([k, M]) => `<button class="rl-modelo${RL.modelo === k ? ' ativo' : ''}" onclick="aplicarModelo('${k}')" title="${esc(M.desc)}"><i class="fa-solid ${M.ic}"></i><span>${M.rot}</span></button>`).join('')}</div>
+            <div class="dica">${esc(MODELOS[RL.modelo].desc)}</div></div>
+        <div class="rl-bloco"><div class="rl-tit">2. Título e apresentação</div>
+            <input class="campo" value="${esc(RL.titulo)}" oninput="RL.titulo=this.value;RL.tituloEditado=true;salvarRL();relAgendar()" placeholder="Título do relatório">
+            <textarea class="campo" rows="2" style="margin-top:8px" oninput="RL.nota=this.value;salvarRL();relAgendar()" placeholder="Texto de abertura (opcional): finalidade, destinatário, observações...">${esc(RL.nota)}</textarea></div>
+        <div class="rl-bloco"><div class="rl-tit">3. Quais obras</div>
+            <div class="rl-grade2">
+                ${sel('tipo', [['contratos', 'Somente contratos'], ['convenios', 'Somente convênios']], 'Contratos e convênios')}
+                ${RL.modelo === 'inauguracoes' || RL.modelo === 'criticas' ? '' : sel('grupo', Object.keys(GRUPOS).map(k => [k, GRUPOS[k].rot]).concat([['vencida', 'Previsão vencida']]), 'Todo andamento')}
+                ${RL.modelo === 'inauguracoes' ? '' : sel('inaug', Object.keys(INAUG).map(k => [k, INAUG[k].rot]), 'Toda inauguração')}
+                ${sel('municipio', uniao('municipio'), 'Todos os municípios')}
+                ${sel('dre', distintos('convenios', 'dre', DRES), 'Todas as DREs')}
+                ${sel('objeto', uniao('objeto'), 'Todos os objetos')}
+                ${sel('status', uniao('status'), 'Todos os status')}
+            </div>
+            <button class="btn btn-s btn-sm" style="margin-top:8px" onclick="Object.assign(RL,{tipo:'',grupo:'',inaug:'',municipio:'',dre:'',objeto:'',status:''});salvarRL();renderRelatorio(true)"><i class="fa-solid fa-filter-circle-xmark"></i>Limpar filtros</button></div>
+        <div class="rl-bloco"><div class="rl-tit">4. Seções</div>
+            <div class="rl-chks">${chk('resumo', 'Resumo em números')}${chk('graficos', 'Gráficos')}${chk('destaques', 'Leitura rápida (destaques)')}${chk('lista', 'Lista de obras')}${chk('obs', 'Observações dos setores na lista')}${chk('atencao', 'Pontos de atenção')}</div></div>
+        <div class="rl-bloco"><div class="rl-tit">5. Lista de obras</div>
+            <div class="rl-grade2"><label><span class="rot">Agrupar por</span>${sel('agrupar', AGRUPAR, null)}</label><label><span class="rot">Ordenar por</span>${sel('ordem', ORDENS, null)}</label></div>
+            <div class="rot" style="margin-top:10px">Colunas <small>(${RL.colunas.length} selecionadas — clique para incluir ou tirar)</small></div>
+            <div class="rl-colunas">${COLS_REL.map(([k, r]) => `<button class="rl-col${RL.colunas.includes(k) ? ' ativo' : ''}" onclick="alternarColunaRel('${k}')">${RL.colunas.includes(k) ? `<b>${RL.colunas.indexOf(k) + 1}</b>` : '<i class="fa-solid fa-plus"></i>'}${esc(r)}</button>`).join('')}</div></div>
+        <div class="rl-bloco"><div class="rl-tit">6. Página e assinatura</div>
+            <div class="seg" style="margin-bottom:8px"><button class="${!RL.paisagem ? 'ativo' : ''}" onclick="RL.paisagem=false;salvarRL();renderRelatorio(true)"><i class="fa-solid fa-file"></i> Retrato</button><button class="${RL.paisagem ? 'ativo' : ''}" onclick="RL.paisagem=true;salvarRL();renderRelatorio(true)"><i class="fa-solid fa-file fa-rotate-90"></i> Paisagem</button></div>
+            <label class="rl-chk"><input type="checkbox" ${RL.compacto ? 'checked' : ''} onchange="RL.compacto=this.checked;salvarRL();renderRelatorio()"> Letra compacta (cabe mais por página)</label>
+            <div class="rl-grade2" style="margin-top:8px">
+                <input class="campo" value="${esc(RL.assina)}" placeholder="Quem assina" oninput="RL.assina=this.value;salvarRL();relAgendar()">
+                <input class="campo" value="${esc(RL.cargo)}" placeholder="Cargo / setor" oninput="RL.cargo=this.value;salvarRL();relAgendar()">
+                <input class="campo" value="${esc(RL.local)}" placeholder="Local" oninput="RL.local=this.value;salvarRL();relAgendar()" style="grid-column:1/-1">
+            </div>
+            <button class="btn btn-s btn-sm" style="margin-top:10px" onclick="if(confirmar('Voltar todas as opções do relatório ao padrão?')){RL={...RL_PADRAO,colunas:RL_PADRAO.colunas.slice(),secoes:{...RL_PADRAO.secoes}};salvarRL();renderRelatorio(true)}"><i class="fa-solid fa-rotate-left"></i>Restaurar padrão</button></div>`;
+}
+function alternarColunaRel(k) {
+    const i = RL.colunas.indexOf(k);
+    if (i >= 0) { if (RL.colunas.length === 1) return toast('Deixe pelo menos uma coluna.', 'alerta'); RL.colunas.splice(i, 1); }
+    else RL.colunas.push(k);
+    salvarRL(); renderRelatorio(true);
+}
+let timerRel;
+function relAgendar() { clearTimeout(timerRel); timerRel = setTimeout(() => montarRelatorio(), 250); }
+function renderRelatorio(reconfig) {
+    if (reconfig || !$('rl-config').firstElementChild) renderRelatorioConfig();
+    else { const c = $('rl-config').scrollTop; renderRelatorioConfig(); $('rl-config').scrollTop = c; }
+    montarRelatorio();
+}
+
+// ---------- dados ----------
+function obrasRelatorio() {
+    return todos(RL.tipo, RL.municipio).filter(x => (!RL.grupo || x.grupo === RL.grupo || (RL.grupo === 'vencida' && x.prevVencida)) && (!RL.inaug || x.inaug === RL.inaug)
+        && (!RL.dre || dreDe(x) === RL.dre) && (!RL.objeto || x.r.objeto === RL.objeto) && (!RL.status || x.r.status === RL.status));
+}
+function ordenarRel(l) {
+    const f = {
+        municipio: (a, b) => str(a.r.municipio).localeCompare(str(b.r.municipio), 'pt-BR') || str(a.nome).localeCompare(str(b.nome), 'pt-BR'),
+        valor: (a, b) => b.valor - a.valor, exec: (a, b) => (a.fisico ?? 999) - (b.fisico ?? 999),
+        previsao: (a, b) => (a.prev || '9999').localeCompare(b.prev || '9999'), codigo: (a, b) => a.cod.localeCompare(b.cod, 'pt-BR', { numeric: true }),
+        risco: (a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || (b.prevVencida - a.prevVencida) || b.valor - a.valor
+    }[RL.ordem] || null;
+    return f ? l.slice().sort(f) : l;
+}
+const chaveGrupoRel = x => ({ municipio: x.r.municipio || '(sem município)', dre: dreDe(x) || '(sem DRE)', objeto: x.r.objeto || '(sem objeto)', andamento: GRUPOS[x.grupo].rot, status: x.r.status || '(sem status)', tipo: x.T.rotP, inaug: INAUG[x.inaug].rot, empresa: x.r.empresa || '(sem empresa)' }[RL.agrupar] || '');
+function categoriasRel(l) {
+    const M = MODELOS[RL.modelo];
+    if (M.categorias === 'inaug') return [
+        ['Prontas para inaugurar', 'INAUGURAR (SUOB) ou ATO (GS) = SIM, ainda sem data de inauguração', '#f97316', l.filter(x => x.inaug === 'apta')],
+        ['Em verificação pelo fiscal', '', '#d97706', l.filter(x => x.inaug === 'verificacao')],
+        ['Próximas — conclusão prevista em até 3 meses', 'Em execução', '#2563eb', l.filter(x => x.grupo === 'execucao' && x.mesesAte !== null && x.mesesAte >= 0 && x.mesesAte <= 3 && !['inaugurada', 'apta'].includes(x.inaug))],
+        ['Concluídas sem definição de inauguração', 'INAUGURAR (SUOB) vazio ou NÃO', '#64748b', l.filter(x => x.grupo === 'concluida' && ['indef', 'nao'].includes(x.inaug))],
+        ['Inauguradas', '', '#16a34a', l.filter(x => x.inaug === 'inaugurada').sort((a, b) => str(normData(b.r.dataInauguracao)).localeCompare(str(normData(a.r.dataInauguracao))))],
+        ['Entregues sem inauguração', '', '#0891b2', l.filter(x => x.inaug === 'entregue')]];
+    if (M.categorias === 'criticas') return [
+        ['Paralisadas ou com pendência de execução', '', '#7c3aed', l.filter(x => x.grupo === 'paralisada')],
+        ['Previsão de conclusão vencida', 'Em execução, com o mês previsto já passado', '#dc2626', l.filter(x => x.prevVencida)],
+        ['Em rescisão', '', '#b91c1c', l.filter(x => x.grupo === 'rescisao' && norm(x.r.status).startsWith('em '))],
+        ['Desembolso à frente da obra (convênios)', 'Execução financeira 25 pontos ou mais acima da física', '#0891b2', l.filter(x => x.tipo === 'convenios' && !['concluida', 'rescisao'].includes(x.grupo) && x.financeiro !== null && x.fisico !== null && x.financeiro - x.fisico >= 25)]];
+    return null;
+}
+
+// ---------- montagem ----------
+const fmtDataExtenso = d => d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 function relCabecalho(titulo, filtrosTxt) {
-    return `<div class="rel-cab"><div class="nm">GAB<span>Obras</span><div style="font-size:10px;font-weight:600;color:#cbd5e1;letter-spacing:0">Contratos, convênios e inaugurações</div></div>
-        <div class="dir"><b style="color:#fff">Governo de Mato Grosso</b><br>Secretaria de Estado de Educação<br>Emitido em ${new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} por ${esc(sessao.usuario)}</div></div>
+    return `<table class="rel-cab2" cellspacing="0"><tr><td class="nm">GAB<span>Obras</span><div class="sub">Contratos, convênios e inaugurações</div></td>
+        <td class="dir"><b>Governo de Mato Grosso</b><br>Secretaria de Estado de Educação<br>Emitido em ${new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} por ${esc(sessao.usuario)}</td></tr></table>
         <div class="rel-faixa"></div><div class="rel-h1">${esc(titulo)}</div><div class="rel-filtros">${filtrosTxt}</div>`;
 }
-function relAssinatura(nome) {
-    return `<div class="rel-assin"><div class="peq" style="color:#64748b;font-size:9px">Documento gerado pelo GABObras a partir da base de dados oficial.</div>${nome ? `<div class="ln">${esc(nome)}</div>` : ''}</div>`;
+function relAssinatura(nome, cargo, local) {
+    return `<table class="rel-assin2" cellspacing="0"><tr><td class="esq">Documento gerado pelo GABObras a partir da base de dados oficial.<br>${esc(local || 'Cuiabá-MT')}, ${fmtDataExtenso(new Date())}.</td>
+        ${nome ? `<td class="ass"><div class="ln">${esc(nome)}</div>${cargo ? `<div class="cg">${esc(cargo)}</div>` : ''}</td>` : ''}</tr></table>`;
 }
-let rlAssinaPadrao = false;
-function renderRelatorio() {
-    preencherSelect('rl-grupo', Object.keys(GRUPOS).map(k => [k, GRUPOS[k].rot]).concat([['vencida', 'Previsão vencida']]), 'Todos');
-    preencherSelect('rl-inaug', Object.keys(INAUG).map(k => [k, INAUG[k].rot]), 'Todas');
-    preencherSelect('rl-municipio', municipiosUsados(v('rl-tipo')), 'Todos');
-    if (!rlAssinaPadrao) { $('rl-assina').value = sessao.usuario; rlAssinaPadrao = true; }
-    const tp = v('rl-tipo'), gr = v('rl-grupo'), ia = v('rl-inaug'), mu = v('rl-municipio');
-    const L = todos(tp, mu).filter(x => (!gr || x.grupo === gr || (gr === 'vencida' && x.prevVencida)) && (!ia || x.inaug === ia))
-        .sort((a, b) => str(a.r.municipio).localeCompare(str(b.r.municipio), 'pt-BR') || str(a.nome).localeCompare(str(b.nome), 'pt-BR'));
-    const filtros = [tp && TIPOS[tp].rotP, gr && (gr === 'vencida' ? 'Previsão vencida' : GRUPOS[gr].rot), ia && 'Inauguração: ' + INAUG[ia].rot, mu && 'Município: ' + mu].filter(Boolean);
-    let h = relCabecalho(v('rl-titulo') || 'Relatório de situação das obras', esc(filtros.length ? 'Filtros: ' + filtros.join(' · ') : 'Todos os contratos e convênios') + ` · ${L.length} obra(s)`);
-    if ($('rl-inc-resumo').checked) {
-        const c = k => L.filter(x => x.grupo === k).length;
-        const ex = L.filter(x => x.grupo === 'execucao');
-        h += `<div class="rel-tit">Resumo</div><div class="rel-kpis">
-            <div style="--c:#0f172a"><small>Obras</small><b>${L.length}</b> <span style="font-size:10px">${L.filter(x => x.tipo === 'contratos').length} contr. · ${L.filter(x => x.tipo === 'convenios').length} conv.</span></div>
-            <div style="--c:#2563eb"><small>Em execução · execução média</small><b>${ex.length}</b> <span style="font-size:11px">· ${pct(media(ex.map(x => x.fisico)))}</span></div>
-            <div style="--c:#16a34a"><small>Concluídas</small><b>${c('concluida')}</b></div>
-            <div style="--c:#7c3aed"><small>Paralisadas / rescisão</small><b>${c('paralisada') + c('rescisao')}</b></div>
-            <div style="--c:#f97316"><small>Valor total</small><b style="font-size:14px">${moeda(L.reduce((s, x) => s + x.valor, 0))}</b></div>
-            <div style="--c:#dc2626"><small>Previsão vencida</small><b>${L.filter(x => x.prevVencida).length}</b></div>
-            <div style="--c:#ea580c"><small>Prontas para inaugurar</small><b>${L.filter(x => x.inaug === 'apta').length}</b></div>
-            <div style="--c:#15803d"><small>Inauguradas</small><b>${L.filter(x => x.inaug === 'inaugurada').length}</b></div></div>`;
-    }
-    if ($('rl-inc-lista').checked) {
-        const obs = $('rl-inc-obs').checked;
-        TIPO_LISTA.filter(t => !tp || t === tp).forEach(t => {
-            const l = L.filter(x => x.tipo === t); if (!l.length) return;
-            const T = TIPOS[t];
-            h += `<div class="rel-tit">${T.rotP} (${l.length})</div><table class="rel-tab"><thead><tr><th>${esc(T.campos[1].rot)}</th><th>Município</th><th>Unidade escolar</th><th>Objeto</th><th>Status</th><th style="text-align:right">Valor</th><th style="text-align:right">Exec.</th><th>Previsão</th><th>Inauguração</th></tr></thead><tbody>
-                ${l.map(x => { const r = x.r; const ob = obs ? T.campos.filter(c => c.t === 'area' && str(r[c.k]).trim()).map(c => `<b>${esc(c.rot)}:</b> ${esc(r[c.k])}`).join('<br>') : '';
-                    return `<tr><td style="white-space:nowrap"><b>${esc(x.cod)}</b></td><td>${esc(r.municipio || '—')}</td><td>${esc(r.unidadeEscolar || '—')}</td><td>${esc(r.objeto || '—')}</td>
-                    <td style="color:${GRUPOS[x.grupo].cor};font-weight:700">${esc(r.status || '—')}</td><td style="text-align:right;white-space:nowrap">${x.valor ? moeda(x.valor) : '—'}</td><td style="text-align:right">${pct(x.fisico)}</td>
-                    <td style="white-space:nowrap;${x.prevVencida ? 'color:#dc2626;font-weight:700' : ''}">${esc(fmtPrev(r.previsao))}</td><td style="white-space:nowrap">${INAUG[x.inaug].rot}${normData(r.dataInauguracao) ? '<br>' + fmtData(r.dataInauguracao) : ''}</td></tr>
-                    ${ob ? `<tr><td></td><td colspan="8" style="color:#475569;white-space:pre-wrap">${ob}</td></tr>` : ''}`; }).join('')}
-            </tbody></table>`;
+function relKpis(itens) {   // [[rótulo, valor, detalhe, cor]] em tabela (funciona no Word)
+    const linhas = []; for (let i = 0; i < itens.length; i += 4) linhas.push(itens.slice(i, i + 4));
+    return `<table class="rel-kpis2" cellspacing="6">${linhas.map(l => `<tr>${l.map(([r, val, d, c]) => `<td style="border-top:3px solid ${c}"><small>${r}</small><b>${val}</b>${d ? `<em>${d}</em>` : ''}</td>`).join('')}</tr>`).join('')}</table>`;
+}
+function relBarras(titulo, itens, fmt = n => n) {   // [[rótulo, valor, cor]]
+    const max = Math.max(1, ...itens.map(i => i[1]));
+    return `<div class="rel-graf"><div class="rel-graf-t">${titulo}</div><table class="rel-barras" cellspacing="0">${itens.map(([r, val, c]) => { const p = Math.max(.6, val / max * 100); return `<tr><td class="r">${esc(r)}</td><td class="b"><table cellspacing="0" style="width:100%"><tr><td style="width:${p}%;background:${c || '#f97316'}" bgcolor="${c || '#f97316'}"></td><td></td></tr></table></td><td class="v">${fmt(val)}</td></tr>`; }).join('')}</table></div>`;
+}
+function relEmpilhada(itens) {   // barra 100% por andamento
+    const tot = itens.reduce((s, i) => s + i[1], 0) || 1;
+    return `<table class="rel-empilhada" cellspacing="0"><tr>${itens.filter(i => i[1]).map(([r, val, c]) => `<td style="width:${val / tot * 100}%;background:${c}" bgcolor="${c}" title="${esc(r)}">${val / tot >= .07 ? val : ''}</td>`).join('')}</tr></table>
+        <div class="rel-leg">${itens.filter(i => i[1]).map(([r, val, c]) => `<span><i style="background:${c}"></i>${esc(r)}: <b>${val}</b> (${pct(val / tot * 100)})</span>`).join('')}</div>`;
+}
+function relTabela(l, comObs) {
+    const cols = RL.colunas.map(k => COL_REL[k]).filter(Boolean);
+    const celula = (c, x) => {
+        let t = esc(c[2](x));
+        if (c[0] === 'status' || c[0] === 'andamento') t = `<span style="color:${GRUPOS[x.grupo].cor};font-weight:700">${t}</span>`;
+        if (c[0] === 'previsao' && x.prevVencida) t = `<span style="color:#dc2626;font-weight:700">${t}</span>`;
+        if (c[0] === 'codigo') t = `<b>${t}</b>`;
+        if (c[0] === 'inaug') t = `<span style="color:${INAUG[x.inaug].cor === '#cbd5e1' ? '#94a3b8' : INAUG[x.inaug].cor};font-weight:600">${t}</span>`;
+        return `<td${c[3] ? ' class="dir"' : ''}>${t}</td>`;
+    };
+    const linha = x => {
+        let h = `<tr>${cols.map(c => celula(c, x)).join('')}</tr>`;
+        if (comObs) {
+            const ob = x.T.campos.filter(c => c.t === 'area' && str(x.r[c.k]).trim()).map(c => `<b>${esc(c.rot)}:</b> ${esc(x.r[c.k])}`).join('<br>');
+            if (ob) h += `<tr class="obs"><td colspan="${cols.length}">${ob}</td></tr>`;
+        }
+        return h;
+    };
+    const temValor = RL.colunas.includes('valor');
+    const total = (lista, rot) => `<tr class="tot"><td colspan="${cols.length}">${rot}: <b>${lista.length}</b> obra(s)${temValor ? ` · <b>${moeda(lista.reduce((s, x) => s + x.valor, 0))}</b>` : ''}</td></tr>`;
+    let corpo = '';
+    if (RL.agrupar) {
+        const grupos = new Map(); l.forEach(x => { const k = chaveGrupoRel(x); if (!grupos.has(k)) grupos.set(k, []); grupos.get(k).push(x); });
+        [...grupos.entries()].sort((a, b) => a[0].localeCompare(b[0], 'pt-BR')).forEach(([k, g]) => {
+            corpo += `<tr class="grp"><td colspan="${cols.length}">${esc(k)} <span>— ${g.length} obra(s) · ${moeda(g.reduce((s, x) => s + x.valor, 0))}</span></td></tr>${g.map(linha).join('')}`;
         });
-    }
-    if ($('rl-inc-alertas').checked) {
-        const al = calcularAlertas(L).filter(a => a.nivel !== 'baixa');
-        h += `<div class="rel-tit">Pontos de atenção (${al.length})</div>${al.length ? `<table class="rel-tab"><tbody>${al.slice(0, 150).map(a => `<tr><td style="width:70px;color:${NIVEL[a.nivel].cor};font-weight:800">${NIVEL[a.nivel].rot}</td><td><b>${esc(a.titulo)}</b><br><span style="color:#475569">${esc(a.desc)}</span></td></tr>`).join('')}</tbody></table>${al.length > 150 ? `<p style="color:#64748b">… e mais ${al.length - 150}.</p>` : ''}` : '<p style="color:#16a34a;font-weight:700">Nenhum ponto de atenção.</p>'}`;
-    }
-    h += relAssinatura(v('rl-assina'));
-    $('area-relatorio').innerHTML = `<div class="rel-folha">${h}</div>`;
+    } else corpo = l.map(linha).join('');
+    return `<table class="rel-tab ${RL.compacto ? 'compacto' : ''}" cellspacing="0"><thead><tr>${cols.map(c => `<th${c[3] ? ' class="dir"' : ''}>${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${corpo}${total(l, 'Total')}</tbody></table>`;
 }
-function imprimirRelatorio() { renderRelatorio(); imprimirHTML($('area-relatorio').innerHTML, v('rl-titulo')); }
-function imprimirHTML(html, titulo) {
+function relDestaques(L) {
+    const d = [];
+    const c = f => L.filter(f);
+    const venc = c(x => x.prevVencida), par = c(x => x.grupo === 'paralisada'), apt = c(x => x.inaug === 'apta'), ina = c(x => x.inaug === 'inaugurada');
+    const exec = c(x => x.grupo === 'execucao');
+    d.push(`Estão acompanhadas <b>${L.length}</b> obras (${c(x => x.tipo === 'contratos').length} por contrato e ${c(x => x.tipo === 'convenios').length} por convênio), somando <b>${moeda(L.reduce((s, x) => s + x.valor, 0))}</b>.`);
+    if (exec.length) d.push(`<b>${exec.length}</b> obras estão em execução, com execução física média de <b>${pct(media(exec.map(x => x.fisico)))}</b>.`);
+    if (par.length) d.push(`<b>${par.length}</b> obras estão paralisadas ou com pendência de execução, somando ${moeda(par.reduce((s, x) => s + x.valor, 0))}.`);
+    if (venc.length) d.push(`<b>${venc.length}</b> obras em execução estão com a previsão de conclusão vencida.`);
+    if (apt.length) d.push(`<b>${apt.length}</b> obras estão prontas para inaugurar, aguardando o ato de inauguração.`);
+    if (ina.length) d.push(`<b>${ina.length}</b> obras já foram inauguradas.`);
+    const porMun = {}; L.forEach(x => { if (x.r.municipio) porMun[x.r.municipio] = (porMun[x.r.municipio] || 0) + x.valor; });
+    const top = Object.entries(porMun).sort((a, b) => b[1] - a[1]);
+    if (top.length) d.push(`As obras estão em <b>${top.length}</b> municípios; <b>${esc(top[0][0])}</b> concentra o maior investimento (${moeda(top[0][1])}).`);
+    return `<div class="rel-tit">Leitura rápida</div><ul class="rel-dest">${d.map(t => `<li>${t}</li>`).join('')}</ul>`;
+}
+function montarRelatorio() {
+    const L = ordenarRel(obrasRelatorio());
+    const filtros = [RL.tipo && TIPOS[RL.tipo].rotP, RL.grupo && (RL.grupo === 'vencida' ? 'Previsão vencida' : GRUPOS[RL.grupo].rot), RL.inaug && 'Inauguração: ' + INAUG[RL.inaug].rot,
+        RL.municipio && 'Município: ' + RL.municipio, RL.dre && RL.dre, RL.objeto && 'Objeto: ' + RL.objeto, RL.status && 'Status: ' + RL.status].filter(Boolean);
+    let h = relCabecalho(RL.titulo || MODELOS[RL.modelo].titulo, esc(filtros.length ? 'Filtros: ' + filtros.join(' · ') : 'Todos os contratos e convênios') + ` · ${L.length} obra(s)`);
+    if (RL.nota) h += `<div class="rel-nota">${esc(RL.nota)}</div>`;
+    const S = RL.secoes;
+    if (S.resumo) {
+        const c = k => L.filter(x => x.grupo === k).length, ex = L.filter(x => x.grupo === 'execucao');
+        h += `<div class="rel-tit">Resumo</div>` + relKpis([
+            ['Obras', L.length, `${L.filter(x => x.tipo === 'contratos').length} contratos · ${L.filter(x => x.tipo === 'convenios').length} convênios`, '#0f172a'],
+            ['Valor total', moeda(L.reduce((s, x) => s + x.valor, 0), true), moeda(L.reduce((s, x) => s + x.valor, 0)), '#f97316'],
+            ['Em execução', ex.length, ex.length ? `execução média ${pct(media(ex.map(x => x.fisico)))}` : '', '#2563eb'],
+            ['Concluídas', c('concluida'), L.length ? pct(c('concluida') / L.length * 100) + ' do total' : '', '#16a34a'],
+            ['Paralisadas / pendência', c('paralisada'), '', '#7c3aed'], ['Rescisão', c('rescisao'), '', '#dc2626'],
+            ['Prontas para inaugurar', L.filter(x => x.inaug === 'apta').length, '', '#ea580c'], ['Inauguradas', L.filter(x => x.inaug === 'inaugurada').length, `${L.filter(x => x.prevVencida).length} com previsão vencida`, '#15803d']]);
+    }
+    if (S.destaques) h += relDestaques(L);
+    if (S.graficos && L.length) {
+        h += `<div class="rel-tit">Gráficos</div><div class="rel-sub">Andamento das obras</div>` + relEmpilhada(Object.keys(GRUPOS).map(k => [GRUPOS[k].rot, L.filter(x => x.grupo === k).length, GRUPOS[k].cor]));
+        const objs = {}; L.forEach(x => { const k = x.r.objeto || '(sem objeto)'; objs[k] = (objs[k] || 0) + 1; });
+        const porChave = (fn) => { const o = {}; L.forEach(x => { const k = fn(x); if (k) o[k] = (o[k] || 0) + x.valor; }); return Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, 10); };
+        const segundo = RL.agrupar === 'dre' || RL.modelo === 'dre' ? ['Investimento por DRE', porChave(x => dreDe(x).replace(/^DRE /, ''))] : ['Investimento por município (10 maiores)', porChave(x => x.r.municipio)];
+        h += `<table class="rel-duas" cellspacing="0"><tr><td>${relBarras('Obras por objeto', Object.entries(objs).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, n]) => [k, n, '#0891b2']))}</td>
+            <td>${relBarras(segundo[0], segundo[1].map(([k, n]) => [k, n, '#f97316']), n => moeda(n, true))}</td></tr></table>`;
+        const ex = L.filter(x => x.grupo === 'execucao'); const meses = [];
+        const h0 = new Date(); for (let i = 0; i < 6; i++) meses.push(iso(new Date(h0.getFullYear(), h0.getMonth() + i, 1)).slice(0, 7));
+        h += relBarras('Conclusões previstas (obras em execução)', [['Vencidas', ex.filter(x => x.prevVencida).length, '#dc2626'], ...meses.map(m => [nomeMes(m + '-01'), ex.filter(x => x.prev && x.prev.slice(0, 7) === m).length, '#2563eb']), ['Sem previsão', ex.filter(x => !x.prev).length, '#94a3b8']]);
+    }
+    if (S.lista) {
+        const cats = categoriasRel(L);
+        if (cats) cats.forEach(([t, d, c, l]) => { h += `<div class="rel-tit" style="border-color:${c}">${esc(t)} <span style="color:#64748b;font-weight:600">(${l.length})</span></div>${d ? `<div class="rel-sub">${esc(d)}</div>` : ''}${l.length ? relTabela(l, S.obs) : '<p class="rel-vazio">Nenhuma obra nesta situação.</p>'}`; });
+        else h += `<div class="rel-tit">Lista de obras${RL.agrupar ? ' por ' + AGRUPAR.find(a => a[0] === RL.agrupar)[1].toLowerCase() : ''}</div>${L.length ? relTabela(L, S.obs) : '<p class="rel-vazio">Nenhuma obra com esses filtros.</p>'}`;
+    }
+    if (S.atencao) {
+        const al = calcularAlertas(L).filter(a => a.nivel !== 'baixa');
+        const lim = RL.modelo === 'executivo' ? 12 : 150;
+        h += `<div class="rel-tit">Pontos de atenção (${al.length})</div>${al.length ? `<table class="rel-tab" cellspacing="0"><tbody>${al.slice(0, lim).map(a => `<tr><td style="width:70px;color:${NIVEL[a.nivel].cor};font-weight:800">${NIVEL[a.nivel].rot}</td><td><b>${esc(a.titulo)}</b><br><span style="color:#475569">${esc(a.desc)}</span></td></tr>`).join('')}</tbody></table>${al.length > lim ? `<p class="rel-vazio">… e mais ${al.length - lim} ponto(s). Veja a tela de Alertas.</p>` : ''}` : '<p style="color:#16a34a;font-weight:700">Nenhum ponto de atenção.</p>'}`;
+    }
+    h += relAssinatura(RL.assina, RL.cargo, RL.local);
+    $('area-relatorio').innerHTML = `<div class="rel-folha${RL.paisagem ? ' paisagem' : ''}${RL.compacto ? ' compacto' : ''}">${h}</div>`;
+    $('rl-contagem').textContent = `${L.length} obra(s) · ${RL.paisagem ? 'A4 paisagem' : 'A4 retrato'}`;
+    ajustarPreviaRel();
+}
+/** A prévia encolhe para caber na tela (só na tela; a impressão sai em tamanho A4 real). */
+function ajustarPreviaRel() {
+    const f = document.querySelector('#area-relatorio .rel-folha'); if (!f) return;
+    f.style.zoom = 1;
+    const disp = f.parentElement.parentElement.clientWidth - 36;
+    if (disp > 0 && f.offsetWidth > disp) f.style.zoom = Math.max(.45, disp / f.offsetWidth).toFixed(3);
+}
+window.addEventListener('resize', () => { if (abaAtual === 'relatorios') ajustarPreviaRel(); });
+
+// ---------- saída ----------
+function imprimirRelatorio() { montarRelatorio(); imprimirHTML($('area-relatorio').innerHTML, RL.titulo, RL.paisagem); }
+function imprimirHTML(html, titulo, paisagem) {
     $('area-impressao').innerHTML = html;
+    let st = $('estilo-pagina'); if (!st) { st = document.createElement('style'); st.id = 'estilo-pagina'; document.head.appendChild(st); }
+    st.textContent = `@media print { @page { size: A4 ${paisagem ? 'landscape' : 'portrait'}; margin: 11mm; } }`;
     const tAnt = document.title; if (titulo) document.title = titulo + ' - GABObras';
     setTimeout(() => { window.print(); document.title = tAnt; }, 150);
 }
+function baixarWordRelatorio() {
+    montarRelatorio();
+    const css = [...document.styleSheets].flatMap(s => { try { return [...s.cssRules]; } catch (e) { return []; } }).map(r => r.cssText).filter(t => /^\.rel-/.test(t)).join('\n');
+    const pag = RL.paisagem ? 'size:841.9pt 595.3pt;mso-page-orientation:landscape;' : 'size:595.3pt 841.9pt;';
+    const doc = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(RL.titulo)}</title>
+        <style>@page Sec { ${pag} margin: 1.6cm 1.4cm; } div.Sec { page: Sec; } body { font-family: Arial, sans-serif; font-size: 10pt; color: #0f172a; } ${css}
+        .rel-folha { width: auto !important; padding: 0 !important; box-shadow: none !important; } table { border-collapse: collapse; }</style></head>
+        <body><div class="Sec">${$('area-relatorio').querySelector('.rel-folha').innerHTML}</div></body></html>`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + doc], { type: 'application/msword' }));
+    a.download = `${(RL.titulo || 'Relatorio').replace(/[\\/:*?"<>|]+/g, '').slice(0, 80)} - ${hojeISO()}.doc`;
+    document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    toast('Relatório baixado para o Word.');
+}
+function baixarExcelRelatorio() {
+    const L = ordenarRel(obrasRelatorio());
+    const cats = RL.secoes.lista ? categoriasRel(L) : null;
+    const cols = RL.colunas.map(k => COL_REL[k]).filter(Boolean);
+    const cab = [...(cats ? ['Seção'] : []), ...(RL.agrupar ? [AGRUPAR.find(a => a[0] === RL.agrupar)[1]] : []), ...cols.map(c => c[1])];
+    const valor = (c, x) => c[0] === 'valor' ? (x.valor ? String(Math.round(x.valor * 100) / 100).replace('.', ',') : '') : c[2](x);
+    const linhas = [];
+    (cats || [['', '', '', L]]).forEach(([t, , , l]) => l.forEach(x => linhas.push([...(cats ? [t] : []), ...(RL.agrupar ? [chaveGrupoRel(x)] : []), ...cols.map(c => valor(c, x))])));
+    baixarCSV(`${(RL.titulo || 'Relatorio').replace(/[\\/:*?"<>|]+/g, '').slice(0, 80)} - ${hojeISO()}.csv`, [cab, ...linhas]);
+}
+
 function imprimirFicha(tipo, id) {
     const r = porId(tipo, id); if (!r) return;
     const T = TIPOS[tipo], x = info(r, tipo);
@@ -2390,88 +2699,267 @@ function mapaDeGestao() { MP.tipo = GE.tipo; MP.grupo = GE.grupo; MP.objeto = GE
 // =====================================================================================
 const chaveMun = s => norm(s).replace(/['’`\-]/g, ' ').replace(/\b(de|do|da|dos|das|d)\b/g, ' ').replace(/\s+/g, ' ').trim();
 const MUN_GEO = new Map(GEO_MT.mun.map(m => [chaveMun(m.n), m]));
-const MP = { tipo: '', grupo: '', objeto: '', medida: 'qtd', ruas: LS.get('gob_mapa_ruas') === '1', sel: '' };
-let mapaMT = null, camMun = null, camMarc = null, camRuas = null, limitesMT = null;
-const MEDIDAS = { qtd: ['Quantidade de obras', v0 => v0 + ' obra(s)'], valor: ['Valor total', v0 => moeda(v0, true)], criticas: ['Paralisadas + rescisão + previsão vencida', v0 => v0 + ' crítica(s)'], exec: ['Em execução', v0 => v0 + ' em execução'] };
-function escalaCor(t) {   // 0..1 → laranja claro a laranja escuro
-    const a = [255, 237, 213], b = [194, 65, 12];
-    return `rgb(${a.map((c, i) => Math.round(c + (b[i] - c) * t)).join(',')})`;
+const anelLatLng = g => (g.type === 'Polygon' ? g.coordinates : g.coordinates.flat()).map(r => r.map(([x, y]) => [y, x]));
+const MP = { tipo: '', grupo: '', objeto: '', inaug: '', dre: '', medida: 'qtd', ruas: LS.get('gob_mapa_ruas') === '1', modo: LS.get('gob_mapa_modo') || 'auto', rotulos: LS.get('gob_mapa_rotulos') !== '0', sel: '', aba: 'ranking', focado: false };
+let mapaMT = null, camMun = null, camMarc = null, camRotulos = null, camRuas = null, limitesMT = null, poligonos = new Map(), ultimoGrupoMapa = null;
+const MEDIDAS = {
+    qtd: ['Quantidade de obras', n => n + ' obra(s)'], valor: ['Valor total', n => moeda(n, true)], exec: ['Obras em execução', n => n + ' em execução'],
+    criticas: ['Obras críticas', n => n + ' crítica(s)'], inaug: ['Prontas para inaugurar', n => n + ' pronta(s)'], dre: ['DRE (cor por regional)', () => ''], nenhum: ['Sem cor (só contorno)', () => '']
+};
+/** Ícone de cada tipo de obra, pelo OBJETO RESUMO. */
+function iconeObjeto(obj) {
+    const s = norm(obj);
+    if (s.includes('quadra')) return ['fa-basketball', 'Quadra poliesportiva'];
+    if (s.includes('transformador')) return ['fa-bolt', 'Posto transformador'];
+    if (s.includes('portico')) return ['fa-archway', 'Pórtico'];
+    if (s.includes('cei')) return ['fa-children', 'CEI'];
+    if (s.includes('construcao')) return ['fa-school', 'Construção nova'];
+    if (s.includes('amplia')) return ['fa-trowel-bricks', 'Reforma e/ou ampliação'];
+    if (s.includes('reforma')) return ['fa-paint-roller', 'Reforma'];
+    return ['fa-building', 'Outro'];
 }
+const ICONES_LEGENDA = [['fa-school', 'Construção nova'], ['fa-trowel-bricks', 'Reforma e/ou ampliação'], ['fa-paint-roller', 'Reforma'], ['fa-basketball', 'Quadra'], ['fa-bolt', 'Posto transformador'], ['fa-archway', 'Pórtico'], ['fa-children', 'CEI'], ['fa-building', 'Outro']];
+const CORES_DRE = ['#2563eb', '#16a34a', '#d97706', '#7c3aed', '#dc2626', '#0891b2', '#db2777', '#65a30d', '#ea580c', '#4f46e5', '#0d9488', '#9333ea', '#b45309', '#475569', '#be123c'];
+function escalaCor(t) { const a = [255, 237, 213], b = [194, 65, 12]; return `rgb(${a.map((c, i) => Math.round(c + (b[i] - c) * t)).join(',')})`; }
+const corVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
 function iniciarMapaMT() {
     if (mapaMT || !window.L) return;
-    const anel = g => (g.type === 'Polygon' ? g.coordinates : g.coordinates.flat());
-    const contorno = anel(GEO_MT.uf).map(r => r.map(([x, y]) => [y, x]));
+    const contorno = anelLatLng(GEO_MT.uf);
     limitesMT = L.polygon(contorno).getBounds();
-    mapaMT = L.map('mapa-mt', { zoomSnap: .25, maxBounds: limitesMT.pad(.06), maxBoundsViscosity: 1, attributionControl: false, zoomControl: true });
+    mapaMT = L.map('mapa-mt', { zoomSnap: .25, maxBounds: limitesMT.pad(.06), maxBoundsViscosity: 1, attributionControl: false });
     mapaMT.fitBounds(limitesMT, { padding: [10, 10] });
     mapaMT.setMinZoom(mapaMT.getZoom());
     mapaMT.createPane('ruas'); mapaMT.getPane('ruas').style.zIndex = 200;
     mapaMT.createPane('mascara'); mapaMT.getPane('mascara').style.zIndex = 390; mapaMT.getPane('mascara').style.pointerEvents = 'none';
-    camRuas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { pane: 'ruas', maxZoom: 18, attribution: '&copy; OpenStreetMap', bounds: limitesMT.pad(.1) });
+    mapaMT.createPane('rotulos'); mapaMT.getPane('rotulos').style.zIndex = 395; mapaMT.getPane('rotulos').style.pointerEvents = 'none';
+    camRuas = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { pane: 'ruas', maxZoom: 18, bounds: limitesMT.pad(.1) });
     // máscara: tudo fora de MT fica coberto com a cor de fundo (nenhum outro estado ou país aparece)
-    const mundo = [[-89, -179.9], [-89, 179.9], [89, 179.9], [89, -179.9]];
-    L.polygon([mundo, ...contorno], { pane: 'mascara', stroke: false, fillColor: getComputedStyle(document.documentElement).getPropertyValue('--card').trim() || '#fff', fillOpacity: 1, interactive: false, className: 'mascara-mt' }).addTo(mapaMT);
+    L.polygon([[[-89, -179.9], [-89, 179.9], [89, 179.9], [89, -179.9]], ...contorno], { pane: 'mascara', stroke: false, fillColor: corVar('--card') || '#fff', fillOpacity: 1, interactive: false, className: 'mascara-mt' }).addTo(mapaMT);
     L.polygon(contorno, { pane: 'mascara', color: '#0f172a', weight: 2.2, fill: false, interactive: false, className: 'contorno-mt' }).addTo(mapaMT);
     camMun = L.layerGroup().addTo(mapaMT);
+    camRotulos = L.layerGroup().addTo(mapaMT);
     camMarc = L.layerGroup().addTo(mapaMT);
-    L.control.attribution({ prefix: false }).addAttribution('Limites: IBGE').addTo(mapaMT);
+    L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(mapaMT);
+    L.control.attribution({ prefix: false }).addAttribution('Limites municipais: IBGE').addTo(mapaMT);
+    const Botao = L.Control.extend({ onAdd() {
+        const d = L.DomUtil.create('div', 'leaflet-bar mp-botoes');
+        d.innerHTML = `<a href="#" title="Ver Mato Grosso inteiro" data-a="mt"><i class="fa-solid fa-expand"></i></a><a href="#" title="Tela cheia" data-a="cheia"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>`;
+        L.DomEvent.disableClickPropagation(d);
+        d.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; e.preventDefault(); if (a.dataset.a === 'mt') { MP.sel = ''; MP.focado = true; renderMapa(); } else telaCheiaMapa(); });
+        return d;
+    } });
+    new Botao({ position: 'topleft' }).addTo(mapaMT);
+    mapaMT.on('zoomend', () => { desenharMarcadores(); desenharRotulos(); });
 }
+function telaCheiaMapa(forcar) {
+    const c = $('mp-card'); const on = typeof forcar === 'boolean' ? forcar : !c.classList.contains('mapa-cheio');
+    c.classList.toggle('mapa-cheio', on);
+    const b = document.querySelector('.mp-botoes [data-a="cheia"] i'); if (b) b.className = `fa-solid ${on ? 'fa-down-left-and-up-right-to-center' : 'fa-up-right-and-down-left-from-center'}`;
+    setTimeout(() => { mapaMT.invalidateSize(); if (!MP.sel && mapaMT.getSize().x) mapaMT.fitBounds(limitesMT, { padding: [10, 10] }); }, 120);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('mp-card') && $('mp-card').classList.contains('mapa-cheio')) telaCheiaMapa(false); });
+
+/** Obras filtradas, agrupadas por município do mapa. */
+function dadosMapa() {
+    const L0 = todos(MP.tipo).filter(x => (!MP.grupo || x.grupo === MP.grupo || (MP.grupo === 'vencida' && x.prevVencida)) && (!MP.objeto || x.r.objeto === MP.objeto)
+        && (!MP.inaug || x.inaug === MP.inaug) && (!MP.dre || x.r.dre === MP.dre || (x.tipo === 'contratos' && dreDoMunicipio(x.r.municipio) === MP.dre)));
+    const porMun = new Map(), semLocal = [];
+    L0.forEach(x => { const m = MUN_GEO.get(chaveMun(x.r.municipio)); if (!m) { semLocal.push(x); return; } if (!porMun.has(m.n)) porMun.set(m.n, { m, l: [] }); porMun.get(m.n).l.push(x); });
+    return { L0, porMun, semLocal };
+}
+/** DRE do município: a mais frequente entre os convênios cadastrados para ele. */
+let cacheDre = null;
+function dreDoMunicipio(mun) {
+    if (!cacheDre || cacheDre.n !== DB.convenios.length) {
+        const cont = {}; DB.convenios.forEach(r => { if (!r.dre || !r.municipio) return; const k = chaveMun(r.municipio); (cont[k] = cont[k] || {})[r.dre] = (cont[k][r.dre] || 0) + 1; });
+        cacheDre = { n: DB.convenios.length, m: Object.fromEntries(Object.entries(cont).map(([k, o]) => [k, Object.entries(o).sort((a, b) => b[1] - a[1])[0][0]])) };
+    }
+    return cacheDre.m[chaveMun(mun)] || '';
+}
+const medirMapa = l => MP.medida === 'valor' ? l.reduce((s, x) => s + x.valor, 0) : MP.medida === 'criticas' ? l.filter(x => x.grupo === 'paralisada' || x.grupo === 'rescisao' || x.prevVencida).length
+    : MP.medida === 'exec' ? l.filter(x => x.grupo === 'execucao').length : MP.medida === 'inaug' ? l.filter(x => x.inaug === 'apta').length : l.length;
+
+let dadosAtuais = null;
 function renderMapa() {
+    const objs = [...new Set(todos(MP.tipo).map(x => x.r.objeto).filter(Boolean))].sort();
     $('mp-filtros').innerHTML = `<div class="seg">${[['', 'Todos'], ['contratos', 'Contratos'], ['convenios', 'Convênios']].map(([k, r]) => `<button class="${MP.tipo === k ? 'ativo' : ''}" onclick="MP.tipo=${jsArg(k)};renderMapa()">${r}</button>`).join('')}</div>
-        <select class="campo" style="width:190px" onchange="MP.grupo=this.value;renderMapa()">${opcoes(Object.keys(GRUPOS).map(k => [k, GRUPOS[k].rot]).concat([['vencida', 'Previsão vencida']]), 'Todo andamento', MP.grupo)}</select>
-        <select class="campo" style="width:220px" onchange="MP.objeto=this.value;renderMapa()">${opcoes([...new Set(todos(MP.tipo).map(x => x.r.objeto).filter(Boolean))].sort(), 'Todos os objetos', MP.objeto)}</select>
-        <select class="campo" style="width:250px" onchange="MP.medida=this.value;renderMapa()">${opcoes(Object.keys(MEDIDAS).map(k => [k, 'Cor: ' + MEDIDAS[k][0]]), null, MP.medida)}</select>
-        <label class="chip" style="cursor:pointer"><input type="checkbox" ${MP.ruas ? 'checked' : ''} onchange="MP.ruas=this.checked;LS.set('gob_mapa_ruas',this.checked?'1':'0');renderMapa()"> Ruas e cidades</label>`;
+        <select class="campo" style="width:175px" onchange="MP.grupo=this.value;renderMapa()">${opcoes(Object.keys(GRUPOS).map(k => [k, GRUPOS[k].rot]).concat([['vencida', 'Previsão vencida']]), 'Todo andamento', MP.grupo)}</select>
+        <select class="campo" style="width:190px" onchange="MP.inaug=this.value;renderMapa()">${opcoes(Object.keys(INAUG).map(k => [k, INAUG[k].rot]), 'Toda inauguração', MP.inaug)}</select>
+        <select class="campo" style="width:210px" onchange="MP.objeto=this.value;renderMapa()">${opcoes(objs, 'Todos os objetos', MP.objeto)}</select>
+        <select class="campo" style="width:190px" onchange="MP.dre=this.value;renderMapa()">${opcoes(distintos('convenios', 'dre', DRES), 'Todas as DREs', MP.dre)}</select>
+        <span style="flex-basis:100%;height:0"></span>
+        <select class="campo" style="width:240px" title="Cor dos municípios" onchange="MP.medida=this.value;renderMapa()">${opcoes(Object.keys(MEDIDAS).map(k => [k, 'Cor: ' + MEDIDAS[k][0]]), null, MP.medida)}</select>
+        <select class="campo" style="width:250px" title="Marcadores" onchange="MP.modo=this.value;LS.set('gob_mapa_modo',this.value);desenharMarcadores()">${opcoes([['auto', 'Ícones: automático (agrupa ao afastar)'], ['obra', 'Ícones: um por obra'], ['municipio', 'Ícones: agrupados por município'], ['nenhum', 'Sem ícones']], null, MP.modo)}</select>
+        <label class="chip" style="cursor:pointer"><input type="checkbox" ${MP.rotulos ? 'checked' : ''} onchange="MP.rotulos=this.checked;LS.set('gob_mapa_rotulos',this.checked?'1':'0');desenharRotulos()"> Nomes dos municípios</label>
+        <label class="chip" style="cursor:pointer"><input type="checkbox" ${MP.ruas ? 'checked' : ''} onchange="MP.ruas=this.checked;LS.set('gob_mapa_ruas',this.checked?'1':'0');renderMapa()"> Ruas e cidades</label>
+        <div class="busca" style="width:230px;margin-left:auto"><i class="fa-solid fa-magnifying-glass"></i><input class="campo" list="dl-mun-mapa" placeholder="Ir para o município..." onchange="irParaMunicipio(this.value);this.value=''"></div>
+        <datalist id="dl-mun-mapa">${GEO_MT.mun.map(m => `<option value="${esc(m.n)}">`).join('')}</datalist>
+        <button class="btn btn-s btn-sm" onclick="exportarMapaCSV()" title="Resumo por município (CSV)"><i class="fa-solid fa-file-csv"></i>Municípios</button>`;
     if (!window.L) { $('mapa-mt').innerHTML = '<div class="vazio"><i class="fa-solid fa-wifi"></i>O mapa precisa de internet para carregar.</div>'; return; }
     iniciarMapaMT();
+    mapaMT.invalidateSize(false);   // a tela pode ter ficado oculta: recalcula o tamanho antes de enquadrar
     if (MP.ruas) camRuas.addTo(mapaMT); else camRuas.remove();
-    document.querySelectorAll('#mapa-mt .mascara-mt').forEach(p => p.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--card').trim()));
+    document.querySelectorAll('#mapa-mt .mascara-mt').forEach(p => p.setAttribute('fill', corVar('--card')));
 
-    const L0 = todos(MP.tipo).filter(x => (!MP.grupo || x.grupo === MP.grupo || (MP.grupo === 'vencida' && x.prevVencida)) && (!MP.objeto || x.r.objeto === MP.objeto));
-    const porMun = new Map(); const semLocal = [];
-    L0.forEach(x => { const m = MUN_GEO.get(chaveMun(x.r.municipio)); if (!m) { semLocal.push(x); return; } if (!porMun.has(m.n)) porMun.set(m.n, { m, l: [] }); porMun.get(m.n).l.push(x); });
-    const medir = l => MP.medida === 'valor' ? l.reduce((s, x) => s + x.valor, 0) : MP.medida === 'criticas' ? l.filter(x => x.grupo === 'paralisada' || x.grupo === 'rescisao' || x.prevVencida).length : MP.medida === 'exec' ? l.filter(x => x.grupo === 'execucao').length : l.length;
-    const max = Math.max(1, ...[...porMun.values()].map(o => medir(o.l)));
-    camMun.clearLayers(); camMarc.clearLayers();
-    const escuro = temaEscuro();
+    dadosAtuais = dadosMapa();
+    const { L0, porMun, semLocal } = dadosAtuais;
+    const max = Math.max(1, ...[...porMun.values()].map(o => medirMapa(o.l)));
+    const escuro = temaEscuro(), borda = escuro ? '#334155' : '#ffffff', vazio = escuro ? '#1e293b' : '#e2e8f0';
+    const dres = distintos('convenios', 'dre', DRES), corDre = d => d ? CORES_DRE[dres.indexOf(d) % CORES_DRE.length] : vazio;
+    camMun.clearLayers(); poligonos = new Map();
     GEO_MT.mun.forEach(m => {
-        const o = porMun.get(m.n), val = o ? medir(o.l) : 0;
-        const anel = m.g.type === 'Polygon' ? m.g.coordinates : m.g.coordinates.flat();
-        const pol = L.polygon(anel.map(r => r.map(([x, y]) => [y, x])), {
-            color: escuro ? '#334155' : '#ffffff', weight: .8, fillColor: val ? escalaCor(Math.sqrt(val / max)) : (escuro ? '#1e293b' : '#e2e8f0'), fillOpacity: MP.ruas ? .55 : .92
-        }).addTo(camMun);
-        pol.bindTooltip(`<b>${esc(m.n)}</b><br>${o ? `${o.l.length} obra(s)${MP.medida === 'qtd' ? '' : ' · ' + MEDIDAS[MP.medida][1](val)}` : 'sem obras'}`, { sticky: true });
-        pol.on('mouseover', () => pol.setStyle({ weight: 2.2, color: '#0f172a' })); pol.on('mouseout', () => pol.setStyle({ weight: .8, color: escuro ? '#334155' : '#ffffff' }));
-        pol.on('click', () => { MP.sel = m.n; listarMunicipioMapa(o, m); });
-        if (o) {
-            const pior = o.l.slice().sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso)[0];
-            L.marker([m.p[1], m.p[0]], { icon: L.divIcon({ className: 'mk-mun', html: `<span style="--c:${GRUPOS[pior.grupo].cor}">${o.l.length}</span>`, iconSize: [26, 26] }), keyboard: false })
-                .on('click', () => { MP.sel = m.n; listarMunicipioMapa(o, m); }).addTo(camMarc);
-        }
+        const o = porMun.get(m.n), val = o ? medirMapa(o.l) : 0;
+        let fill = vazio, op = MP.ruas ? .5 : .9;
+        if (MP.medida === 'dre') { fill = corDre(dreDoMunicipio(m.n)); op = MP.ruas ? .35 : (o ? .75 : .3); }
+        else if (MP.medida === 'nenhum') { fill = vazio; op = MP.ruas ? 0 : .5; }
+        else if (val) fill = escalaCor(Math.sqrt(val / max));
+        const pol = L.polygon(anelLatLng(m.g), { color: borda, weight: .8, fillColor: fill, fillOpacity: op }).addTo(camMun);
+        const dre = dreDoMunicipio(m.n);
+        pol.bindTooltip(`<b>${esc(m.n)}</b>${dre ? `<br><span style="color:#64748b">${esc(dre)}</span>` : ''}<br>${o ? `${o.l.length} obra(s) · ${moeda(o.l.reduce((s, x) => s + x.valor, 0), true)}${['qtd', 'valor', 'dre', 'nenhum'].includes(MP.medida) ? '' : '<br>' + MEDIDAS[MP.medida][1](val)}` : 'sem obras com os filtros atuais'}`, { sticky: true, direction: 'top' });
+        pol.on('mouseover', () => pol.setStyle({ weight: 2.4, color: escuro ? '#f8fafc' : '#0f172a' }));
+        pol.on('mouseout', () => pol.setStyle({ weight: MP.sel === m.n ? 2.4 : .8, color: MP.sel === m.n ? '#f97316' : borda }));
+        pol.on('click', () => selecionarMunicipio(m.n));
+        poligonos.set(m.n, pol);
     });
-    const vals = [...porMun.values()].map(o => medir(o.l));
-    $('mp-legenda').innerHTML = `<span style="font-weight:700;color:var(--texto2)">${MEDIDAS[MP.medida][0]} por município</span>
-        <span style="display:inline-flex;align-items:center;gap:6px">${MEDIDAS[MP.medida][1](vals.length ? Math.min(...vals) : 0)}<i style="width:120px;height:10px;border-radius:5px;background:linear-gradient(90deg,${escalaCor(.05)},${escalaCor(1)})"></i>${MEDIDAS[MP.medida][1](max)}</span>
-        <span>Número no círculo = obras · cor do círculo = situação mais crítica:</span>${Object.keys(GRUPOS).filter(k => k !== 'sem').map(k => `<span><i style="background:${GRUPOS[k].cor}"></i>${GRUPOS[k].rot}</span>`).join('')}`;
-    $('mp-resumo').innerHTML = `${L0.length} obra(s) em <b>${porMun.size}</b> município(s).${semLocal.length ? ` <span style="color:var(--ambar)">${semLocal.length} sem município reconhecido no mapa: ${[...new Set(semLocal.map(x => x.r.municipio || '(vazio)'))].map(esc).join(', ')}.</span>` : ''}`;
-    if (!MP.sel && MP.focado && mapaMT) { mapaMT.flyToBounds(limitesMT, { padding: [10, 10], duration: .5 }); MP.focado = false; }
-    if (MP.sel) { const m = GEO_MT.mun.find(z => z.n === MP.sel); listarMunicipioMapa(porMun.get(MP.sel), m); }
-    else $('mp-lista').innerHTML = `<div class="vazio" style="padding:30px 10px"><i class="fa-solid fa-hand-pointer"></i>Clique em um município para ver as obras.</div>
-        <div class="lista">${[...porMun.values()].sort((a, b) => medir(b.l) - medir(a.l)).slice(0, 12).map(o => `<div class="item" onclick="MP.sel=${jsArg(o.m.n)};renderMapa()"><span class="ic" style="--c:#f97316"><i class="fa-solid fa-location-dot"></i></span><span class="tx"><b>${esc(o.m.n)}</b><span>${o.l.length} obra(s)${MP.medida === 'qtd' ? '' : ' · ' + MEDIDAS[MP.medida][1](medir(o.l))}</span></span></div>`).join('')}</div>`;
+    if (MP.sel && poligonos.get(MP.sel)) poligonos.get(MP.sel).setStyle({ weight: 2.4, color: '#f97316' }).bringToFront();
+    desenharMarcadores(); desenharRotulos();
+
+    // legenda
+    const vals = [...porMun.values()].map(o => medirMapa(o.l));
+    let leg = '';
+    if (MP.medida === 'dre') leg = `<span style="font-weight:700;color:var(--texto2)">DRE</span>${dres.filter(d => DB.convenios.some(r => r.dre === d)).map(d => `<span><i style="background:${corDre(d)}"></i>${esc(d.replace('DRE ', ''))}</span>`).join('')}`;
+    else if (MP.medida !== 'nenhum') leg = `<span style="font-weight:700;color:var(--texto2)">${MEDIDAS[MP.medida][0]}</span><span style="display:inline-flex;align-items:center;gap:6px">${MEDIDAS[MP.medida][1](vals.length ? Math.min(...vals) : 0)}<i style="width:110px;height:10px;border-radius:5px;background:linear-gradient(90deg,${escalaCor(.05)},${escalaCor(1)})"></i>${MEDIDAS[MP.medida][1](max)}</span>`;
+    $('mp-legenda').innerHTML = `<div class="legenda">${leg}</div>
+        <div class="legenda" style="margin-top:6px"><span style="font-weight:700;color:var(--texto2)">Ícones</span>${ICONES_LEGENDA.map(([ic, r]) => `<span><b class="leg-ic"><i class="fa-solid ${ic}"></i></b>${r}</span>`).join('')}</div>
+        <div class="legenda" style="margin-top:6px"><span style="font-weight:700;color:var(--texto2)">Cor do ícone</span>${Object.keys(GRUPOS).filter(k => k !== 'sem').map(k => `<span><i style="background:${GRUPOS[k].cor}"></i>${GRUPOS[k].rot}</span>`).join('')}
+            <span><b class="leg-selo" style="background:#f97316"><i class="fa-solid fa-star"></i></b>Pronta p/ inaugurar</span><span><b class="leg-selo" style="background:#16a34a"><i class="fa-solid fa-check"></i></b>Inaugurada</span></div>`;
+    $('mp-resumo').innerHTML = `${L0.length} obra(s) em <b>${porMun.size}</b> de ${GEO_MT.mun.length} municípios.${semLocal.length ? ` <span style="color:var(--ambar)">${semLocal.length} sem município reconhecido: ${[...new Set(semLocal.map(x => x.r.municipio || '(vazio)'))].map(esc).join(', ')}.</span>` : ''}`;
+    if (!MP.sel && MP.focado && mapaMT && mapaMT.getSize().x) { mapaMT.fitBounds(limitesMT, { padding: [10, 10], animate: true }); MP.focado = false; }
+    renderLadoMapa();
     setTimeout(() => mapaMT && mapaMT.invalidateSize(), 80);
 }
-function listarMunicipioMapa(o, m) {
-    const l = o ? o.l.slice().sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || b.valor - a.valor) : [];
-    $('mp-lista').innerHTML = `<div style="display:flex;align-items:center;gap:8px;padding:4px 4px 10px"><div style="flex:1;min-width:0"><h3 style="margin:0;font-size:16px">${esc(m.n)}</h3><div class="peq mut">${l.length} obra(s) · ${moeda(l.reduce((s, x) => s + x.valor, 0), true)}</div></div>
-        <button class="ic-btn" title="Fechar" onclick="MP.sel='';renderMapa()"><i class="fa-solid fa-xmark"></i></button></div>
-        ${l.length ? `<button class="btn btn-s btn-sm" style="width:100%;margin-bottom:8px" onclick="GE.municipio=${jsArg(l[0].r.municipio)};GE.tipo=MP.tipo;GE.grupo=MP.grupo;GE.objeto=MP.objeto;irPara('gestao')"><i class="fa-solid fa-list-check"></i>Abrir em Gestão de obras</button>
-        <div class="lista card" style="box-shadow:none">${l.map(x => `<div class="item" style="align-items:flex-start" onclick="abrirRegistro('${x.tipo}', ${jsArg(x.r.id)})"><span class="ic" style="--c:${GRUPOS[x.grupo].cor}"><i class="fa-solid ${GRUPOS[x.grupo].ic}"></i></span>
-            <span class="tx"><b style="white-space:normal">${esc(x.nome)}</b><span style="white-space:normal">${x.T.rot} ${esc(x.cod)} · ${esc(x.r.objeto || '')}</span><span style="white-space:normal;color:${GRUPOS[x.grupo].cor};font-weight:600">${esc(x.r.status || GRUPOS[x.grupo].rot)}${x.fisico !== null ? ' · ' + pct(x.fisico) : ''}</span></span></div>`).join('')}</div>` : '<div class="mut peq" style="padding:6px">Nenhuma obra com os filtros atuais.</div>'}`;
-    if (o && mapaMT) MP.focado = true;
-    if (o && mapaMT) mapaMT.flyToBounds(L.polygon((m.g.type === 'Polygon' ? m.g.coordinates : m.g.coordinates.flat()).map(r => r.map(([x, y]) => [y, x]))).getBounds().pad(.6), { duration: .5, maxZoom: 9 });
+/** Ícones: por obra (espalhados em espiral em volta da sede do município) ou agrupados por município. */
+function desenharMarcadores() {
+    if (!mapaMT || !dadosAtuais) return;
+    camMarc.clearLayers();
+    const modo = MP.modo === 'auto' ? (mapaMT.getZoom() >= mapaMT.getMinZoom() + 2.5 ? 'obra' : 'municipio') : MP.modo;
+    if (modo === 'nenhum') return;
+    const passo = 0.42 / Math.pow(2, mapaMT.getZoom() - 6);   // distância entre ícones acompanha o zoom
+    dadosAtuais.porMun.forEach(o => {
+        const [lng, lat] = o.m.p;
+        if (modo === 'municipio') {
+            const pior = o.l.slice().sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso)[0];
+            const tam = 26 + Math.min(16, Math.sqrt(o.l.length) * 3);
+            L.marker([lat, lng], { icon: L.divIcon({ className: 'mk-mun', html: `<span style="--c:${GRUPOS[pior.grupo].cor};width:${tam}px;height:${tam}px">${o.l.length}</span>`, iconSize: [tam, tam] }), keyboard: false, riseOnHover: true })
+                .bindTooltip(`<b>${esc(o.m.n)}</b><br>${o.l.length} obra(s) — clique para ver`, { direction: 'top', offset: [0, -tam / 2] })
+                .on('click', () => selecionarMunicipio(o.m.n)).addTo(camMarc);
+            return;
+        }
+        const l = o.l.slice().sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso);
+        l.forEach((x, i) => {
+            const ang = i * 2.39996, r = i ? passo * Math.sqrt(i) : 0;
+            const pos = [lat + r * Math.sin(ang) * .9, lng + r * Math.cos(ang)];
+            const [ic] = iconeObjeto(x.r.objeto);
+            const selo = x.inaug === 'apta' ? '<b class="mk-selo" style="background:#f97316"><i class="fa-solid fa-star"></i></b>' : x.inaug === 'inaugurada' ? '<b class="mk-selo" style="background:#16a34a"><i class="fa-solid fa-check"></i></b>' : '';
+            L.marker(pos, { icon: L.divIcon({ className: 'mk-obra', html: `<span style="--c:${GRUPOS[x.grupo].cor}"><i class="fa-solid ${ic}"></i></span>${selo}`, iconSize: [30, 36], iconAnchor: [15, 34], popupAnchor: [0, -30] }), riseOnHover: true, title: x.nome })
+                .bindPopup(() => popupObra(x), { maxWidth: 300, minWidth: 250 }).addTo(camMarc);
+        });
+    });
+}
+function popupObra(x) {
+    const r = x.r, [ic, rotIc] = iconeObjeto(r.objeto);
+    return `<div class="pop-obra"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px">${seloTipo(x.tipo)}${seloGrupo(x.grupo)}</div>
+        <b style="font-size:13.5px;display:block;line-height:1.3">${esc(x.nome)}</b>
+        <div style="color:#64748b;margin:3px 0 8px">${esc(r.municipio || '')} · ${esc(x.cod)}</div>
+        <div><i class="fa-solid ${ic}" style="width:16px;color:#64748b"></i> ${esc(r.objeto || rotIc)}</div>
+        ${r.empresa ? `<div><i class="fa-solid fa-helmet-safety" style="width:16px;color:#64748b"></i> ${esc(r.empresa)}</div>` : ''}
+        <div><i class="fa-solid fa-sack-dollar" style="width:16px;color:#64748b"></i> ${x.valor ? moeda(x.valor) : '—'}</div>
+        <div><i class="fa-solid fa-calendar" style="width:16px;color:#64748b"></i> Previsão: <b style="${x.prevVencida ? 'color:#dc2626' : ''}">${esc(fmtPrev(r.previsao))}</b></div>
+        <div style="margin:8px 0">${barrasConv(x)}</div>
+        <div style="margin-bottom:8px">${seloInaug(x.inaug)}</div>
+        <div style="display:flex;gap:6px"><button class="btn btn-p btn-sm" style="flex:1" onclick="abrirRegistro('${x.tipo}', ${jsArg(r.id)})"><i class="fa-solid fa-circle-info"></i>Ficha</button>
+        ${pode.tudo() ? `<button class="btn btn-s btn-sm" onclick="abrirForm('${x.tipo}', ${jsArg(r.id)})"><i class="fa-solid fa-pen"></i>Editar</button>` : ''}</div></div>`;
+}
+function desenharRotulos() {
+    if (!mapaMT || !dadosAtuais) return;
+    camRotulos.clearLayers();
+    if (!MP.rotulos) return;
+    const z = mapaMT.getZoom() - mapaMT.getMinZoom();
+    const lista = [...dadosAtuais.porMun.values()].sort((a, b) => b.l.length - a.l.length);
+    const n = z >= 2.5 ? 999 : z >= 1.25 ? 40 : 15;   // ao afastar, só os municípios com mais obras
+    lista.slice(0, n).forEach(o => {
+        L.marker([o.m.p[1], o.m.p[0]], { pane: 'rotulos', interactive: false, keyboard: false, icon: L.divIcon({ className: 'mk-rotulo', html: `<span>${esc(o.m.n)}</span>`, iconSize: [140, 16], iconAnchor: [70, -14] }) }).addTo(camRotulos);
+    });
+}
+function irParaMunicipio(nome) {
+    const m = GEO_MT.mun.find(z => norm(z.n) === norm(nome)) || MUN_GEO.get(chaveMun(nome));
+    if (!m) return toast('Município não encontrado.', 'alerta');
+    selecionarMunicipio(m.n);
+}
+function selecionarMunicipio(nome) {
+    MP.sel = nome; MP.aba = 'municipio';
+    poligonos.forEach((p, n) => p.setStyle({ weight: n === nome ? 2.4 : .8, color: n === nome ? '#f97316' : (temaEscuro() ? '#334155' : '#ffffff') }));
+    const pol = poligonos.get(nome);
+    if (pol && mapaMT.getSize().x) { pol.bringToFront(); mapaMT.fitBounds(pol.getBounds().pad(.5), { maxZoom: 10, animate: true }); MP.focado = true; }
+    renderLadoMapa();
+}
+function renderLadoMapa() {
+    if (!dadosAtuais) return;
+    const { L0, porMun } = dadosAtuais;
+    const abas = [['ranking', 'Ranking', 'fa-ranking-star'], ['resumo', 'Resumo', 'fa-chart-simple'], ['sem', 'Sem obras', 'fa-circle-minus']];
+    if (MP.sel) abas.unshift(['municipio', MP.sel.length > 14 ? MP.sel.slice(0, 13) + '…' : MP.sel, 'fa-location-dot']);
+    if (!abas.some(a => a[0] === MP.aba)) MP.aba = 'ranking';
+    let h = `<div class="abas-int" style="margin-bottom:10px">${abas.map(([k, r, ic]) => `<button class="${MP.aba === k ? 'ativo' : ''}" onclick="MP.aba='${k}';renderLadoMapa()" style="padding:9px 10px;font-size:12.5px"><i class="fa-solid ${ic}" style="margin-right:5px;opacity:.7"></i>${esc(r)}</button>`).join('')}</div>`;
+    if (MP.aba === 'municipio' && MP.sel) {
+        const o = porMun.get(MP.sel), l = o ? o.l.slice().sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || b.valor - a.valor) : [];
+        const dre = dreDoMunicipio(MP.sel);
+        h += `<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:10px"><div style="flex:1;min-width:0"><h3 style="margin:0;font-size:17px">${esc(MP.sel)}</h3><div class="peq mut">${dre ? esc(dre) + ' · ' : ''}${l.length} obra(s) · ${moeda(l.reduce((s, x) => s + x.valor, 0), true)}</div></div>
+            <button class="ic-btn" title="Fechar município" onclick="MP.sel='';MP.aba='ranking';MP.focado=true;renderMapa()"><i class="fa-solid fa-xmark"></i></button></div>`;
+        if (l.length) {
+            const cg = {}; l.forEach(x => cg[x.grupo] = (cg[x.grupo] || 0) + 1);
+            h += `<div class="barra-empilhada" style="margin-bottom:8px">${Object.keys(GRUPOS).filter(k => cg[k]).map(k => `<span style="flex:${cg[k]};background:${GRUPOS[k].cor}" title="${GRUPOS[k].rot}: ${cg[k]}"></span>`).join('')}</div>
+                <div class="legenda" style="margin-bottom:10px">${Object.keys(GRUPOS).filter(k => cg[k]).map(k => `<span><i style="background:${GRUPOS[k].cor}"></i>${GRUPOS[k].rot} ${cg[k]}</span>`).join('')}</div>
+                <button class="btn btn-s btn-sm" style="width:100%;margin-bottom:8px" onclick="GE.municipio=${jsArg(l[0].r.municipio)};GE.tipo=MP.tipo;GE.grupo=MP.grupo;GE.objeto=MP.objeto;GE.inaug=MP.inaug;irPara('gestao')"><i class="fa-solid fa-list-check"></i>Abrir em Gestão de obras</button>
+                <div class="lista card" style="box-shadow:none">${l.map(x => { const [ic] = iconeObjeto(x.r.objeto); return `<div class="item" style="align-items:flex-start" onclick="abrirRegistro('${x.tipo}', ${jsArg(x.r.id)})"><span class="ic" style="--c:${GRUPOS[x.grupo].cor}"><i class="fa-solid ${ic}"></i></span>
+                    <span class="tx"><b style="white-space:normal">${esc(x.nome)}</b><span style="white-space:normal">${x.T.rot} ${esc(x.cod)} · ${esc(x.r.objeto || '')}</span><span style="white-space:normal;color:${GRUPOS[x.grupo].cor};font-weight:600">${esc(x.r.status || GRUPOS[x.grupo].rot)}${x.fisico !== null ? ' · ' + pct(x.fisico) : ''}${x.inaug === 'apta' ? ' · ★ pronta p/ inaugurar' : x.inaug === 'inaugurada' ? ' · ✓ inaugurada' : ''}</span></span></div>`; }).join('')}</div>`;
+        } else h += '<div class="vazio" style="padding:24px"><i class="fa-solid fa-circle-minus"></i>Nenhuma obra neste município com os filtros atuais.</div>';
+    } else if (MP.aba === 'ranking') {
+        const lista = [...porMun.values()].map(o => ({ o, v: medirMapa(o.l) })).sort((a, b) => b.v - a.v || b.o.l.length - a.o.l.length);
+        const mx = Math.max(1, ...lista.map(x => x.v));
+        const fmt = ['dre', 'nenhum'].includes(MP.medida) ? MEDIDAS.qtd[1] : MEDIDAS[MP.medida][1];
+        h += `<div class="peq mut" style="margin-bottom:8px">Municípios por ${['dre', 'nenhum'].includes(MP.medida) ? 'quantidade de obras' : MEDIDAS[MP.medida][0].toLowerCase()}</div>
+            <div class="lista">${lista.slice(0, 60).map((x, i) => `<div class="item" style="padding:8px 6px" onclick="selecionarMunicipio(${jsArg(x.o.m.n)})"><span class="mut num" style="width:22px;text-align:right;font-size:12px">${i + 1}</span>
+                <span class="tx"><b>${esc(x.o.m.n)}</b><span class="barra" style="margin-top:4px;height:6px"><span style="width:${x.v / mx * 100}%;background:#f97316"></span></span></span><span class="peq num" style="white-space:nowrap;font-weight:700">${fmt(x.v)}</span></div>`).join('')}</div>`;
+    } else if (MP.aba === 'resumo') {
+        const cnt = f => L0.filter(f).length;
+        const cg = {}; L0.forEach(x => cg[x.grupo] = (cg[x.grupo] || 0) + 1);
+        const co = {}; L0.forEach(x => { const [ic, r] = iconeObjeto(x.r.objeto); co[r] = co[r] || { ic, n: 0 }; co[r].n++; });
+        const linha = (rot, val, cor) => `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--borda)"><span>${rot}</span><b style="${cor ? 'color:' + cor : ''}">${val}</b></div>`;
+        h += `<div class="kpis" style="grid-template-columns:1fr 1fr;margin-bottom:12px">${kpi('#475569', 'fa-building', 'Obras', L0.length, `${porMun.size} municípios`)}${kpi('#f97316', 'fa-sack-dollar', 'Valor', moeda(L0.reduce((s, x) => s + x.valor, 0), true), 'filtro atual')}</div>
+            <div class="rot">Andamento</div>${Object.keys(GRUPOS).filter(k => cg[k]).map(k => linha(`<i class="fa-solid ${GRUPOS[k].ic}" style="color:${GRUPOS[k].cor};width:18px"></i>${GRUPOS[k].rot}`, cg[k])).join('')}
+            <div class="rot" style="margin-top:12px">Tipo de obra</div>${Object.entries(co).sort((a, b) => b[1].n - a[1].n).map(([r, o]) => linha(`<i class="fa-solid ${o.ic}" style="color:var(--muted);width:18px"></i>${r}`, o.n)).join('')}
+            <div class="rot" style="margin-top:12px">Inauguração</div>${linha('Prontas para inaugurar', cnt(x => x.inaug === 'apta'), '#f97316')}${linha('Inauguradas', cnt(x => x.inaug === 'inaugurada'), '#16a34a')}${linha('Previsão vencida', cnt(x => x.prevVencida), '#dc2626')}`;
+    } else {
+        const sem = GEO_MT.mun.filter(m => !porMun.has(m.n)).sort((a, b) => a.n.localeCompare(b.n, 'pt-BR'));
+        h += `<div class="peq mut" style="margin-bottom:8px">${sem.length} município(s) sem obras com os filtros atuais. Útil para planejar novas ações.</div>
+            <div class="lista">${sem.map(m => `<div class="item" style="padding:7px 6px" onclick="selecionarMunicipio(${jsArg(m.n)})"><span class="ic" style="--c:#94a3b8;width:26px;height:26px"><i class="fa-solid fa-location-dot" style="font-size:11px"></i></span><span class="tx"><b>${esc(m.n)}</b><span>${esc(dreDoMunicipio(m.n) || '')}</span></span></div>`).join('')}</div>`;
+    }
+    $('mp-lista').innerHTML = h;
+}
+function exportarMapaCSV() {
+    if (!dadosAtuais) return;
+    const linhas = GEO_MT.mun.map(m => {
+        const o = dadosAtuais.porMun.get(m.n), l = o ? o.l : [];
+        const c = f => l.filter(f).length;
+        return [m.n, dreDoMunicipio(m.n), l.length, c(x => x.tipo === 'contratos'), c(x => x.tipo === 'convenios'), String(Math.round(l.reduce((s, x) => s + x.valor, 0) * 100) / 100).replace('.', ','),
+            c(x => x.grupo === 'execucao'), c(x => x.grupo === 'concluida'), c(x => x.grupo === 'paralisada'), c(x => x.grupo === 'rescisao'), c(x => x.prevVencida), c(x => x.inaug === 'apta'), c(x => x.inaug === 'inaugurada')];
+    }).sort((a, b) => b[2] - a[2] || a[0].localeCompare(b[0], 'pt-BR'));
+    baixarCSV(`GABObras_obras_por_municipio_${hojeISO()}.csv`, [['MUNICÍPIO', 'DRE', 'OBRAS', 'CONTRATOS', 'CONVÊNIOS', 'VALOR TOTAL', 'EM EXECUÇÃO', 'CONCLUÍDAS', 'PARALISADAS/PENDÊNCIA', 'RESCISÃO', 'PREVISÃO VENCIDA', 'PRONTAS P/ INAUGURAR', 'INAUGURADAS'], ...linhas]);
 }
 
 // =====================================================================================
+
 // MENU LATERAL RECOLHÍVEL
 // =====================================================================================
 function recolherMenu(forcar) {
