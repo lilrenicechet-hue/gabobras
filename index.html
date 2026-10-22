@@ -592,6 +592,84 @@ kbd { font-family: inherit; font-size: 10.5px; font-weight: 700; padding: 2px 6p
 .rel-dest2 { width: 100%; border-collapse: collapse; }
 .rel-dest2 td { padding: 4px 0; vertical-align: top; line-height: 1.5; color: #334155; }
 .rel-dest2 td.i { width: 24px; text-align: center; padding-top: 5px; }
+
+/* ===== painel 3 ===== */
+.pn-nav { display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 0; z-index: 5; padding: 8px; margin: 0 -2px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-radius: 12px; }
+.pn-nav button { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--borda); font-size: 12.5px; font-weight: 700; color: var(--texto2); transition: transform .15s, border-color .15s, color .15s; }
+.pn-nav button i { color: var(--marca); }
+.pn-nav button:hover { transform: translateY(-1px); border-color: var(--marca); color: var(--marca2); }
+.kpis-painel { grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); scroll-margin-top: 60px; }
+.kpi2 .v { font-size: 23px; }
+@media (max-width: 700px) { .grade.gauges { grid-template-columns: 1fr 1fr; gap: 8px; } .gauges .gauge-card { padding: 10px 8px; } .gauges canvas { max-height: 90px; } .gauges .gauge-t { font-size: 11px; } .kpi2 .v { font-size: 20px; } }
+.kpi2 .kpi-barra { height: 4px; border-radius: 4px; background: var(--suave2); margin-top: 8px; overflow: hidden; }
+.kpi2 .kpi-barra span { display: block; height: 100%; background: var(--c); border-radius: 4px; transform-origin: left; animation: cresce 1s cubic-bezier(.16,1,.3,1) both; }
+.pn-secao { display: flex; align-items: center; gap: 12px; margin-top: 26px !important; padding: 0 2px; scroll-margin-top: 60px; }
+.pn-secao > i { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f97316, #c2410c); color: #fff; font-size: 16px; box-shadow: 0 8px 18px -10px rgba(234,88,12,.8); }
+.pn-secao h2 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+.pn-secao p { margin: 1px 0 0; font-size: 12.5px; color: var(--muted); }
+.gauge-card { text-align: center; padding-bottom: 12px; }
+.gauge-t { font-size: 12.5px; font-weight: 700; color: var(--texto2); margin-bottom: 6px; min-height: 32px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.gauge-t i { color: var(--marca); }
+.gauge-s { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.mini-t { font-size: 11.5px; font-weight: 700; color: var(--texto2); text-align: center; margin-bottom: 4px; }
+.mini-t i { color: var(--muted); }
+.calor { width: 100%; border-collapse: separate; border-spacing: 3px; font-size: 12px; }
+.calor thead th { font-size: 10px; font-weight: 700; color: var(--muted); text-align: center; vertical-align: bottom; padding: 2px; }
+.calor thead th span { display: block; font-size: 9.5px; line-height: 1.15; margin-top: 3px; }
+.calor tbody th { text-align: left; font-weight: 700; color: var(--texto2); white-space: nowrap; padding-right: 6px; font-size: 11.5px; }
+.calor td { text-align: center; height: 30px; min-width: 44px; border-radius: 7px; font-weight: 800; background: color-mix(in srgb, var(--c) var(--a), var(--suave)); color: var(--texto); transition: transform .15s, box-shadow .15s; }
+.calor td[onclick] { cursor: pointer; }
+.calor td[onclick]:hover { transform: scale(1.1); box-shadow: 0 4px 12px -4px var(--c); position: relative; z-index: 1; }
+.calor td.tot { background: var(--suave2); color: var(--muted); }
+.mosaico { display: flex; flex-wrap: wrap; gap: 4px; height: 300px; align-content: stretch; }
+.mosaico button { flex-basis: 110px; min-width: 60px; border-radius: 10px; color: #fff; padding: 10px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; text-align: left; position: relative; overflow: hidden; transition: filter .2s, transform .2s; }
+.mosaico button:hover { filter: brightness(1.1); transform: scale(1.02); z-index: 1; }
+.mosaico i { position: absolute; top: 10px; right: 10px; font-size: 20px; opacity: .55; }
+.mosaico b { font-size: 11.5px; line-height: 1.2; }
+.mosaico span { font-size: 15px; font-weight: 800; }
+.mosaico em { font-style: normal; font-size: 11px; opacity: .85; }
+.tab-mini td { padding: 7px 8px; }
+.tab-mini td.dir { white-space: nowrap; }
+.tab-mini .dois { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 12.5px; line-height: 1.3; }
+.mosaico button { min-width: 0; }
+.mosaico b { font-size: 10.5px; max-width: 100%; overflow-wrap: anywhere; }
+.mosaico span { font-size: 13.5px; white-space: nowrap; }
+.mosaico b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tab-mini .pos { width: 30px; text-align: center; font-weight: 800; color: var(--muted); }
+@media (max-width: 1100px) { .gauge-t { min-height: 0; } }
+
+/* território (painel) */
+.terr { display: grid; grid-template-columns: minmax(0,1fr) 250px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .terr { grid-template-columns: minmax(0,1fr); } }
+.terr-mapa { position: relative; }
+#pt-svg { width: 100%; height: 360px; display: block; }
+.terr-muns path { stroke: var(--card); stroke-width: 1.2; cursor: pointer; transition: fill .4s, filter .15s; }
+.terr-muns path:hover, .terr-muns path.foco { stroke: #0f172a; stroke-width: 2.5; filter: brightness(1.05); }
+html.escuro .terr-muns path:hover, html.escuro .terr-muns path.foco { stroke: #f8fafc; }
+.terr-uf { fill: none; stroke: #0f172a; stroke-width: 3; pointer-events: none; }
+html.escuro .terr-uf { stroke: #cbd5e1; }
+.terr-rot circle { fill: #0f172a; stroke: #fff; stroke-width: 2.5; pointer-events: none; }
+.terr-rot text { font: 800 19px Inter, sans-serif; fill: #0f172a; text-anchor: middle; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; pointer-events: none; }
+html.escuro .terr-rot text { fill: #f8fafc; stroke: #0b1120; }
+.terr-dica { position: absolute; z-index: 3; width: 200px; background: #0f172a; color: #fff; border-radius: 10px; padding: 9px 11px; font-size: 11.5px; line-height: 1.45; box-shadow: 0 10px 30px -10px rgba(0,0,0,.6); pointer-events: none; }
+.terr-dica b { display: block; font-size: 13px; }
+.terr-dica span { display: block; color: #94a3b8; font-size: 10.5px; margin-bottom: 3px; }
+.terr-leg { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.terr-leg i { width: 120px; height: 10px; border-radius: 5px; }
+.terr-rank { display: grid; gap: 2px; }
+.terr-it { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: center; padding: 6px 6px; border-radius: 8px; text-align: left; transition: background .15s; }
+.terr-it:hover, .terr-it.foco { background: color-mix(in srgb, #f97316 10%, transparent); }
+.terr-it .pos { font-size: 11px; font-weight: 800; color: var(--muted); text-align: center; }
+.terr-it .tx, .terr-it .tx .barra { display: block; min-width: 0; }
+#pt-medida { display: flex; flex-wrap: nowrap; }
+#pt-medida button { flex: 1; padding: 0 6px; font-size: 12px; }
+.terr { grid-template-columns: minmax(0,1fr) 270px; }
+.terr-it { width: 100%; }
+@media (max-width: 900px) { .terr { grid-template-columns: minmax(0,1fr); } #pt-svg { height: 300px; } }
+.terr-it .tx b { display: block; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+.terr-it .tx .barra { height: 5px; }
+.terr-it .vl { font-size: 12px; font-weight: 800; white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) { body.animar .terr-muns path { animation: popIn .5s cubic-bezier(.16,1,.3,1) backwards; animation-delay: calc(var(--i) * 12ms); transform-box: fill-box; transform-origin: center; } body.animar .terr-it { animation: sobeSuave .45s both; animation-delay: calc(var(--i) * 40ms); } }
 </style>
 </head>
 <body>
@@ -689,10 +767,12 @@ kbd { font-family: inherit; font-size: 10.5px; font-weight: 700; padding: 2px 6p
 
     <section class="aba" id="aba-painel">
         <div class="heroi"><div class="heroi-linha">
-            <div><h2><i class="fa-solid fa-chart-pie"></i>Painel das obras</h2><p>Contratos e convênios: andamento, valores e inaugurações.</p></div>
+            <div><h2><i class="fa-solid fa-chart-pie"></i>Painel das obras</h2><p>Contratos e convênios: andamento, prazos, território, investimento e inaugurações.</p></div>
             <div class="barra-filtros">
                 <div class="seg" id="pf-tipo" style="background:rgba(255,255,255,.08)"></div>
-                <select id="pf-municipio" class="campo campo-escuro" style="width:190px" onchange="renderPainel()"></select>
+                <select id="pf-municipio" class="campo campo-escuro" style="width:180px" onchange="renderPainel()"></select>
+                <select id="pf-dre" class="campo campo-escuro" style="width:175px" onchange="renderPainel()"></select>
+                <select id="pf-objeto" class="campo campo-escuro" style="width:190px" onchange="renderPainel()"></select>
             </div>
         </div></div>
         <div class="conteudo"><div class="pilha" id="painel-corpo"></div></div>
@@ -810,7 +890,7 @@ kbd { font-family: inherit; font-size: 10.5px; font-weight: 700; padding: 2px 6p
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.3.0';
+const VERSAO_APP = '2.4.1';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -1447,68 +1527,177 @@ function itemReg(x, extra) {
     return `<div class="item" onclick="abrirRegistro('${x.tipo}', ${jsArg(x.r.id)})"><span class="ic" style="--c:${x.T.cor}"><i class="fa-solid ${x.T.ic}"></i></span>
         <span class="tx"><b>${esc(x.nome)}</b><span>${esc(x.r.municipio || '—')} · ${esc(x.cod)} · ${extra || `${esc(x.r.objeto || '')}${x.fisico !== null ? ' · ' + pct(x.fisico) : ''}`}</span></span>${seloGrupo(x.grupo)}</div>`;
 }
+// Mapa de MT do painel (SVG leve, a partir dos limites do IBGE)
+const PT = { medida: 'n', dados: null };
+let ptGeo = null;
+function geoTerritorio() {
+    if (ptGeo) return ptGeo;
+    const pts = GEO_MT.uf.type === 'Polygon' ? GEO_MT.uf.coordinates.flat() : GEO_MT.uf.coordinates.flat(2);
+    const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+    const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+    const k = Math.cos((minY + maxY) / 2 * Math.PI / 180), W = 1000, esc = W / ((maxX - minX) * k), H = Math.round((maxY - minY) * esc);
+    const pr = ([x, y]) => [((x - minX) * k * esc).toFixed(1), ((maxY - y) * esc).toFixed(1)];
+    const caminho = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates).map(pol => pol.map(anel => 'M' + anel.map(p => pr(p).join(',')).join('L') + 'Z').join('')).join('');
+    ptGeo = { W, H, pr, mun: GEO_MT.mun.map(m => ({ n: m.n, d: caminho(m.g), c: pr(m.p) })), uf: caminho(GEO_MT.uf) };
+    return ptGeo;
+}
+function desenharTerritorio(L) {
+    const g = geoTerritorio(), svg = $('pt-svg'); if (!svg) return;
+    const dados = {};
+    L.forEach(x => { const m = MUN_GEO.get(chaveMun(x.r.municipio)); if (!m) return; const o = dados[m.n] = dados[m.n] || { n: 0, v: 0, ex: 0, cr: 0, f: [], nome: x.r.municipio };
+        o.n++; o.v += x.valor; if (x.grupo === 'execucao') o.ex++; if (x.grupo === 'paralisada' || x.grupo === 'rescisao' || x.prevVencida) o.cr++; if (x.fisico !== null) o.f.push(x.fisico); });
+    PT.dados = dados;
+    svg.setAttribute('viewBox', `-8 -8 ${g.W + 16} ${g.H + 16}`);
+    svg.innerHTML = `<g class="terr-muns">${g.mun.map((m, i) => `<path d="${m.d}" data-n="${esc(m.n)}" style="--i:${i % 30}"></path>`).join('')}</g><path class="terr-uf" d="${g.uf}"></path><g class="terr-rot"></g>`;
+    svg.querySelectorAll('.terr-muns path').forEach(p => {
+        p.addEventListener('mousemove', e => dicaTerritorio(e, p.dataset.n));
+        p.addEventListener('mouseleave', () => { $('pt-dica').classList.add('hidden'); destacarRank(''); });
+        p.addEventListener('click', () => { const n = p.dataset.n; irPara('mapa'); setTimeout(() => irParaMunicipio(n), 250); });
+    });
+    pintarTerritorio();
+}
+function valorTerr(o) { return !o ? 0 : PT.medida === 'v' ? o.v : PT.medida === 'ex' ? o.ex : PT.medida === 'cr' ? o.cr : o.n; }
+const fmtTerr = n => PT.medida === 'v' ? moeda(n, true) : PT.medida === 'ex' ? `${n} em execução` : PT.medida === 'cr' ? `${n} crítica(s)` : `${n} obra(s)`;
+function pintarTerritorio() {
+    const d = PT.dados, svg = $('pt-svg'); if (!d || !svg) return;
+    document.querySelectorAll('#pt-medida button').forEach(b => b.classList.toggle('ativo', b.dataset.m === PT.medida));
+    const max = Math.max(1, ...Object.values(d).map(valorTerr));
+    const vazio = temaEscuro() ? '#1e293b' : '#eef2f6';
+    const corDe = n => PT.medida === 'cr' ? `rgb(${[254, 226, 226].map((c, i) => Math.round(c + ([185, 28, 28][i] - c) * Math.sqrt(n / max))).join(',')})` : escalaCor(Math.sqrt(n / max));
+    svg.querySelectorAll('.terr-muns path').forEach(p => { const n = valorTerr(d[p.dataset.n]); p.style.fill = n ? corDe(n) : vazio; });
+    const rank = Object.entries(d).map(([k, o]) => [k, o, valorTerr(o)]).filter(r => r[2]).sort((a, b) => b[2] - a[2]);
+    const g = geoTerritorio();
+    svg.querySelector('.terr-rot').innerHTML = rank.slice(0, 6).map(([k]) => { const m = g.mun.find(z => z.n === k); return m ? `<circle cx="${m.c[0]}" cy="${m.c[1]}" r="6"></circle><text x="${m.c[0]}" y="${+m.c[1] - 12}">${esc(k)}</text>` : ''; }).join('');
+    $('pt-leg').innerHTML = `<span>${fmtTerr(rank.length ? rank[rank.length - 1][2] : 0)}</span><i style="background:linear-gradient(90deg,${corDe(max * .03)},${corDe(max)})"></i><span>${fmtTerr(max)}</span><span class="mut" style="margin-left:8px"><b style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${vazio};border:1px solid var(--borda2);vertical-align:-1px"></b> sem obras</span>`;
+    const tit = { n: 'Municípios com mais obras', v: 'Maiores investimentos', ex: 'Mais obras em execução', cr: 'Mais obras críticas' }[PT.medida];
+    $('pt-rank-t').innerHTML = `<i class="fa-solid fa-ranking-star" style="color:#f97316"></i> ${tit} <span class="mut" style="font-weight:500">· ${Object.keys(d).length} de ${GEO_MT.mun.length} municípios com obras</span>`;
+    const mx = rank.length ? rank[0][2] : 1;
+    $('pt-rank').innerHTML = rank.slice(0, 10).map(([k, o, n], i) => `<button class="terr-it" data-n="${esc(k)}" style="--i:${i}" onmouseenter="destacarMun(${jsArg(k)})" onmouseleave="destacarMun('')" onclick="irPara('mapa');setTimeout(()=>irParaMunicipio(${jsArg(k)}),250)">
+        <span class="pos">${i + 1}</span><span class="tx"><b>${esc(k)}</b><span class="barra"><span style="width:${n / mx * 100}%;background:${PT.medida === 'cr' ? '#dc2626' : '#f97316'}"></span></span></span><span class="vl">${PT.medida === 'v' ? moeda(n, true) : n}</span></button>`).join('') || '<div class="mut peq">Nada para mostrar.</div>';
+}
+function dicaTerritorio(e, n) {
+    const o = PT.dados[n], dica = $('pt-dica'), box = $('pt-svg').parentElement.getBoundingClientRect();
+    dica.innerHTML = `<b>${esc(n)}</b>${dreDoMunicipio(n) ? `<span>${esc(dreDoMunicipio(n))}</span>` : ''}${o ? `<div>${o.n} obra(s) · ${moeda(o.v, true)}</div><div>${o.ex} em execução · execução média ${pct(media(o.f))}</div>${o.cr ? `<div style="color:#dc2626;font-weight:700">${o.cr} crítica(s)</div>` : ''}` : '<div>sem obras com os filtros atuais</div>'}`;
+    dica.classList.remove('hidden');
+    const x = e.clientX - box.left, y = e.clientY - box.top;
+    dica.style.left = Math.min(box.width - 210, x + 14) + 'px'; dica.style.top = Math.max(0, y - 10) + 'px';
+    destacarRank(n);
+}
+function destacarMun(n) { document.querySelectorAll('#pt-svg .terr-muns path').forEach(p => p.classList.toggle('foco', p.dataset.n === n)); destacarRank(n); }
+function destacarRank(n) { document.querySelectorAll('#pt-rank .terr-it').forEach(b => b.classList.toggle('foco', b.dataset.n === n)); }
+
 function renderPainel() {
     segTipo('pf-tipo', pfTipo, 'pfTipo');
     preencherSelect('pf-municipio', municipiosUsados(pfTipo), 'Todos os municípios');
-    const L = todos(pfTipo, v('pf-municipio'));
+    preencherSelect('pf-dre', distintos('convenios', 'dre', DRES), 'Todas as DREs');
+    preencherSelect('pf-objeto', [...new Set(todos(pfTipo).map(x => x.r.objeto).filter(Boolean))].sort(), 'Todos os objetos');
+    const fDre = v('pf-dre'), fObj = v('pf-objeto');
+    const L = todos(pfTipo, v('pf-municipio')).filter(x => (!fDre || dreDe(x) === fDre) && (!fObj || x.r.objeto === fObj));
     const cnt = k => L.filter(x => x.grupo === k).length;
+    const soma = l => l.reduce((s, x) => s + x.valor, 0);
     const nC = L.filter(x => x.tipo === 'contratos').length, nV = L.length - nC;
-    const valor = L.reduce((s, x) => s + x.valor, 0);
-    const exec = L.filter(x => x.grupo === 'execucao');
+    const valor = soma(L), exec = L.filter(x => x.grupo === 'execucao');
     const prontas = L.filter(x => x.inaug === 'apta').length, inaug = L.filter(x => x.inaug === 'inaugurada').length;
     const venc = L.filter(x => x.prevVencida).length;
-    let h = `<div class="kpis">
-        ${kpi('#475569', 'fa-building', 'Obras', L.length, `${nC} contrato(s) · ${nV} convênio(s)`)}
-        ${kpi('#2563eb', 'fa-person-digging', 'Em execução', exec.length, exec.length ? `execução média ${pct(media(exec.map(x => x.fisico)))}` : '—', "secFiltro('execucao')")}
-        ${kpi('#16a34a', 'fa-circle-check', 'Concluídas', cnt('concluida'), L.length ? pct(cnt('concluida') / L.length * 100) + ' do total' : '—', "secFiltro('concluida')")}
-        ${kpi('#7c3aed', 'fa-circle-pause', 'Paralisadas / pendência', cnt('paralisada'), cnt('paralisada') ? 'precisam de retomada' : 'nenhuma', "secFiltro('paralisada')")}
-        ${kpi('#dc2626', 'fa-file-circle-xmark', 'Rescisão', cnt('rescisao'), 'em rescisão ou rescindidas', "secFiltro('rescisao')")}
-        ${kpi('#f97316', 'fa-sack-dollar', 'Valor total', moeda(valor, true), 'contratos + convênios')}
-        ${kpi('#ea580c', 'fa-champagne-glasses', 'Prontas para inaugurar', prontas, 'INAUGURAR (SUOB) = SIM', "irPara('inauguracoes')")}
-        ${kpi('#15803d', 'fa-ribbon', 'Inauguradas', inaug, venc ? `${venc} com previsão vencida` : 'obras entregues', "irPara('inauguracoes')")}
+    const risco = L.filter(x => x.grupo === 'paralisada' || x.grupo === 'rescisao');
+    const inteiro = s => { const t = str(s).trim(); return /^\d{1,6}$/.test(t) ? +t : null; };
+    const comAlunos = L.filter(x => inteiro(x.r.alunos) !== null), alunos = comAlunos.reduce((s, x) => s + inteiro(x.r.alunos), 0);
+    const comSalas = L.filter(x => inteiro(x.r.salas) !== null), salas = comSalas.reduce((s, x) => s + inteiro(x.r.salas), 0);
+    const parte = (n, tot = L.length) => tot ? n / tot * 100 : 0;
+    const k2 = (c, ic, r, val, s, p, clique) => `<${clique ? `button onclick="${clique}"` : 'div'} class="kpi kpi2" style="--c:${c}"><div class="r"><i class="fa-solid ${ic}"></i>${r}</div><div class="v">${val}</div><div class="s">${s}</div>${p !== null && p !== undefined ? `<div class="kpi-barra"><span style="width:${Math.min(100, p)}%"></span></div>` : ''}</${clique ? 'button' : 'div'}>`;
+
+    const secoes = [['pn-s-visao', 'Visão geral', 'fa-gauge-high'], ['pn-s-andamento', 'Andamento', 'fa-bars-progress'], ['pn-s-prazos', 'Prazos e conclusões', 'fa-calendar-days'],
+        ['pn-s-territorio', 'Território', 'fa-map-location-dot'], ['pn-s-dinheiro', 'Investimento e empresas', 'fa-sack-dollar'], ['pn-s-inaug', 'Inaugurações e destaques', 'fa-ribbon']];
+    let h = `<div class="pn-nav">${secoes.map(([id, r, ic]) => `<button onclick="document.getElementById('${id}').scrollIntoView({behavior:'smooth',block:'start'})"><i class="fa-solid ${ic}"></i>${r}</button>`).join('')}</div>`;
+
+    h += `<div class="kpis kpis-painel" id="pn-s-visao">
+        ${k2('#475569', 'fa-building', 'Obras', L.length, `${nC} contrato(s) · ${nV} convênio(s)`, null)}
+        ${k2('#f97316', 'fa-sack-dollar', 'Valor total', moeda(valor, true), moeda(valor), null)}
+        ${k2('#2563eb', 'fa-person-digging', 'Em execução', exec.length, exec.length ? `execução média ${pct(media(exec.map(x => x.fisico)))}` : '—', parte(exec.length), "secFiltro('execucao')")}
+        ${k2('#16a34a', 'fa-circle-check', 'Concluídas', cnt('concluida'), `${pct(parte(cnt('concluida')))} do total`, parte(cnt('concluida')), "secFiltro('concluida')")}
+        ${k2('#7c3aed', 'fa-circle-pause', 'Paralisadas / pendência', cnt('paralisada'), moeda(soma(L.filter(x => x.grupo === 'paralisada')), true) + ' parados', parte(cnt('paralisada')), "secFiltro('paralisada')")}
+        ${k2('#dc2626', 'fa-file-circle-xmark', 'Rescisão', cnt('rescisao'), 'em rescisão ou rescindidas', parte(cnt('rescisao')), "secFiltro('rescisao')")}
+        ${k2('#991b1b', 'fa-calendar-xmark', 'Previsão vencida', venc, 'em execução, mês já passou', parte(venc, exec.length), "secFiltro('vencida')")}
+        ${k2('#be123c', 'fa-shield-halved', 'Valor em risco', moeda(soma(risco), true), `${risco.length} paralisadas ou em rescisão`, parte(soma(risco), valor))}
+        ${k2('#ea580c', 'fa-champagne-glasses', 'Prontas para inaugurar', prontas, 'aguardando ato (GS)', parte(prontas), "irPara('inauguracoes')")}
+        ${k2('#15803d', 'fa-ribbon', 'Inauguradas', inaug, `${pct(parte(inaug, cnt('concluida')))} das concluídas`, parte(inaug, cnt('concluida')), "irPara('inauguracoes')")}
+        ${k2('#0891b2', 'fa-children', 'Alunos beneficiados', alunos.toLocaleString('pt-BR'), `informado em ${comAlunos.length} obra(s)`, null)}
+        ${k2('#0d9488', 'fa-chalkboard-user', 'Salas de aula', salas.toLocaleString('pt-BR'), `informado em ${comSalas.length} obra(s)`, null)}
     </div>`;
     if (!L.length) {
-        h += `<div class="card vazio"><i class="fa-solid fa-helmet-safety"></i><p style="font-size:15px;font-weight:700;color:var(--texto)">Nenhum registro ainda</p>
-            <p>Importe a planilha "INAUGURAÇÕES - CONTRATOS E CONVÊNIOS" ou cadastre manualmente.</p>
-            ${pode.tudo() ? `<div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button class="btn btn-l" onclick="abrirImportar('contratos')"><i class="fa-solid fa-file-import"></i>Importar planilha (.xlsx)</button><button class="btn btn-s" onclick="abrirForm('contratos')"><i class="fa-solid fa-plus"></i>Novo contrato</button><button class="btn btn-s" onclick="abrirForm('convenios')"><i class="fa-solid fa-plus"></i>Novo convênio</button></div>` : ''}</div>`;
+        h += `<div class="card vazio"><i class="fa-solid fa-helmet-safety"></i><p style="font-size:15px;font-weight:700;color:var(--texto)">${DB.contratos.length + DB.convenios.length ? 'Nenhuma obra com esses filtros' : 'Nenhum registro ainda'}</p>
+            ${!(DB.contratos.length + DB.convenios.length) && pode.tudo() ? `<p>Importe a planilha "INAUGURAÇÕES - CONTRATOS E CONVÊNIOS" ou cadastre manualmente.</p><div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button class="btn btn-l" onclick="abrirImportar('contratos')"><i class="fa-solid fa-file-import"></i>Importar planilha (.xlsx)</button></div>` : ''}</div>`;
         $('painel-corpo').innerHTML = h; return;
     }
+    const tit = (ic, cor, t, sub, extra = '') => `<div class="card-tit"><span class="ico" style="--c:${cor}"><i class="fa-solid ${ic}"></i></span><div><h3>${t}</h3><p>${sub}</p></div>${extra}</div>`;
+    const cab = (id, ic, t, sub) => `<div class="pn-secao" id="${id}"><i class="fa-solid ${ic}"></i><div><h2>${t}</h2><p>${sub}</p></div></div>`;
+    h += `<div class="grade g4 gauges">
+        ${['g-gau1', 'g-gau2', 'g-gau3', 'g-gau4'].map((id, i) => `<div class="card card-pad gauge-card"><div class="gauge-t">${['<i class="fa-solid fa-person-digging"></i> Execução média das obras em execução', '<i class="fa-solid fa-scale-balanced"></i> Execução ponderada pelo valor', '<i class="fa-solid fa-circle-check"></i> Obras concluídas', '<i class="fa-solid fa-ribbon"></i> Concluídas já inauguradas'][i]}</div><div style="height:130px;position:relative"><canvas id="${id}"></canvas></div><div class="gauge-s" id="${id}-s"></div></div>`).join('')}
+    </div>`;
+
+    h += cab('pn-s-andamento', 'fa-bars-progress', 'Andamento', 'Como estão as obras pelo STATUS de cada uma');
     h += `<div class="grade g3">
-        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-traffic-light"></i></span><div><h3>Andamento</h3><p>Pelo STATUS de cada obra</p></div></div><div style="height:200px;position:relative"><canvas id="g-grupo"></canvas></div><div id="leg-grupo" class="leg-ic-lista"></div></div>
-        <div class="card card-pad" style="grid-column:span 2"><div class="card-tit"><span class="ico" style="--c:#7c3aed"><i class="fa-solid fa-calendar-days"></i></span><div><h3>Previsão de conclusão</h3><p>Obras em execução por mês previsto (PREVISÃO CONCLUSÃO OBRA)</p></div></div><div style="height:260px;position:relative"><canvas id="g-prev"></canvas></div></div>
+        <div class="card card-pad">${tit('fa-traffic-light', '#2563eb', 'Andamento', 'Passe o mouse ou clique numa situação')}<div style="height:200px;position:relative"><canvas id="g-grupo"></canvas></div><div id="leg-grupo" class="leg-ic-lista"></div></div>
+        <div class="card card-pad">${tit('fa-layer-group', '#f97316', 'Contratos × convênios', 'Distribuição do andamento em cada tipo (100%)')}<div style="height:150px;position:relative"><canvas id="g-tipos"></canvas></div>
+            <div class="grade g2" style="gap:10px;margin-top:10px"><div><div class="mini-t"><i class="fa-solid fa-file-contract"></i> Contratos por instrumento</div><div style="height:120px;position:relative"><canvas id="g-instr"></canvas></div></div>
+            <div><div class="mini-t"><i class="fa-solid fa-handshake"></i> Convênios por rede</div><div style="height:120px;position:relative"><canvas id="g-rede"></canvas></div></div></div></div>
+        <div class="card card-pad">${tit('fa-chart-column', '#0d9488', 'Distribuição da execução', 'Obras em execução por faixa de % executado')}<div style="height:300px;position:relative"><canvas id="g-hist"></canvas></div></div>
     </div>
     <div class="grade g2">
-        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#0891b2"><i class="fa-solid fa-shapes"></i></span><div><h3>Por tipo de obra</h3><p>OBJETO RESUMO · clique para ver as obras</p></div></div><div id="pn-obj" class="barras-ic"></div></div>
-        <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#f97316"><i class="fa-solid fa-location-dot"></i></span><div><h3>Investimento por município</h3><p>10 maiores valores</p></div></div><div style="height:270px;position:relative"><canvas id="g-mun"></canvas></div></div>
+        <div class="card card-pad">${tit('fa-shapes', '#0891b2', 'Por tipo de obra', 'OBJETO RESUMO · clique para ver as obras')}<div id="pn-obj" class="barras-ic"></div></div>
+        <div class="card card-pad">${tit('fa-table-cells', '#7c3aed', 'Mapa de calor: DRE × andamento', 'Quantidade de obras · clique numa célula')}<div id="pn-calor" class="tab-wrap"></div></div>
+    </div>`;
+
+    h += cab('pn-s-prazos', 'fa-calendar-days', 'Prazos e conclusões', 'Quando as obras em execução devem terminar');
+    h += `<div class="grade g3">
+        <div class="card card-pad" style="grid-column:span 2">${tit('fa-chart-line', '#7c3aed', 'Previsão de conclusão', 'Barras: obras por mês previsto · linha: total acumulado de entregas')}<div style="height:280px;position:relative"><canvas id="g-prev"></canvas></div></div>
+        <div class="card"><div class="card-pad" style="padding-bottom:6px">${tit('fa-flag-checkered', '#16a34a', 'Próximas conclusões', 'Previsão nos próximos 3 meses')}</div><div class="lista" id="pn-proximas" style="max-height:290px;overflow:auto"></div></div>
+    </div>`;
+
+    h += cab('pn-s-territorio', 'fa-map-location-dot', 'Território', 'Onde estão as obras e como andam em cada lugar');
+    h += `<div class="grade g3">
+        <div class="card card-pad" style="grid-column:span 2">${tit('fa-map', '#ea580c', 'Mapa de Mato Grosso', 'Passe o mouse num município · clique para abrir no Mapa das obras')}
+            <div class="terr"><div class="terr-mapa"><svg id="pt-svg" preserveAspectRatio="xMidYMid meet"></svg><div id="pt-dica" class="terr-dica hidden"></div><div class="terr-leg" id="pt-leg"></div></div>
+            <div class="terr-rank"><div class="seg" id="pt-medida" style="margin-bottom:8px">${[['n', 'Obras'], ['v', 'Valor'], ['ex', 'Execução'], ['cr', 'Críticas']].map(([k, r]) => `<button data-m="${k}" class="${PT.medida === k ? 'ativo' : ''}" onclick="PT.medida='${k}';pintarTerritorio()">${r}</button>`).join('')}</div><div class="mini-t" style="text-align:left" id="pt-rank-t"></div><div id="pt-rank"></div></div></div></div>
+        <div class="card card-pad">${tit('fa-sitemap', '#2563eb', 'Obras por DRE', 'Andamento em cada regional · clique numa cor')}<div id="pt-dre-box" style="position:relative"><canvas id="g-dre"></canvas></div></div>
+    </div>`;
+
+    h += cab('pn-s-dinheiro', 'fa-sack-dollar', 'Investimento e empresas', 'Para onde vai o dinheiro e quem executa');
+    h += `<div class="grade g2">
+        <div class="card card-pad">${tit('fa-border-all', '#f97316', 'Mosaico do investimento', 'Valor por tipo de obra (área proporcional ao valor)')}<div id="pn-mosaico" class="mosaico"></div></div>
+        <div class="card card-pad">${tit('fa-location-dot', '#f97316', 'Investimento por município', '10 maiores valores · clique para filtrar o painel')}<div style="height:300px;position:relative"><canvas id="g-mun"></canvas></div></div>
     </div>
     <div class="grade g2">
-        <div class="card"><div class="card-pad" style="padding-bottom:6px"><div class="card-tit" style="margin:0"><span class="ico" style="--c:#dc2626"><i class="fa-solid fa-fire"></i></span><div><h3>Precisam de atenção</h3><p>Paralisadas, rescisões e previsões vencidas</p></div><button class="btn btn-s btn-sm dir" onclick="irPara('alertas')">Ver alertas</button></div></div><div class="lista" id="pn-atencao"></div></div>
-        <div class="card"><div class="card-pad" style="padding-bottom:6px"><div class="card-tit" style="margin:0"><span class="ico" style="--c:#16a34a"><i class="fa-solid fa-flag-checkered"></i></span><div><h3>Próximas conclusões</h3><p>Em execução com previsão nos próximos 3 meses</p></div></div></div><div class="lista" id="pn-proximas"></div></div>
+        <div class="card card-pad">${tit('fa-helmet-safety', '#475569', 'Empresas com mais obras', 'Valor contratado, nº de obras e obras com problema')}<div id="pn-empresas" class="lista"></div></div>
+        <div class="card card-pad">${tit('fa-trophy', '#ca8a04', 'As 10 maiores obras', 'Pelo valor · clique para ver a ficha')}<div id="pn-maiores"></div></div>
     </div>
-    <div class="grade g2"><div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#16a34a"><i class="fa-solid fa-ribbon"></i></span><div><h3>Caminho até a inauguração</h3><p>Da execução ao ato de inauguração · clique numa etapa</p></div></div><div id="pn-funil" class="funil"></div></div>
-    <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-lightbulb"></i></span><div><h3>Leitura rápida</h3><p>Destaques calculados automaticamente</p></div></div><div class="destaques"><ul id="pn-destaques"></ul></div></div></div>`;
+    ${pfTipo !== 'contratos' ? `<div class="card card-pad">${tit('fa-scale-unbalanced', '#0891b2', 'Convênios: execução física × financeira', 'Média por andamento · quando a financeira passa muito da física, o desembolso está à frente da obra')}<div style="height:240px;position:relative"><canvas id="g-fisfin"></canvas></div></div>` : ''}`;
+
+    h += cab('pn-s-inaug', 'fa-ribbon', 'Inaugurações e destaques', 'O caminho até a entrega e o que merece atenção');
+    h += `<div class="grade g2">
+        <div class="card card-pad">${tit('fa-ribbon', '#16a34a', 'Caminho até a inauguração', 'Da execução ao ato de inauguração · clique numa etapa')}<div id="pn-funil" class="funil"></div></div>
+        <div class="card"><div class="card-pad" style="padding-bottom:6px">${tit('fa-fire', '#dc2626', 'Precisam de atenção', 'Paralisadas, rescisões e previsões vencidas', `<button class="btn btn-s btn-sm dir" onclick="irPara('alertas')">Ver alertas</button>`)}</div><div class="lista" id="pn-atencao" style="max-height:360px;overflow:auto"></div></div>
+    </div>
+    <div class="card card-pad">${tit('fa-lightbulb', '#2563eb', 'Leitura rápida', 'Destaques calculados automaticamente')}<div class="destaques"><ul id="pn-destaques"></ul></div></div>`;
     $('painel-corpo').innerHTML = h;
 
-    const crit = L.filter(x => x.grupo === 'paralisada' || x.prevVencida || (x.grupo === 'rescisao' && norm(x.r.status).startsWith('em '))).sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || b.valor - a.valor).slice(0, 8);
-    $('pn-atencao').innerHTML = crit.length ? crit.map(x => itemReg(x, x.prevVencida ? `previsão ${fmtPrev(x.r.previsao)} vencida · ${pct(x.fisico)}` : `${esc(x.r.status)}`)).join('') : '<div class="vazio" style="padding:22px"><i class="fa-solid fa-face-smile" style="color:#16a34a;opacity:1"></i>Nada crítico.</div>';
-    const prox = L.filter(x => x.grupo === 'execucao' && x.mesesAte !== null && x.mesesAte >= 0 && x.mesesAte <= 3).sort((a, b) => a.prev.localeCompare(b.prev) || (b.fisico ?? 0) - (a.fisico ?? 0)).slice(0, 8);
-    $('pn-proximas').innerHTML = prox.length ? prox.map(x => itemReg(x, `previsão ${fmtPrev(x.r.previsao)} · ${pct(x.fisico)} executado`)).join('') : '<div class="vazio" style="padding:22px"><i class="fa-regular fa-calendar"></i>Nenhuma conclusão prevista nos próximos 3 meses.</div>';
+    // ---------- velocímetros ----------
+    const gauge = (id, val, cor, sub) => {
+        const p = Math.max(0, Math.min(100, val || 0));
+        grafico(id, { type: 'doughnut', data: { datasets: [{ data: [p, 100 - p], backgroundColor: [cor, corVar('--suave2')], borderWidth: 0, borderRadius: [6, 0] }] },
+            options: { responsive: true, maintainAspectRatio: false, rotation: -90, circumference: 180, cutout: '74%', animation: { duration: 1300, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { enabled: false } } },
+            plugins: [{ id: 'gtxt', afterDraw(ch) { const { ctx, chartArea: a } = ch; if (!a) return; const x = (a.left + a.right) / 2, y = a.bottom - 6;
+                ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = corVar('--texto'); ctx.font = '800 24px Inter, sans-serif'; ctx.fillText(pct(val, 1), x, y - 4); ctx.restore(); } }] });
+        $(id + '-s').innerHTML = sub;
+    };
+    const vPond = (() => { const l = L.filter(x => x.fisico !== null && x.valor && x.grupo !== 'rescisao'); const t = soma(l); return t ? l.reduce((s, x) => s + x.fisico * x.valor, 0) / t : 0; })();
+    gauge('g-gau1', media(exec.map(x => x.fisico)) || 0, '#2563eb', `${exec.length} obra(s) em execução`);
+    gauge('g-gau2', Math.min(100, vPond), '#f97316', `quanto do dinheiro já virou obra (sem rescisões)`);
+    gauge('g-gau3', parte(cnt('concluida')), '#16a34a', `${cnt('concluida')} de ${L.length} obras`);
+    gauge('g-gau4', parte(inaug, cnt('concluida')), '#15803d', `${inaug} inaugurada(s) · ${prontas} pronta(s)`);
 
-    const d = [];
-    if (venc) d.push(['#dc2626', 'fa-calendar-xmark', `<b>${venc}</b> obra(s) em execução estão com a previsão de conclusão já vencida. Atualize a PREVISÃO CONCLUSÃO OBRA.`]);
-    if (cnt('paralisada')) { const v0 = L.filter(x => x.grupo === 'paralisada').reduce((s, x) => s + x.valor, 0); d.push(['#7c3aed', 'fa-circle-pause', `<b>${cnt('paralisada')}</b> obra(s) paralisadas ou com pendência, somando <b>${moeda(v0)}</b>.`]); }
-    if (prontas) d.push(['#f97316', 'fa-champagne-glasses', `<b>${prontas}</b> obra(s) prontas para inaugurar aguardam o ato de inauguração (GS).`]);
-    const concSem = L.filter(x => x.grupo === 'concluida' && x.inaug === 'indef').length;
-    if (concSem) d.push(['#d97706', 'fa-question', `<b>${concSem}</b> obra(s) concluídas ainda sem definição em INAUGURAR (SUOB).`]);
-    const descas = L.filter(x => x.tipo === 'convenios' && x.grupo !== 'concluida' && x.financeiro !== null && x.fisico !== null && x.financeiro - x.fisico >= 25).length;
-    if (descas) d.push(['#0891b2', 'fa-scale-unbalanced', `<b>${descas}</b> convênio(s) com desembolso do Estado 25 pontos ou mais acima da execução física.`]);
-    const porMun = {}; L.forEach(x => { if (x.r.municipio) porMun[x.r.municipio] = (porMun[x.r.municipio] || 0) + x.valor; });
-    const top = Object.entries(porMun).sort((a, b) => b[1] - a[1]);
-    if (top.length) d.push(['#f97316', 'fa-location-dot', `<b>${esc(top[0][0])}</b> concentra o maior investimento: ${moeda(top[0][1])}. Ao todo são <b>${top.length}</b> municípios com obras.`]);
-    $('pn-destaques').innerHTML = d.map(([c, ic, t]) => `<li><i class="fa-solid ${ic}" style="--c:${c}"></i><span>${t}</span></li>`).join('');
-
-    const gs = Object.keys(GRUPOS).filter(k => cnt(k));
-    const totG = gs.reduce((a, k) => a + cnt(k), 0);
+    // ---------- andamento ----------
+    const gs = Object.keys(GRUPOS).filter(k => cnt(k)), totG = L.length;
     grafico('g-grupo', { type: 'doughnut', data: { labels: gs.map(k => GRUPOS[k].rot), datasets: [{ data: gs.map(cnt), backgroundColor: gs.map(k => GRUPOS[k].cor), borderColor: corCard(), borderWidth: 3, hoverOffset: 12, borderRadius: 4 }] },
         options: { responsive: true, maintainAspectRatio: false, cutout: '66%', animation: { animateRotate: true, animateScale: true, duration: 1100, easing: 'easeOutQuart' },
             plugins: { legend: { display: false }, tooltip: { ...DICA, callbacks: { label: c => ` ${c.label}: ${c.raw} (${pct(c.raw / totG * 100)})` } } },
@@ -1523,35 +1712,122 @@ function renderPainel() {
         } }] });
     $('leg-grupo').innerHTML = gs.map((k, n) => `<button onmouseenter="realcarGrafico('g-grupo', ${n})" onmouseleave="realcarGrafico('g-grupo', -1)" onclick="secFiltro('${k}')" style="--c:${GRUPOS[k].cor}"><i class="fa-solid ${GRUPOS[k].ic}"></i><span>${GRUPOS[k].rot}</span><b>${cnt(k)}</b><em>${pct(cnt(k) / totG * 100)}</em></button>`).join('');
 
-    const meses = []; const h0 = new Date(); for (let i = 0; i < 12; i++) { const d0 = new Date(h0.getFullYear(), h0.getMonth() + i, 1); meses.push(iso(d0).slice(0, 7)); }
-    const rotulos = ['Vencidas', ...meses.map(m => nomeMes(m + '-01')), 'Sem previsão'];
-    const serie = t => { const ex = L.filter(x => x.grupo === 'execucao' && x.tipo === t); return [ex.filter(x => x.prevVencida).length, ...meses.map(m => ex.filter(x => x.prev && x.prev.slice(0, 7) === m).length), ex.filter(x => !x.prev).length]; };
-    const ds = TIPO_LISTA.filter(t => !pfTipo || t === pfTipo).map(t => ({ label: TIPOS[t].rotP, data: serie(t), backgroundColor: TIPOS[t].cor, borderRadius: 4, maxBarThickness: 26 }));
-    grafico('g-prev', { type: 'bar', data: { labels: rotulos, datasets: ds },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } }, tooltip: DICA },
-            scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } } } } });
+    const tiposVis = TIPO_LISTA.filter(t => L.some(x => x.tipo === t));
+    grafico('g-tipos', { type: 'bar', data: { labels: tiposVis.map(t => TIPOS[t].rotP), datasets: Object.keys(GRUPOS).map(k => ({ label: GRUPOS[k].rot, backgroundColor: GRUPOS[k].cor, borderRadius: 3, barThickness: 26,
+        data: tiposVis.map(t => { const lt = L.filter(x => x.tipo === t); return lt.length ? lt.filter(x => x.grupo === k).length / lt.length * 100 : 0; }), qtd: tiposVis.map(t => L.filter(x => x.tipo === t && x.grupo === k).length) })).filter(d => d.qtd.some(Boolean)) },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 9, font: { size: 10 } } }, tooltip: { ...DICA, callbacks: { label: c => ` ${c.dataset.label}: ${c.dataset.qtd[c.dataIndex]} (${pct(c.raw)})` } } },
+            scales: { x: { stacked: true, max: 100, ticks: { callback: val => val + '%' } }, y: { stacked: true, grid: { display: false } } } } });
+    const pizza = (id, pares, cores) => grafico(id, { type: 'pie', data: { labels: pares.map(p => p[0]), datasets: [{ data: pares.map(p => p[1]), backgroundColor: cores, borderColor: corCard(), borderWidth: 2 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: DICA } } });
+    const contar = (l, k) => Object.entries(l.reduce((o, x) => { const c = str(x.r[k]).trim() || '(vazio)'; o[c] = (o[c] || 0) + 1; return o; }, {})).sort((a, b) => b[1] - a[1]);
+    const PALETA = ['#f97316', '#2563eb', '#16a34a', '#7c3aed', '#0891b2', '#dc2626', '#ca8a04', '#64748b'];
+    pizza('g-instr', contar(L.filter(x => x.tipo === 'contratos'), 'instrumento'), PALETA);
+    pizza('g-rede', contar(L.filter(x => x.tipo === 'convenios'), 'unidade'), ['#2563eb', '#0d9488', '#ca8a04', '#94a3b8']);
+
+    const faixas = Array.from({ length: 10 }, (_, i) => exec.filter(x => x.fisico !== null && (i === 9 ? x.fisico >= 90 : x.fisico >= i * 10 && x.fisico < i * 10 + 10)).length);
+    grafico('g-hist', { type: 'bar', data: { labels: faixas.map((_, i) => `${i * 10}–${i === 9 ? 100 : i * 10 + 10}%`), datasets: [{ data: faixas, borderRadius: 5, backgroundColor: faixas.map((_, i) => `hsl(${i * 12}, 72%, 48%)`) }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...DICA, callbacks: { label: c => ` ${c.raw} obra(s) com ${c.label} executado` } } },
+            scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } }, y: { beginAtZero: true, ticks: { precision: 0 } } } } });
 
     const objs = {}; L.forEach(x => { const k = str(x.r.objeto).trim() || '(sem objeto)'; objs[k] = objs[k] || { n: 0, v: 0, ex: 0 }; objs[k].n++; objs[k].v += x.valor; if (x.grupo === 'execucao') objs[k].ex++; });
     const ob = Object.entries(objs).sort((a, b) => b[1].n - a[1].n).slice(0, 9), mxO = Math.max(1, ...ob.map(o => o[1].n));
     $('pn-obj').innerHTML = ob.map(([k, o], n) => { const [ic] = iconeObjeto(k); return `<button style="--i:${n}" onclick="GE.objeto=${jsArg(k === '(sem objeto)' ? '' : k)};GE.tipo=pfTipo;GE.grupo='';GE.municipio=v('pf-municipio');irPara('gestao')" title="${o.ex} em execução · ${moeda(o.v)}">
         <span class="ic"><i class="fa-solid ${ic}"></i></span><span class="tx"><b>${esc(k)}</b><span class="barra"><span style="width:${o.n / mxO * 100}%;background:#0891b2"></span></span></span><span class="vl"><b>${o.n}</b><em>${moeda(o.v, true)}</em></span></button>`; }).join('');
-    const fu = [['execucao', 'Em execução', 'fa-person-digging', '#2563eb', L.filter(x => x.grupo === 'execucao' && x.inaug !== 'inaugurada').length, "secFiltro('execucao')"],
-        ['prox', 'Conclusão em até 3 meses', 'fa-flag-checkered', '#0891b2', L.filter(x => x.grupo === 'execucao' && x.mesesAte !== null && x.mesesAte >= 0 && x.mesesAte <= 3).length, "irPara('inauguracoes')"],
-        ['verif', 'Em verificação', 'fa-magnifying-glass', '#d97706', L.filter(x => x.inaug === 'verificacao').length, "GE.inaug='verificacao';GE.grupo='';irPara('gestao')"],
-        ['apta', 'Prontas para inaugurar', 'fa-champagne-glasses', '#f97316', L.filter(x => x.inaug === 'apta').length, "GE.inaug='apta';GE.grupo='';irPara('gestao')"],
-        ['inaug', 'Inauguradas', 'fa-ribbon', '#16a34a', L.filter(x => x.inaug === 'inaugurada').length, "GE.inaug='inaugurada';GE.grupo='';irPara('gestao')"]];
-    const mxF = Math.max(1, ...fu.map(f => f[4]));
-    $('pn-funil').innerHTML = fu.map(([k, r, ic, c, n, cl], i) => `<button class="funil-et" style="--c:${c};--w:${Math.max(28, n / mxF * 100)}%;--i:${i}" onclick="${cl}"><span class="ic"><i class="fa-solid ${ic}"></i></span><span class="rt">${r}</span><b>${n}</b></button>`).join('<i class="fa-solid fa-chevron-down funil-seta"></i>');
 
+    // mapa de calor DRE × andamento
+    const dres = [...new Set(L.map(x => dreDe(x)).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const gcols = Object.keys(GRUPOS).filter(k => cnt(k));
+    const cel = (d, g) => L.filter(x => dreDe(x) === d && x.grupo === g).length;
+    const mxC = Math.max(1, ...dres.flatMap(d => gcols.map(g => cel(d, g))));
+    $('pn-calor').innerHTML = dres.length ? `<table class="calor"><thead><tr><th></th>${gcols.map(g => `<th title="${GRUPOS[g].rot}"><i class="fa-solid ${GRUPOS[g].ic}" style="color:${GRUPOS[g].cor}"></i><span>${GRUPOS[g].rot}</span></th>`).join('')}<th>Total</th></tr></thead><tbody>
+        ${dres.map(d => `<tr><th>${esc(d.replace(/^DRE /, ''))}</th>${gcols.map(g => { const n = cel(d, g); return `<td style="--c:${GRUPOS[g].cor};--a:${n ? 12 + n / mxC * 78 : 0}%" ${n ? `onclick="GE.dre=${jsArg(d)};GE.grupo='${g}';GE.tipo=pfTipo;GE.municipio='';irPara('gestao')" title="${esc(d)} · ${GRUPOS[g].rot}: ${n}"` : ''}>${n || ''}</td>`; }).join('')}<td class="tot">${L.filter(x => dreDe(x) === d).length}</td></tr>`).join('')}
+        </tbody></table><div class="peq mut" style="margin-top:6px">Contratos entram pela DRE mais comum do seu município.</div>` : '<div class="mut peq">Sem DRE informada.</div>';
+
+    // ---------- prazos ----------
+    const meses = []; const h0 = new Date(); for (let i = 0; i < 12; i++) meses.push(iso(new Date(h0.getFullYear(), h0.getMonth() + i, 1)).slice(0, 7));
+    const rotulos = ['Vencidas', ...meses.map(m => nomeMes(m + '-01'))];
+    const serie = t => { const ex = exec.filter(x => x.tipo === t); return [ex.filter(x => x.prevVencida).length, ...meses.map(m => ex.filter(x => x.prev && x.prev.slice(0, 7) === m).length)]; };
+    const dsBar = tiposVis.map(t => ({ type: 'bar', label: TIPOS[t].rotP, data: serie(t), backgroundColor: TIPOS[t].cor, borderRadius: 4, maxBarThickness: 26, stack: 'q', yAxisID: 'y', order: 2 }));
+    const totMes = rotulos.map((_, i) => dsBar.reduce((s, d) => s + d.data[i], 0)); let ac = 0;
+    grafico('g-prev', { data: { labels: rotulos, datasets: [...dsBar, { type: 'line', label: 'Acumulado', data: totMes.map(n => ac += n), borderColor: '#7c3aed', backgroundColor: 'rgba(124,58,237,.12)', fill: true, tension: .35, pointRadius: 3, pointBackgroundColor: '#7c3aed', yAxisID: 'y1', order: 1 }] },
+        options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } }, tooltip: DICA },
+            scales: { x: { grid: { display: false } }, y: { stacked: true, beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'no mês' } }, y1: { position: 'right', beginAtZero: true, grid: { display: false }, ticks: { precision: 0 }, title: { display: true, text: 'acumulado' } } } } });
+    const prox = exec.filter(x => x.mesesAte !== null && x.mesesAte >= 0 && x.mesesAte <= 3).sort((a, b) => a.prev.localeCompare(b.prev) || (b.fisico ?? 0) - (a.fisico ?? 0));
+    $('pn-proximas').innerHTML = prox.length ? prox.map(x => itemReg(x, `previsão ${fmtPrev(x.r.previsao)} · ${pct(x.fisico)} executado`)).join('') : '<div class="vazio" style="padding:22px"><i class="fa-regular fa-calendar"></i>Nenhuma conclusão prevista nos próximos 3 meses.</div>';
+
+    // ---------- território ----------
+    const porMun = {}; L.forEach(x => { const m = x.r.municipio; if (!m) return; (porMun[m] = porMun[m] || { n: 0, v: 0, f: [] }); porMun[m].n++; porMun[m].v += x.valor; if (x.fisico !== null) porMun[m].f.push(x.fisico); });
+    const munL = Object.entries(porMun);
+    desenharTerritorio(L);
+    const dreR = dres;
+    const dreTot = d => L.filter(x => dreDe(x) === d).length;
+    const dreOrd = dreR.slice().sort((a, b) => dreTot(b) - dreTot(a));
+    $('pt-dre-box').style.height = Math.max(260, dreOrd.length * 28 + 70) + 'px';
+    const gD = Object.keys(GRUPOS).filter(k => L.some(x => x.grupo === k && dreDe(x)));
+    grafico('g-dre', { type: 'bar', data: { labels: dreOrd.map(d => d.replace(/^DRE /, '')), datasets: gD.map(k => ({ label: GRUPOS[k].rot, grupo: k, backgroundColor: GRUPOS[k].cor, borderRadius: 3, barThickness: 18,
+        data: dreOrd.map(d => L.filter(x => dreDe(x) === d && x.grupo === k).length) })) },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, interaction: { mode: 'nearest', intersect: true },
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 9, font: { size: 10 } } }, tooltip: { ...DICA, callbacks: { title: c => dreOrd[c[0].dataIndex], label: c => ` ${c.dataset.label}: ${c.raw} de ${dreTot(dreOrd[c.dataIndex])}` } } },
+            scales: { x: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }, y: { stacked: true, grid: { display: false }, ticks: { font: { size: 10.5, weight: '600' } } } },
+            onClick: (e, els) => { if (els.length) { const el = els[0]; GE.dre = dreOrd[el.index]; GE.grupo = gD[el.datasetIndex]; GE.tipo = pfTipo; GE.municipio = ''; irPara('gestao'); } } } });
+
+    // ---------- investimento ----------
+    const objV = Object.entries(objs).sort((a, b) => b[1].v - a[1].v), totV = Math.max(1, objV.reduce((s, [, o]) => s + o.v, 0));
+    const grandes = objV.filter(([, o]) => o.v / totV >= .025), peq = objV.filter(([, o]) => o.v / totV < .025);
+    const blocos = grandes.map(([k, o]) => ({ k, v: o.v, ic: iconeObjeto(k)[0], filtro: k === '(sem objeto)' ? '' : k }));
+    if (peq.length) blocos.push({ k: `Outros (${peq.length})`, v: peq.reduce((s, [, o]) => s + o.v, 0), ic: 'fa-ellipsis', filtro: null, lista: peq.map(([k, o]) => `${k}: ${moeda(o.v, true)}`).join('\n') });
+    $('pn-mosaico').innerHTML = blocos.map((b, i) => { const p = b.v / totV * 100; return `<button style="--i:${i};flex:${p.toFixed(2)} 1 ${Math.max(46, p * 7).toFixed(0)}px;background:${PALETA[i % PALETA.length]}" ${b.filtro !== null ? `onclick="GE.objeto=${jsArg(b.filtro)};GE.tipo=pfTipo;GE.grupo='';irPara('gestao')"` : ''} title="${esc(b.lista || b.k)}: ${moeda(b.v)} (${pct(p, 1)})">
+        <i class="fa-solid ${b.ic}"></i><b>${esc(b.k)}</b><span>${moeda(b.v, true)}</span><em>${pct(p, 1)}</em></button>`; }).join('');
+    const top = munL.map(([m, o]) => [m, o.v]).sort((a, b) => b[1] - a[1]);
     const mun = top.slice(0, 10);
-    grafico('g-mun', { type: 'bar', data: { labels: mun.map(x => x[0]), datasets: [{ data: mun.map(x => x[1]), backgroundColor: '#f97316', borderRadius: 5, maxBarThickness: 18 }] },
+    grafico('g-mun', { type: 'bar', data: { labels: mun.map(x => x[0]), datasets: [{ data: mun.map(x => x[1]), backgroundColor: mun.map((_, i) => `rgba(249,115,22,${1 - i * .06})`), borderRadius: 6, maxBarThickness: 20 }] },
         options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { ...DICA, callbacks: { label: c => moeda(c.raw) } } },
             scales: { x: { beginAtZero: true, ticks: { callback: val => moeda(val, true) } }, y: { grid: { display: false }, ticks: { autoSkip: false, font: { size: 10.5 } } } },
             onClick: (e, els) => { if (els.length) { $('pf-municipio').value = mun[els[0].index][0]; renderPainel(); } } } });
+    const emp = {}; L.forEach(x => { const e = str(x.r.empresa).trim(); if (!e || e === '-') return; (emp[e] = emp[e] || { n: 0, v: 0, p: 0, c: 0 }); emp[e].n++; emp[e].v += x.valor; if (x.grupo === 'paralisada' || x.grupo === 'rescisao') emp[e].p++; if (x.grupo === 'concluida') emp[e].c++; });
+    const empL = Object.entries(emp).sort((a, b) => b[1].n - a[1].n || b[1].v - a[1].v).slice(0, 8), mxE = Math.max(1, ...empL.map(e => e[1].v));
+    $('pn-empresas').innerHTML = empL.map(([e, o], i) => `<div class="item" style="--i:${i}" onclick="GE.busca=${jsArg(e)};GE.tipo=pfTipo;GE.grupo='';GE.montado=false;irPara('gestao')"><span class="ic" style="--c:#475569"><b style="font-size:12px">${i + 1}º</b></span>
+        <span class="tx"><b title="${esc(e)}">${esc(e)}</b><span class="barra" style="margin:4px 0 2px;height:6px"><span style="width:${o.v / mxE * 100}%;background:#475569"></span></span><span>${o.n} obra(s) · ${moeda(o.v, true)} · ${o.c} concluída(s)</span></span>
+        ${o.p ? `<span class="selo" style="--c:#dc2626" title="paralisadas ou em rescisão"><i class="fa-solid fa-triangle-exclamation"></i>${o.p}</span>` : '<span class="selo" style="--c:#16a34a"><i class="fa-solid fa-check"></i>ok</span>'}</div>`).join('') || '<div class="mut peq">Sem empresas informadas.</div>';
+    const maiores = L.slice().sort((a, b) => b.valor - a.valor).slice(0, 10);
+    $('pn-maiores').innerHTML = `<table class="tab tab-mini"><tbody>${maiores.map((x, i) => `<tr class="clic" style="--i:${i}" onclick="abrirRegistro('${x.tipo}', ${jsArg(x.r.id)})">
+        <td class="pos">${i < 3 ? `<i class="fa-solid fa-medal" style="color:${['#ca8a04', '#94a3b8', '#b45309'][i]}"></i>` : i + 1}</td>
+        <td><b class="dois" title="${esc(x.nome)}">${esc(x.nome)}</b><span class="peq mut"><i class="fa-solid ${iconeObjeto(x.r.objeto)[0]}"></i> ${esc(x.r.municipio || '')} · ${x.T.rot}</span></td>
+        <td style="width:110px">${barraExec(x.fisico, GRUPOS[x.grupo].cor)}</td><td class="dir num"><b>${moeda(x.valor, true)}</b></td></tr>`).join('')}</tbody></table>`;
+    if ($('g-fisfin')) {
+        const cv = L.filter(x => x.tipo === 'convenios'), gk = Object.keys(GRUPOS).filter(k => cv.some(x => x.grupo === k));
+        grafico('g-fisfin', { type: 'bar', data: { labels: gk.map(k => GRUPOS[k].rot), datasets: [
+            { label: '% execução física', data: gk.map(k => media(cv.filter(x => x.grupo === k).map(x => x.fisico)) ?? 0), backgroundColor: '#2563eb', borderRadius: 5, maxBarThickness: 34 },
+            { label: '% execução financeira', data: gk.map(k => media(cv.filter(x => x.grupo === k).map(x => x.financeiro)) ?? 0), backgroundColor: '#f97316', borderRadius: 5, maxBarThickness: 34 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } }, tooltip: { ...DICA, callbacks: { label: c => ` ${c.dataset.label}: ${pct(c.raw, 1)}` } } },
+                scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 110, ticks: { callback: val => val <= 100 ? val + '%' : '' } } } } });
+    }
+
+    // ---------- inaugurações e destaques ----------
+    const fu = [['execucao', 'Em execução', 'fa-person-digging', '#2563eb', L.filter(x => x.grupo === 'execucao' && x.inaug !== 'inaugurada').length, "secFiltro('execucao')"],
+        ['prox', 'Conclusão em até 3 meses', 'fa-flag-checkered', '#0891b2', prox.length, "irPara('inauguracoes')"],
+        ['verif', 'Em verificação', 'fa-magnifying-glass', '#d97706', L.filter(x => x.inaug === 'verificacao').length, "GE.inaug='verificacao';GE.grupo='';irPara('gestao')"],
+        ['apta', 'Prontas para inaugurar', 'fa-champagne-glasses', '#f97316', prontas, "GE.inaug='apta';GE.grupo='';irPara('gestao')"],
+        ['inaug', 'Inauguradas', 'fa-ribbon', '#16a34a', inaug, "GE.inaug='inaugurada';GE.grupo='';irPara('gestao')"]];
+    const mxF = Math.max(1, ...fu.map(f => f[4]));
+    $('pn-funil').innerHTML = fu.map(([k, r, ic, c, n, cl], i) => `<button class="funil-et" style="--c:${c};--w:${Math.max(28, n / mxF * 100)}%;--i:${i}" onclick="${cl}"><span class="ic"><i class="fa-solid ${ic}"></i></span><span class="rt">${r}</span><b>${n}</b></button>`).join('<i class="fa-solid fa-chevron-down funil-seta"></i>');
+    const crit = L.filter(x => x.grupo === 'paralisada' || x.prevVencida || (x.grupo === 'rescisao' && norm(x.r.status).startsWith('em '))).sort((a, b) => GRUPOS[a.grupo].peso - GRUPOS[b.grupo].peso || b.valor - a.valor).slice(0, 12);
+    $('pn-atencao').innerHTML = crit.length ? crit.map(x => itemReg(x, x.prevVencida ? `previsão ${fmtPrev(x.r.previsao)} vencida · ${pct(x.fisico)}` : `${esc(x.r.status)} · ${moeda(x.valor, true)}`)).join('') : '<div class="vazio" style="padding:22px"><i class="fa-solid fa-face-smile" style="color:#16a34a;opacity:1"></i>Nada crítico.</div>';
+    const d = [];
+    if (venc) d.push(['#dc2626', 'fa-calendar-xmark', `<b>${venc}</b> obra(s) em execução estão com a previsão de conclusão vencida. Atualize a PREVISÃO CONCLUSÃO OBRA.`]);
+    if (risco.length) d.push(['#be123c', 'fa-shield-halved', `<b>${moeda(soma(risco))}</b> (${pct(parte(soma(risco), valor), 1)} do valor total) estão em obras paralisadas ou em rescisão.`]);
+    if (prontas) d.push(['#f97316', 'fa-champagne-glasses', `<b>${prontas}</b> obra(s) prontas para inaugurar aguardam o ato de inauguração (GS).`]);
+    if (prox.length) d.push(['#0891b2', 'fa-flag-checkered', `<b>${prox.length}</b> obra(s) devem ser concluídas nos próximos 3 meses.`]);
+    const concSem = L.filter(x => x.grupo === 'concluida' && x.inaug === 'indef').length;
+    if (concSem) d.push(['#d97706', 'fa-question', `<b>${concSem}</b> obra(s) concluídas ainda sem definição em INAUGURAR (SUOB).`]);
+    if (alunos) d.push(['#0891b2', 'fa-children', `As obras com dado informado atendem <b>${alunos.toLocaleString('pt-BR')}</b> alunos em <b>${salas.toLocaleString('pt-BR')}</b> salas de aula.`]);
+    if (empL.length) d.push(['#475569', 'fa-helmet-safety', `<b>${esc(empL[0][0])}</b> é a empresa com mais obras (${empL[0][1].n}, ${moeda(empL[0][1].v, true)}).`]);
+    if (top.length) d.push(['#f97316', 'fa-location-dot', `<b>${esc(top[0][0])}</b> concentra o maior investimento: ${moeda(top[0][1])}. Ao todo são <b>${top.length}</b> municípios com obras.`]);
+    $('pn-destaques').innerHTML = d.map(([c, ic, t]) => `<li><i class="fa-solid ${ic}" style="--c:${c}"></i><span>${t}</span></li>`).join('');
 }
 /** Abre a Gestão de obras já filtrada por andamento (e pelo filtro do painel). */
 function secFiltro(grupo) {
-    GE.grupo = grupo; GE.tipo = pfTipo; GE.municipio = v('pf-municipio'); GE.inaug = ''; GE.limite = 100;
+    GE.grupo = grupo; GE.tipo = pfTipo; GE.municipio = v('pf-municipio'); GE.dre = v('pf-dre'); GE.objeto = v('pf-objeto'); GE.inaug = ''; GE.limite = 100;
     irPara('gestao');
 }
 
@@ -2731,7 +3007,7 @@ function filtrarGestao(ignorar = '') {
         if (GE.status && r.status !== GE.status) return false;
         if (GE.municipio && r.municipio !== GE.municipio) return false;
         if (GE.objeto && r.objeto !== GE.objeto) return false;
-        if (GE.dre && r.dre !== GE.dre) return false;
+        if (GE.dre && dreDe(x) !== GE.dre) return false;
         if (ignorar !== 'grupo' && GE.grupo && x.grupo !== GE.grupo && !(GE.grupo === 'vencida' && x.prevVencida)) return false;
         if (ignorar !== 'inaug' && GE.inaug && x.inaug !== GE.inaug) return false;
         if (b && !norm(x.T.campos.map(c => r[c.k]).join(' ')).includes(b)) return false;
