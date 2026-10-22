@@ -7,7 +7,7 @@
  * - As chamadas ao Apps Script NUNCA passam pelo cache: os dados vêm sempre da planilha
  *   (sem internet, o sistema usa a cópia que ele mesmo guarda no navegador).
  */
-const VERSAO = 'gabobras-v2.5.1';
+const VERSAO = 'gabobras-v2.6.0';
 const CACHE_PAGINA = VERSAO + '-pagina';
 const CACHE_LIBS = VERSAO + '-libs';
 const LIBS = /^(https:\/\/(cdn\.jsdelivr\.net|unpkg\.com|cdnjs\.cloudflare\.com|fonts\.googleapis\.com|fonts\.gstatic\.com)\/)/;

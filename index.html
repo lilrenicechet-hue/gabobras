@@ -687,6 +687,23 @@ html.escuro .terr-rot text { fill: #f8fafc; stroke: #0b1120; }
 html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 .pop-esc i { width: 14px; color: #64748b; }
 .esc-item .tx span a { font-weight: 600; }
+
+/* Configurações › Escolas / Pontos focais */
+.cfg-sub { animation: sobe .3s ease both; }
+.kpi.kpi-ativo { outline: 2px solid var(--c); outline-offset: -2px; box-shadow: 0 6px 18px -8px var(--c); }
+.tab-escolas td { vertical-align: middle; }
+.tab-escolas .nw { white-space: nowrap; }
+.tab-escolas .selo { max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-flex; }
+.pend-ic { color: #d97706; font-size: 12px; margin-right: 6px; opacity: .85; }
+.fe-info { margin-top: 14px; padding: 10px 12px; border-radius: 10px; background: var(--suave); font-size: 12.5px; color: var(--muted); display: grid; gap: 5px; }
+.fe-info i { width: 18px; color: var(--muted2); }
+.focal-card { display: flex; flex-direction: column; gap: 6px; }
+.focal-card.clic { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.focal-card.clic:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(15,23,42,.35); }
+.focal-lin { display: flex; align-items: center; gap: 8px; font-size: 13px; min-width: 0; word-break: break-word; }
+.focal-lin > i { width: 16px; color: var(--muted2); flex: none; }
+#cfg-abas button { white-space: nowrap; }
+@media (max-width: 700px) { .tab-escolas th:nth-child(3), .tab-escolas td:nth-child(3) { display: none; } #cfg-abas { width: 100%; } }
 </style>
 </head>
 <body>
@@ -891,9 +908,10 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 
     <section class="aba hidden" id="aba-config">
         <div class="heroi"><div class="heroi-linha">
-            <div><h2><i class="fa-solid fa-gear"></i>Configurações</h2><p>Conexão com a planilha, aplicativo e dados guardados neste computador.</p></div>
+            <div><h2><i class="fa-solid fa-gear"></i>Configurações</h2><p>Conexão, escolas e pontos focais, aplicativo e dados guardados neste computador.</p></div>
+            <div class="seg" id="cfg-abas" style="background:rgba(255,255,255,.08)"></div>
         </div></div>
-        <div class="conteudo"><div class="grade g2" id="config-corpo"></div></div>
+        <div class="conteudo"><div id="config-corpo"></div></div>
     </section>
 </main>
 
@@ -907,7 +925,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.5.1';
+const VERSAO_APP = '2.6.0';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -2850,14 +2868,21 @@ async function salvarConexao() {
 // =====================================================================================
 // CONFIGURAÇÕES
 // =====================================================================================
+let CFG_ABA = LS.get('gob_cfg_aba') || 'geral';
+function abaConfig(a) { CFG_ABA = a; LS.set('gob_cfg_aba', a); renderConfig(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function renderConfig() {
+    if (!['geral', 'escolas', 'focais'].includes(CFG_ABA)) CFG_ABA = 'geral';
+    $('cfg-abas').innerHTML = [['geral', 'fa-sliders', 'Geral'], ['escolas', 'fa-school', 'Escolas'], ['focais', 'fa-user-tie', 'Pontos focais das DREs']]
+        .map(([k, ic, r]) => `<button class="${CFG_ABA === k ? 'ativo' : ''}" style="${CFG_ABA === k ? '' : 'color:#cbd5e1'}" onclick="abaConfig('${k}')"><i class="fa-solid ${ic}"></i> ${r}</button>`).join('');
+    if (CFG_ABA === 'escolas') { $('config-corpo').innerHTML = `<div class="cfg-sub">${htmlCfgEscolas()}</div>`; listarEscolasCfg(); return; }
+    if (CFG_ABA === 'focais') { $('config-corpo').innerHTML = `<div class="cfg-sub">${htmlCfgFocais()}</div>`; return; }
     const copia = (() => { try { const c = JSON.parse(LS.get('gob_copia_' + norm(sessao.usuario)) || 'null'); return c ? new Date(c.em).toLocaleString('pt-BR') : ''; } catch (e) { return ''; } })();
     const lin = (r, val) => `<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--borda)"><span class="mut">${r}</span><b style="text-align:right;word-break:break-all">${val}</b></div>`;
     const ev = estatVinculos(), esL = listaEscolas();
     const fams = {}; esL.forEach(e => fams[e.fam] = (fams[e.fam] || 0) + 1);
-    $('config-corpo').innerHTML = `
+    $('config-corpo').innerHTML = `<div class="grade g2 cfg-sub">
         <div class="card card-pad" style="grid-column:1/-1"><div class="card-tit"><span class="ico" style="--c:#16a34a"><i class="fa-solid fa-school"></i></span><div><h3>Base de escolas</h3><p>Localização (latitude e longitude), tipo e contatos das escolas estaduais</p></div>
-            ${pode.tudo() ? `<button class="btn btn-l btn-sm dir" onclick="abrirImportarEscolas()"><i class="fa-solid fa-file-import"></i>Importar / atualizar base</button>` : ''}</div>
+            ${pode.tudo() ? `<div class="dir" style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-s btn-sm" onclick="abaConfig('escolas')"><i class="fa-solid fa-pen-to-square"></i>Editar escolas</button><button class="btn btn-l btn-sm" onclick="abrirImportarEscolas()"><i class="fa-solid fa-file-import"></i>Importar / atualizar base</button></div>` : `<button class="btn btn-s btn-sm dir" onclick="abaConfig('escolas')"><i class="fa-solid fa-address-book"></i>Ver contatos</button>`}</div>
             <div class="grade g4" style="gap:10px">
                 ${kpi('#16a34a', 'fa-school', 'Escolas', esL.length, fonteEscolas() === 'planilha' ? 'da aba ESCOLAS da planilha' : 'base embutida no sistema')}
                 ${kpi('#2563eb', 'fa-location-crosshairs', 'Obras com escola', ev.ligadas, `de ${ev.total} · ${ev.manual} vinculada(s) à mão`)}
@@ -2896,7 +2921,7 @@ function renderConfig() {
                 <button class="btn btn-s btn-sm" onclick="exportarCSV('contratos')"><i class="fa-solid fa-file-csv"></i>Contratos (CSV)</button>
                 <button class="btn btn-s btn-sm" onclick="exportarCSV('convenios')"><i class="fa-solid fa-file-csv"></i>Convênios (CSV)</button>
                 <button class="btn btn-d btn-sm" onclick="limparLocal()"><i class="fa-solid fa-broom"></i>Limpar dados deste computador</button>
-            </div></div>`;
+            </div></div></div>`;
     sincronizarTema();
 }
 async function backupAgora() {
@@ -3751,11 +3776,12 @@ function blocoEscola(x) {
             <div><i class="fa-solid fa-location-dot"></i><span>${esc([e.endereco, e.numero && e.numero !== '0' ? 'nº ' + e.numero : '', e.bairro].filter(Boolean).join(', '))}<br><small>${esc(e.municipio)} · CEP ${esc(e.cep || '—')}</small></span></div>
             <div><i class="fa-solid fa-phone"></i><span>${telLink(e.telefone)}</span></div>
             <div><i class="fa-solid fa-envelope"></i><span>${mailLink(e.email)}</span></div>
+            ${str(e.pontoFocal).trim() ? `<div><i class="fa-solid fa-user-tie"></i><span>Ponto focal da escola<br><b>${esc(e.pontoFocal)}</b></span></div>` : ''}
             <div><i class="fa-solid fa-sitemap"></i><span>${esc(e.dre)}${cd && /@/.test(cd.email) ? `<br><small>Ponto focal: ${esc(cd.responsavel)} · ${telLink(cd.telefone)} · ${mailLink(cd.email)}</small>` : ''}</span></div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
             ${e.temCoord ? `<button class="btn btn-s btn-sm" onclick="verEscolaNoMapa(${jsArg(e.codigo)})"><i class="fa-solid fa-map-location-dot"></i>Ver no mapa</button><a class="btn btn-s btn-sm" href="${linkRota(e)}" target="_blank" rel="noopener" style="text-decoration:none"><i class="fa-solid fa-route"></i>Como chegar</a>` : ''}
-            ${pode.tudo() ? `<button class="btn btn-s btn-sm" onclick="abrirForm('${x.tipo}', ${jsArg(r.id)}, 'codEscola')"><i class="fa-solid fa-link"></i>${v.modo === 'manual' ? 'Trocar escola' : 'Confirmar ou trocar'}</button>` : ''}
+            ${pode.tudo() ? `<button class="btn btn-s btn-sm" onclick="abrirForm('${x.tipo}', ${jsArg(r.id)}, 'codEscola')"><i class="fa-solid fa-link"></i>${v.modo === 'manual' ? 'Trocar escola' : 'Confirmar ou trocar'}</button><button class="btn btn-s btn-sm" onclick="abrirFormEscola(${jsArg(e.codigo)})"><i class="fa-solid fa-address-card"></i>Editar contatos</button>` : ''}
         </div></div>`;
 }
 function verEscolaNoMapa(cod) {
@@ -3770,6 +3796,7 @@ function popupEscola(e) {
         <div><i class="fa-solid fa-location-dot" style="width:16px;color:#64748b"></i> ${esc([e.endereco, e.numero && e.numero !== '0' ? 'nº ' + e.numero : '', e.bairro].filter(Boolean).join(', '))}</div>
         <div><i class="fa-solid fa-phone" style="width:16px;color:#64748b"></i> ${telLink(e.telefone)}</div>
         <div><i class="fa-solid fa-envelope" style="width:16px;color:#64748b"></i> ${mailLink(e.email)}</div>
+        ${str(e.pontoFocal).trim() ? `<div><i class="fa-solid fa-user-tie" style="width:16px;color:#7c3aed"></i> Ponto focal: <b>${esc(e.pontoFocal)}</b></div>` : ''}
         ${cd && /@/.test(cd.email) ? `<div><i class="fa-solid fa-user-tie" style="width:16px;color:#64748b"></i> DRE: ${esc(cd.responsavel)} · ${telLink(cd.telefone)}</div>` : ''}
         ${ob.length ? `<div style="margin-top:8px;font-weight:700"><i class="fa-solid fa-helmet-safety" style="color:#f97316"></i> ${ob.length} obra(s) nesta escola</div>${ob.slice(0, 5).map(x => `<a href="#" onclick="event.preventDefault();abrirRegistro('${x.tipo}', ${jsArg(x.r.id)})" style="display:block;margin-top:3px;font-size:12px"><span style="color:${GRUPOS[x.grupo].cor}">●</span> ${esc(x.cod)} · ${esc(x.r.objeto || '')} · ${esc(x.r.status || '')}</a>`).join('')}` : '<div style="margin-top:8px;color:#64748b">Nenhuma obra cadastrada nesta escola.</div>'}
         <div style="display:flex;gap:6px;margin-top:10px"><a class="btn btn-p btn-sm" style="flex:1;text-decoration:none;color:#fff" href="${linkRota(e)}" target="_blank" rel="noopener"><i class="fa-solid fa-route"></i>Como chegar</a></div></div>`;
@@ -3826,7 +3853,7 @@ async function lerBaseEscolas(arq) {
         await carregarSheetJS();
         const wb = XLSX.read(await arq.arrayBuffer(), { type: 'array' });
         const nk = x => norm(str(x)).replace(/[^a-z0-9]/g, '');
-        const MAPA_E = { anoletivo: 'anoLetivo', codigodaescola: 'codigo', codescola: 'codigo', unidadeescolar: 'nome', escola: 'nome', dre: 'dre', municipio: 'municipio', tipolotacaocalculada: 'tipo', localidadeescola: 'localidade', endereco: 'endereco', numero: 'numero', cep: 'cep', bairro: 'bairro', telefone: 'telefone', email: 'email', latitude: 'latitude', longitude: 'longitude' };
+        const MAPA_E = { anoletivo: 'anoLetivo', codigodaescola: 'codigo', codescola: 'codigo', unidadeescolar: 'nome', escola: 'nome', dre: 'dre', municipio: 'municipio', tipolotacaocalculada: 'tipo', localidadeescola: 'localidade', endereco: 'endereco', numero: 'numero', cep: 'cep', bairro: 'bairro', telefone: 'telefone', email: 'email', pontofocal: 'pontoFocal', pontofocaldaescola: 'pontoFocal', latitude: 'latitude', longitude: 'longitude' };
         let escolas = [], dres = [], sedes = {};
         wb.SheetNames.forEach(nome => {
             const L = XLSX.utils.sheet_to_json(wb.Sheets[nome], { header: 1, raw: true, defval: null, blankrows: false });
@@ -3865,6 +3892,222 @@ function confirmarBaseEscolas() {
     registrarHistorico('importacao', 'escolas', `Base de escolas importada do arquivo "${planoEscolas.arquivo}": ${planoEscolas.regs.length} escola(s) gravada(s), ${planoEscolas.regsD.length} registro(s) de DRE.`, 'importacao');
     limparCacheEscolas(); fecharModal(); renderAtual(); toast('Base de escolas importada. Enviando para a planilha...');
     planoEscolas = null;
+}
+
+// ---------- Configurações › Escolas e Pontos focais (edição de tipo e contatos) ----------
+const CE = { busca: '', dre: '', mun: '', fam: '', pend: '', limite: 60 };
+const fmtTel = t => {
+    const d = str(t).replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '');
+    if (d.length === 11) return `(${d.slice(0, 2)}) ${d[2]} ${d.slice(3, 7)}-${d.slice(7)}`;
+    if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    return str(t).trim();
+};
+const emailOk = m => !str(m).trim() || /^[^\s@;,]+@[^\s@;,]+\.[^\s@;,]+$/.test(str(m).trim());
+const telOk = t => !str(t).trim() || str(t).replace(/\D/g, '').length >= 8;
+function tiposEscola() {
+    const s = new Set(); listaEscolas().forEach(e => { const t = str(e.tipo).trim(); if (t) s.add(t); });
+    return [...s].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+function pendEscola(e) {
+    const p = [];
+    if (!str(e.pontoFocal).trim()) p.push('focal');
+    if (str(e.telefone).replace(/\D/g, '').length < 8) p.push('telefone');
+    if (!/@/.test(str(e.email))) p.push('email');
+    return p;
+}
+const PEND_ROT = { focal: ['fa-user-slash', 'sem ponto focal'], telefone: ['fa-phone-slash', 'sem telefone'], email: ['fa-envelope-circle-check', 'sem e-mail'] };
+function escolasComObra() { const s = new Set(); todos().forEach(x => { const v = escolaDe(x); if (v) s.add(v.e.codigo); }); return s; }
+function filtrarEscolasCfg() {
+    const q = norm(CE.busca).trim(), comObra = CE.pend === 'obra' ? escolasComObra() : null;
+    return listaEscolas().filter(e => (!CE.dre || e.dre === CE.dre) && (!CE.mun || e.municipio === CE.mun) && (!CE.fam || e.fam === CE.fam)
+        && (!CE.pend || (comObra ? comObra.has(e.codigo) : pendEscola(e).includes(CE.pend)))
+        && (!q || norm([e.codigo, e.nome, e.municipio, e.pontoFocal, e.email, e.telefone, e.tipo].join(' ')).includes(q)))
+        .sort((a, b) => str(a.nome).localeCompare(str(b.nome), 'pt-BR'));
+}
+const avisoBackendEscolas = () => pode.tudo() && versaoBackend && versaoBackend < '2.2'
+    ? `<div class="aviso alerta" style="margin-bottom:12px"><i class="fa-solid fa-triangle-exclamation"></i> O Apps Script está na versão ${esc(versaoBackend)}. Tipo, telefone e e-mail já são gravados; para gravar também o <b>ponto focal</b>, substitua o <b>Code.gs</b> pela versão 2.2 e publique uma nova versão da implantação.</div>` : '';
+function htmlCfgEscolas() {
+    const L = listaEscolas(), P = L.map(pendEscola);
+    const conta = k => P.filter(p => p.includes(k)).length;
+    const dres = [...new Set(L.map(e => e.dre).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const muns = [...new Set(L.filter(e => !CE.dre || e.dre === CE.dre).map(e => e.municipio).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const fams = Object.keys(FAMILIAS).filter(k => L.some(e => e.fam === k));
+    const filtroK = (k, c, ic, r, val, s) => kpi(c, ic, r, val, s, `CE.pend=CE.pend==='${k}'?'':'${k}';CE.limite=60;renderConfig()`).replace('class="kpi"', `class="kpi${CE.pend === k ? ' kpi-ativo' : ''}"`);
+    const sel = (id, atual, vazio, lista, acao) => `<select id="${id}" class="campo" style="width:auto;max-width:220px" onchange="${acao}">${`<option value="">${vazio}</option>` + lista.map(([k, r]) => `<option value="${esc(k)}" ${k === atual ? 'selected' : ''}>${esc(r)}</option>`).join('')}</select>`;
+    return `${avisoBackendEscolas()}
+        <div class="grade g4" style="gap:10px;margin-bottom:14px">
+            ${kpi('#16a34a', 'fa-school', 'Escolas', L.length, fonteEscolas() === 'planilha' ? 'na aba ESCOLAS da planilha' : 'base embutida · vai para a planilha na 1ª edição')}
+            ${filtroK('focal', '#7c3aed', 'fa-user-tie', 'Sem ponto focal', conta('focal'), `${L.length - conta('focal')} com ponto focal · clique para filtrar`)}
+            ${filtroK('telefone', '#d97706', 'fa-phone-slash', 'Sem telefone', conta('telefone'), 'clique para filtrar')}
+            ${filtroK('email', '#dc2626', 'fa-envelope', 'Sem e-mail', conta('email'), 'clique para filtrar')}
+        </div>
+        <div class="card card-pad">
+            <div class="barra-filtros" style="margin-bottom:12px">
+                <div class="busca" style="flex:1;min-width:220px"><i class="fa-solid fa-magnifying-glass"></i><input id="ce-busca" class="campo" value="${esc(CE.busca)}" placeholder="Buscar por nome, código, município, ponto focal, e-mail, telefone..." oninput="CE.busca=this.value;CE.limite=60;listarEscolasCfg()"></div>
+                ${sel('ce-dre', CE.dre, 'Todas as DREs', dres.map(d => [d, d]), "CE.dre=this.value;CE.mun='';CE.limite=60;renderConfig()")}
+                ${sel('ce-mun', CE.mun, 'Todos os municípios', muns.map(m => [m, m]), 'CE.mun=this.value;CE.limite=60;renderConfig()')}
+                ${sel('ce-fam', CE.fam, 'Todos os tipos', fams.map(k => [k, FAMILIAS[k].rot]), 'CE.fam=this.value;CE.limite=60;renderConfig()')}
+                ${sel('ce-pend', CE.pend, 'Todas', [['focal', 'Sem ponto focal'], ['telefone', 'Sem telefone'], ['email', 'Sem e-mail'], ['obra', 'Com obra cadastrada']], 'CE.pend=this.value;CE.limite=60;renderConfig()')}
+                ${CE.busca || CE.dre || CE.mun || CE.fam || CE.pend ? `<button class="btn btn-s btn-sm" onclick="Object.assign(CE,{busca:'',dre:'',mun:'',fam:'',pend:'',limite:60});renderConfig()"><i class="fa-solid fa-filter-circle-xmark"></i>Limpar</button>` : ''}
+                <button class="btn btn-s btn-sm" onclick="exportarEscolasCfg()"><i class="fa-solid fa-file-csv"></i>CSV</button>
+            </div>
+            <div id="ce-lista"></div>
+            <div class="dica" style="margin-top:10px"><i class="fa-solid fa-circle-info"></i> ${pode.tudo() ? 'Clique numa escola para alterar o tipo, o ponto focal, o telefone e o e-mail. As alterações vão para a aba ESCOLAS da planilha. Ao importar a base de novo, tipo, telefone e e-mail voltam aos valores do arquivo; o ponto focal é mantido.' : 'Seu perfil permite apenas consultar os contatos.'}</div>
+        </div>`;
+}
+function listarEscolasCfg() {
+    const alvo = $('ce-lista'); if (!alvo) return;
+    const l = filtrarEscolasCfg(), vis = l.slice(0, CE.limite), ed = pode.tudo();
+    if (!l.length) { alvo.innerHTML = '<div class="vazio" style="padding:30px;text-align:center"><i class="fa-solid fa-school-circle-xmark" style="font-size:28px;color:var(--muted2)"></i><p class="mut">Nenhuma escola com esses filtros.</p></div>'; return; }
+    alvo.innerHTML = `<div class="peq mut" style="margin-bottom:6px">${l.length} escola(s)${l.length > vis.length ? ` · mostrando ${vis.length}` : ''}</div>
+        <div class="tab-wrap" style="max-height:calc(100vh - 330px)"><table class="tab tab-escolas"><thead><tr><th>Escola</th><th>Tipo</th><th>Ponto focal</th><th>Telefone</th><th>E-mail</th><th></th></tr></thead><tbody>
+        ${vis.map((e, i) => {
+            const F = FAMILIAS[e.fam], p = pendEscola(e), cd = !str(e.pontoFocal).trim() ? contatoDre(e.dre) : null;
+            return `<tr class="${ed ? 'clic' : ''}" style="--i:${Math.min(i, 20)}" ${ed ? `onclick="abrirFormEscola(${jsArg(e.codigo)})"` : ''}>
+                <td><b>${esc(e.nome)}</b><div class="peq mut">${esc(e.codigo)} · ${esc(e.municipio)} · ${esc(str(e.dre).replace(/^DRE /, ''))}</div></td>
+                <td><span class="selo" style="--c:${F.cor}" title="${esc(e.tipo)}"><i class="fa-solid ${F.ic}"></i>${esc(e.tipo || F.rot)}</span></td>
+                <td>${str(e.pontoFocal).trim() ? `<i class="fa-solid fa-user-tie" style="color:#7c3aed"></i> ${esc(e.pontoFocal)}` : `<span class="mut peq" title="Ponto focal da DRE">${cd && cd.responsavel ? `DRE: ${esc(cd.responsavel)}` : '—'}</span>`}</td>
+                <td class="nw" onclick="event.stopPropagation()">${telLink(e.telefone)}</td>
+                <td class="peq" onclick="event.stopPropagation()">${mailLink(e.email)}</td>
+                <td class="nw">${p.filter(k => k !== 'focal').map(k => `<i class="fa-solid ${PEND_ROT[k][0]} pend-ic" title="${PEND_ROT[k][1]}"></i>`).join('')}${ed ? `<button class="ic-mini" title="Editar" onclick="event.stopPropagation();abrirFormEscola(${jsArg(e.codigo)})"><i class="fa-solid fa-pen"></i></button>` : ''}</td></tr>`;
+        }).join('')}</tbody></table></div>
+        ${l.length > vis.length ? `<div style="text-align:center;margin-top:10px"><button class="btn btn-s btn-sm" onclick="CE.limite+=120;listarEscolasCfg()"><i class="fa-solid fa-angles-down"></i>Mostrar mais (${l.length - vis.length})</button></div>` : ''}`;
+}
+function exportarEscolasCfg() {
+    const l = filtrarEscolasCfg();
+    baixarCSV(`GABObras_escolas_${hojeISO()}.csv`, [['Código', 'Unidade escolar', 'DRE', 'Município', 'Tipo', 'Localidade', 'Ponto focal', 'Telefone', 'E-mail', 'Endereço', 'Bairro', 'CEP', 'Latitude', 'Longitude'],
+        ...l.map(e => [e.codigo, e.nome, e.dre, e.municipio, e.tipo, e.localidade, e.pontoFocal, e.telefone, e.email, [e.endereco, e.numero].filter(Boolean).join(', '), e.bairro, e.cep, e.latitude, e.longitude])]);
+}
+function previaFamilia(tipo) {
+    const el = $('fe-previa'); if (!el) return;
+    const F = FAMILIAS[familiaEscola(tipo)];
+    el.innerHTML = `<span class="selo" style="--c:${F.cor}"><i class="fa-solid ${F.ic}"></i>${F.rot}</span> <span class="peq mut">ícone e cor usados no mapa</span>`;
+}
+function trocarTipoEscola(val) {
+    const inp = $('fe-tipo'), novo = val === '__novo';
+    inp.classList.toggle('hidden', !novo);
+    if (novo) { inp.value = ''; inp.focus(); } else inp.value = val;
+    previaFamilia(inp.value);
+}
+function abrirFormEscola(cod) {
+    if (!pode.tudo()) return toast('Seu perfil não permite alterar escolas.', 'alerta');
+    const e = escolaPorCod(cod); if (!e) return toast('Escola não encontrada.', 'erro');
+    const cd = contatoDre(e.dre);
+    const tipos = tiposEscola();
+    const corpo = `<div class="form-grade">
+            <label class="inteiro"><span class="rot">Tipo da escola</span>
+                <select id="fe-tipo-sel" class="campo" onchange="trocarTipoEscola(this.value)">${tipos.map(t => `<option value="${esc(t)}" ${t === str(e.tipo).trim() ? 'selected' : ''}>${esc(t)}</option>`).join('')}<option value="__novo">✚ Outro tipo (digitar)…</option></select>
+                <input id="fe-tipo" class="campo hidden" style="margin-top:6px" value="${esc(e.tipo)}" placeholder="Digite o novo tipo, ex.: ESCOLA ESTADUAL QUILOMBOLA" maxlength="120" oninput="previaFamilia(this.value)">
+                <div class="dica" id="fe-previa"></div></label>
+            ${campo('fe-focal', 'Ponto focal da escola', { valor: e.pontoFocal || '', inteiro: true, attrs: 'placeholder="Nome e função, ex.: Maria Souza — Diretora" maxlength="160"', dica: cd && cd.responsavel ? `Ponto focal da ${esc(e.dre)}: ${esc(cd.responsavel)}` : '' })}
+            ${campo('fe-tel', 'Telefone', { tipo: 'tel', valor: e.telefone || '', attrs: 'placeholder="(65) 9 9999-9999" inputmode="tel" maxlength="60"' })}
+            ${campo('fe-email', 'E-mail', { tipo: 'email', valor: e.email || '', attrs: 'placeholder="escola@edu.mt.gov.br" maxlength="160"' })}
+        </div>
+        <div class="fe-info">
+            <div><i class="fa-solid fa-sitemap"></i>${esc(e.dre || '—')}</div>
+            <div><i class="fa-solid fa-location-dot"></i>${esc([e.endereco, e.numero && e.numero !== '0' ? 'nº ' + e.numero : '', e.bairro, e.municipio].filter(Boolean).join(', ') || '—')}</div>
+            <div><i class="fa-solid fa-map-pin"></i>${e.temCoord ? `${e.lat.toFixed(5)}, ${e.lng.toFixed(5)}` : 'sem coordenadas'} · ${esc(e.localidade || '')}</div>
+        </div>
+        <div id="fe-erro"></div>`;
+    abrirModal({ titulo: esc(e.nome), sub: `Código ${esc(e.codigo)} · ${esc(e.municipio)}`, ic: FAMILIAS[e.fam].ic, cor: FAMILIAS[e.fam].cor, corpo,
+        pe: `<button class="btn btn-s" onclick="fecharModal()">Cancelar</button><button class="btn btn-p" onclick="salvarEscola(${jsArg(e.codigo)})"><i class="fa-solid fa-check"></i>Salvar</button>` });
+    previaFamilia(e.tipo);
+    ['fe-tipo', 'fe-focal', 'fe-tel', 'fe-email'].forEach(id => $(id).addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); salvarEscola(e.codigo); } }));
+}
+/** A 1ª edição com a base embutida copia todas as escolas para a planilha (senão as demais sumiriam do mapa). */
+function garantirEscolasNaPlanilha() {
+    if (DB.escolas.length) return false;
+    const base = Date.now().toString(36);
+    gravarMuitos('escolas', ESCOLAS_PADRAO.map((a, i) => ({ id: 'e' + base + i.toString(36), ...Object.fromEntries(COLS_ESC.map((k, j) => [k, str(a[j] === null || a[j] === undefined ? '' : a[j])])), atualizadoEm: agoraISO() })));
+    return true;
+}
+function garantirDresNaPlanilha() {
+    if (DB.dres.length) return false;
+    const base = Date.now().toString(36);
+    gravarMuitos('dres', DRES_PADRAO.map((a, i) => ({ id: 'd' + base + i.toString(36), dre: a[0], responsavel: a[1], email: a[2], telefone: a[3], sede: a[4], latitude: a[5], longitude: a[6], atualizadoEm: agoraISO() })));
+    return true;
+}
+const registroEscola = cod => DB.escolas.find(r => str(r.codigo).replace(/\.0$/, '').trim() === cod);
+function salvarEscola(cod) {
+    const e = escolaPorCod(cod); if (!e) return;
+    const novo = { tipo: v('fe-tipo').toUpperCase(), pontoFocal: v('fe-focal'), telefone: fmtTel(v('fe-tel')), email: v('fe-email').toLowerCase() };
+    const erros = [];
+    if (!novo.tipo) erros.push('Informe o tipo da escola.');
+    if (!telOk(novo.telefone)) erros.push('Telefone com poucos dígitos (use DDD + número).');
+    if (!emailOk(novo.email)) erros.push('E-mail inválido.');
+    if (erros.length) { $('fe-erro').innerHTML = `<div class="aviso erro" style="margin-top:10px">${erros.map(esc).join('<br>')}</div>`; return; }
+    const ROT = { tipo: 'tipo', pontoFocal: 'ponto focal', telefone: 'telefone', email: 'e-mail' };
+    const mud = Object.keys(novo).filter(k => str(novo[k]) !== str(e[k] || '').trim());
+    if (!mud.length) { fecharModal(); return toast('Nada foi alterado.'); }
+    const copiou = garantirEscolasNaPlanilha();
+    const reg = registroEscola(cod);
+    if (!reg) return toast('Escola não encontrada na planilha.', 'erro');
+    const rec = { id: reg.id, atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario };
+    mud.forEach(k => rec[k] = novo[k]);
+    gravar('escolas', rec);
+    registrarHistorico('escola', cod, `Escola ${e.nome} (${cod}): ${mud.map(k => `${ROT[k]} "${str(e[k] || '').trim() || '—'}" → "${novo[k] || '—'}"`).join('; ')}.`, 'sistema');
+    limparCacheEscolas(); fecharModal();
+    if (abaAtual === 'config') renderConfig(); else renderAtual();
+    if (abaAtual === 'mapa' && mapaMT) desenharEscolas();
+    toast(copiou ? 'Escola atualizada. A base completa de escolas foi copiada para a planilha.' : 'Escola atualizada. Enviando para a planilha...');
+}
+
+// ---------- pontos focais das DREs ----------
+function gruposDre() {
+    const g = new Map(), contEsc = {};
+    listaEscolas().forEach(e => { const k = norm(e.dre).replace(/^dre /, ''); contEsc[k] = (contEsc[k] || 0) + 1; });
+    listaDres().forEach(d => {
+        const k = norm(d.dre).replace(/^dre /, ''); if (!k) return;
+        if (!g.has(k)) g.set(k, { k, dre: d.dre, responsavel: d.responsavel, email: d.email, telefone: d.telefone, sedes: [], escolas: contEsc[k] || 0 });
+        if (str(d.sede).trim()) g.get(k).sedes.push(str(d.sede).replace(/^Sede /i, ''));
+    });
+    return [...g.values()].sort((a, b) => str(a.dre).localeCompare(str(b.dre), 'pt-BR'));
+}
+function htmlCfgFocais() {
+    const G = gruposDre(), ed = pode.tudo();
+    const sem = G.filter(d => !str(d.responsavel).trim() || !/@/.test(str(d.email))).length;
+    return `<div class="grade g4" style="gap:10px;margin-bottom:14px">
+            ${kpi('#2563eb', 'fa-sitemap', 'DREs', G.length, `${G.reduce((s, d) => s + d.sedes.length, 0)} sede(s) no mapa`)}
+            ${kpi('#7c3aed', 'fa-user-tie', 'Com ponto focal', G.length - sem, sem ? `${sem} incompleta(s)` : 'todas completas')}
+            ${kpi('#16a34a', 'fa-school', 'Escolas atendidas', G.reduce((s, d) => s + d.escolas, 0), 'na base de escolas')}
+            ${kpi('#64748b', 'fa-database', 'Origem', DB.dres.length ? 'Planilha' : 'Embutida', DB.dres.length ? 'aba DREs' : 'vai para a planilha na 1ª edição')}
+        </div>
+        <div class="grade g3 focais">${G.map((d, i) => {
+            const ok = str(d.responsavel).trim() && /@/.test(str(d.email));
+            return `<div class="card card-pad focal-card ${ed ? 'clic' : ''}" style="--i:${i}" ${ed ? `onclick="abrirFormDre(${jsArg(d.k)})"` : ''}>
+                <div class="card-tit" style="margin-bottom:8px"><span class="ico" style="--c:${ok ? '#2563eb' : '#d97706'}"><i class="fa-solid fa-sitemap"></i></span><div style="min-width:0"><h3>${esc(d.dre)}</h3><p>${d.escolas} escola(s)${d.sedes.length ? ' · sede: ' + esc(d.sedes.join(', ')) : ''}</p></div>
+                    ${ed ? `<button class="ic-mini dir" title="Editar" onclick="event.stopPropagation();abrirFormDre(${jsArg(d.k)})"><i class="fa-solid fa-pen"></i></button>` : ''}</div>
+                <div class="focal-lin"><i class="fa-solid fa-user-tie"></i>${str(d.responsavel).trim() ? `<b>${esc(d.responsavel)}</b>` : '<span class="mut">sem ponto focal</span>'}</div>
+                <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i>${telLink(d.telefone)}</div>
+                <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-envelope"></i>${mailLink(d.email)}</div></div>`;
+        }).join('')}</div>
+        <div class="dica" style="margin-top:10px"><i class="fa-solid fa-circle-info"></i> O ponto focal da DRE aparece na ficha da obra e no mapa sempre que a escola não tiver um ponto focal próprio.</div>`;
+}
+function abrirFormDre(k) {
+    if (!pode.tudo()) return toast('Seu perfil não permite alterar.', 'alerta');
+    const d = gruposDre().find(x => x.k === k); if (!d) return;
+    abrirModal({ titulo: esc(d.dre), sub: 'Ponto focal da regional', ic: 'fa-sitemap', cor: '#2563eb', corpo: `<div class="form-grade">
+            ${campo('fd-resp', 'Nome do responsável (ponto focal)', { valor: d.responsavel || '', inteiro: true, attrs: 'maxlength="160"' })}
+            ${campo('fd-tel', 'Telefone', { tipo: 'tel', valor: d.telefone || '', attrs: 'inputmode="tel" placeholder="(65) 9 9999-9999" maxlength="60"' })}
+            ${campo('fd-email', 'E-mail', { tipo: 'email', valor: d.email || '', attrs: 'placeholder="nome@edu.mt.gov.br" maxlength="160"' })}
+        </div>${d.sedes.length > 1 ? `<div class="dica" style="margin-top:8px">Vale para as ${d.sedes.length} sedes: ${esc(d.sedes.join(', '))}.</div>` : ''}<div id="fd-erro"></div>`,
+        pe: `<button class="btn btn-s" onclick="fecharModal()">Cancelar</button><button class="btn btn-p" onclick="salvarDre(${jsArg(k)})"><i class="fa-solid fa-check"></i>Salvar</button>` });
+}
+function salvarDre(k) {
+    const d = gruposDre().find(x => x.k === k); if (!d) return;
+    const novo = { responsavel: v('fd-resp').toUpperCase(), telefone: fmtTel(v('fd-tel')), email: v('fd-email').toLowerCase() };
+    const erros = [];
+    if (!telOk(novo.telefone)) erros.push('Telefone com poucos dígitos (use DDD + número).');
+    if (!emailOk(novo.email)) erros.push('E-mail inválido.');
+    if (erros.length) { $('fd-erro').innerHTML = `<div class="aviso erro" style="margin-top:10px">${erros.map(esc).join('<br>')}</div>`; return; }
+    const ROT = { responsavel: 'ponto focal', telefone: 'telefone', email: 'e-mail' };
+    const mud = Object.keys(novo).filter(c => str(novo[c]) !== str(d[c] || '').trim());
+    if (!mud.length) { fecharModal(); return toast('Nada foi alterado.'); }
+    garantirDresNaPlanilha();
+    const regs = DB.dres.filter(r => norm(r.dre).replace(/^dre /, '') === k).map(r => { const o = { id: r.id, atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario }; mud.forEach(c => o[c] = novo[c]); return o; });
+    gravarMuitos('dres', regs);
+    registrarHistorico('dre', d.dre, `${d.dre}: ${mud.map(c => `${ROT[c]} "${str(d[c] || '').trim() || '—'}" → "${novo[c] || '—'}"`).join('; ')}.`, 'sistema');
+    fecharModal(); renderConfig(); toast('Ponto focal atualizado. Enviando para a planilha...');
 }
 </script>
 </body>
