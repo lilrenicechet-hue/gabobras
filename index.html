@@ -407,7 +407,7 @@ html.escuro .contorno-mt { stroke: #e2e8f0; }
 /* mapa: ícones, rótulos e tela cheia */
 .mk-mun span { transition: transform .15s; }
 .mk-mun span:hover { transform: scale(1.12); }
-.mk-obra { position: relative; }
+.mk-obra { overflow: visible; }
 .mk-obra span { position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--c); border: 2px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .mk-obra span i { transform: rotate(45deg); color: #fff; font-size: 12px; }
 .mk-obra:hover span { filter: brightness(1.1); }
@@ -907,7 +907,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.5.0';
+const VERSAO_APP = '2.5.1';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
