@@ -151,7 +151,7 @@ main { flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100
 .card-tit { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .card-tit h3 { margin: 0; font-size: 14.5px; font-weight: 700; }
 .card-tit p { margin: 1px 0 0; font-size: 12px; color: var(--muted); }
-.card-tit .ico { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--c, var(--prim)); background: color-mix(in srgb, var(--c, var(--prim)) 13%, transparent); flex-shrink: 0; }
+.card-tit .ico, .al-sec-cab .ico { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--c, var(--prim)); background: color-mix(in srgb, var(--c, var(--prim)) 13%, transparent); flex-shrink: 0; }
 .card-tit .dir { margin-left: auto; }
 .grade { display: grid; gap: 14px; }
 .g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -373,10 +373,13 @@ html.escuro .heroi select option { color: #e2e8f0; background: #131c2e; }
 .lat-btn .bolha { flex-shrink: 0; }
 /* menu recolhível (só ícones) */
 #lateral { transition: width .25s, transform .25s; }
+#btn-recolher { margin-left: auto; width: 28px; height: 28px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: #64748b; font-size: 12px; flex-shrink: 0; border: 1px solid rgba(255,255,255,.08); transition: background .15s, color .15s; }
+#btn-recolher:hover { background: rgba(255,255,255,.08); color: #fff; }
 #btn-recolher i { transition: transform .25s; }
 @media (min-width: 901px) {
     html.menu-recolhido #lateral { width: 76px; }
-    html.menu-recolhido .lat-topo { justify-content: center; padding: 0; }
+    html.menu-recolhido .lat-topo { flex-direction: column; justify-content: center; height: auto; padding: 12px 0 10px; gap: 8px; }
+    html.menu-recolhido #btn-recolher { margin: 0; }
     html.menu-recolhido #lateral .marca-txt, html.menu-recolhido .lat-quem, html.menu-recolhido .lat-btn > span:not(.bolha), html.menu-recolhido .lat-btn .bolha.qtd { display: none; }
     html.menu-recolhido .lat-grupo { font-size: 0; height: 1px; background: rgba(255,255,255,.08); margin: 12px 8px; }
     html.menu-recolhido .lat-nav { padding: 14px 10px; }
@@ -704,6 +707,149 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 .focal-lin > i { width: 16px; color: var(--muted2); flex: none; }
 #cfg-abas button { white-space: nowrap; }
 @media (max-width: 700px) { .tab-escolas th:nth-child(3), .tab-escolas td:nth-child(3) { display: none; } #cfg-abas { width: 100%; } }
+
+.tec-card { display: flex; flex-direction: column; gap: 6px; padding: 13px 14px; border: 1px solid var(--borda); border-radius: 12px; background: var(--card); animation: sobeSuave .3s ease both; animation-delay: calc(var(--i, 0) * 25ms); }
+.tec-card.clic { cursor: pointer; transition: transform .15s, box-shadow .15s, border-color .15s; }
+.tec-card.clic:hover { transform: translateY(-2px); border-color: #c4b5fd; box-shadow: 0 10px 24px -14px rgba(124,58,237,.45); }
+.tec-card.inativo { opacity: .65; }
+.tec-topo { display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
+.tec-av { flex: none; width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--c); color: #fff; font-weight: 800; font-size: 13px; }
+.tec-av.peq-av { width: 28px; height: 28px; font-size: 10.5px; }
+.tec-nome { display: block; font-size: 13.5px; line-height: 1.25; }
+.tec-dres { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.dre-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px; }
+.dre-chip { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: 1px solid var(--borda2); border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
+.dre-chip:has(input:checked) { border-color: #7c3aed; background: rgba(124,58,237,.08); }
+.dre-chip span { display: flex; flex-direction: column; min-width: 0; font-size: 12.5px; }
+.dre-chip small { color: var(--muted); font-size: 10.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ===== Alertas ===== */
+.al-kpis { grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; }
+.al-kpi { text-align: left; cursor: pointer; }
+.al-painel { grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 14px; }
+.al-cats, .al-dres { display: flex; flex-direction: column; gap: 4px; }
+.al-cats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
+.al-cat { display: grid; grid-template-columns: 28px minmax(0,1fr) auto; grid-template-areas: "ic rot n" "bar bar bar"; align-items: center; column-gap: 9px; row-gap: 6px; padding: 8px 10px; border-radius: 10px; text-align: left; border: 1px solid var(--borda); background: var(--card); transition: background .15s, border-color .15s, transform .15s; }
+.al-cat:hover { background: var(--suave); transform: translateY(-1px); }
+.al-cat.ativo { background: color-mix(in srgb, var(--c) 10%, transparent); border-color: var(--c); }
+.al-cat-ic { grid-area: ic; width: 28px; height: 28px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--c) 14%, transparent); color: var(--c); font-size: 12px; }
+.al-cat-rot { grid-area: rot; font-size: 12px; font-weight: 700; line-height: 1.2; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.al-cat-rot small { display: block; font-weight: 600; color: var(--muted); font-size: 10.5px; }
+.al-cat > b { grid-area: n; font-size: 17px; color: var(--c); }
+.al-cat-bar { grid-area: bar; height: 4px; border-radius: 99px; background: var(--suave2); overflow: hidden; }
+.al-cat-bar span { display: block; height: 100%; border-radius: 99px; background: var(--c); transition: width .5s; }
+.al-dre > b { text-align: right; font-size: 14px; }
+.al-dre { display: grid; grid-template-columns: 120px minmax(0,1fr) 34px; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 10px; text-align: left; border: 1px solid transparent; }
+.al-dre:hover { background: var(--suave); }
+.al-dre.ativo { background: rgba(37,99,235,.08); border-color: #2563eb; }
+.al-dre-rot { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.al-dre-bar { display: flex; height: 12px; border-radius: 99px; overflow: hidden; min-width: 6px; gap: 1px; }
+.al-dre-bar span { display: block; height: 100%; }
+.leg-pt { display: inline-block; width: 10px; height: 10px; border-radius: 3px; }
+.al-filtros { position: sticky; top: 0; z-index: 20; }
+.al-ativos { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--borda); }
+.al-ativos .chip { cursor: pointer; padding: 0 11px; }
+.al-sec { overflow: hidden; border-top: 3px solid var(--c); }
+.al-sec-cab { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
+.al-sec-cab h3 { font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.al-sec-cab p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.al-qtd { display: inline-flex; min-width: 24px; height: 22px; padding: 0 7px; border-radius: 99px; background: var(--c); color: #fff; font-size: 12px; align-items: center; justify-content: center; }
+.al-chev { color: var(--muted2); transition: transform .2s; }
+.al-sec.fechada .al-chev { transform: rotate(-90deg); }
+.al-sec.fechada .al-itens { display: none; }
+.al-itens { border-top: 1px solid var(--borda); }
+.al-item { display: grid; grid-template-columns: 36px minmax(0,1fr) auto 14px; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--borda); cursor: pointer; transition: background .15s; animation: sobeSuave .25s ease both; animation-delay: calc(var(--i, 0) * 18ms); position: relative; }
+.al-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c); opacity: 0; transition: opacity .15s; }
+.al-item:hover { background: var(--suave); }
+.al-item:hover::before { opacity: 1; }
+.al-item:last-child { border-bottom: 0; }
+.al-ic { width: 36px; height: 36px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--c) 13%, transparent); color: var(--c); }
+.al-corpo { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.al-tit { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.al-tit b { font-size: 13.5px; line-height: 1.25; }
+.al-loc { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.al-loc i { margin-right: 5px; color: var(--muted2); }
+.al-desc { font-size: 12.5px; color: var(--texto2); line-height: 1.4; }
+.al-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.al-met { display: grid; grid-template-columns: 150px 86px 110px; gap: 12px; align-items: center; }
+.al-m { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.al-m small { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted2); }
+.al-m b { font-size: 13px; white-space: nowrap; }
+.al-atraso { font-size: 10.5px; font-weight: 700; color: #dc2626; }
+.al-seta { color: var(--muted2); font-size: 12px; }
+.al-mais { text-align: center; padding: 10px; border-top: 1px solid var(--borda); }
+@media (max-width: 1200px) { .al-kpis { grid-template-columns: repeat(3, minmax(0,1fr)); } .al-met { grid-template-columns: 130px 80px 100px; } }
+@media (max-width: 900px) { .al-painel { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 700px) {
+    .al-kpis { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .al-kpis > :last-child { grid-column: 1 / -1; }
+    .al-filtros { position: static; }
+    .al-item { grid-template-columns: minmax(0,1fr); gap: 8px; padding: 12px 12px 12px 15px; }
+    .al-item::before { opacity: 1; }
+    .al-ic { display: none; }
+    .al-met { grid-column: 1 / -1; grid-template-columns: minmax(0,1.4fr) minmax(0,.8fr) minmax(0,1fr); gap: 8px; padding: 8px 10px; background: var(--suave); border-radius: 10px; }
+    .al-seta { display: none; }
+    .al-loc { white-space: normal; }
+    .al-sec-cab { padding: 12px; gap: 10px; }
+    .al-sec-cab .al-nivel { display: none; }
+    .al-dre { grid-template-columns: 92px minmax(0,1fr) 28px; }
+    .al-cat-rot { white-space: normal; font-size: 11.5px; } .al-cat { padding: 7px 8px; column-gap: 7px; } .al-cat-ic { width: 24px; height: 24px; font-size: 11px; } .al-cat > b { font-size: 15px; }
+}
+
+/* ===== Celular ===== */
+#nav-inferior { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; height: calc(60px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); background: var(--card); border-top: 1px solid var(--borda); box-shadow: 0 -8px 24px -16px rgba(15,23,42,.35); }
+#nav-inferior button { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 10.5px; font-weight: 700; color: var(--muted); position: relative; -webkit-tap-highlight-color: transparent; }
+#nav-inferior button i { font-size: 17px; transition: transform .2s; }
+#nav-inferior button.ativo { color: var(--prim); }
+#nav-inferior button.ativo i { transform: translateY(-1px) scale(1.08); }
+#nav-inferior button.ativo::before { content: ''; position: absolute; top: 0; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--prim); }
+#nav-inferior .bolha { position: absolute; top: 6px; left: calc(50% + 5px); min-width: 17px; height: 17px; padding: 0 4px; border-radius: 99px; background: #dc2626; color: #fff; font-size: 9.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+#nav-inferior .bolha.hidden { display: none; }
+.fm-btn { display: none !important; }
+@media (max-width: 900px) {
+    #nav-inferior { display: flex; }
+    main { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+    .aba { overflow-y: auto; overscroll-behavior: contain; }
+    .conteudo { flex: none; overflow: visible; min-height: auto; }
+    #toast { bottom: calc(72px + env(safe-area-inset-bottom)); left: 12px; right: 12px; max-width: none; }
+    .topo-movel .ic-btn[aria-label="Alertas"] { display: none; }
+    #mapa-mt { height: 62vh; min-height: 340px; }
+    #mp-lista { max-height: none; }
+}
+@media (max-width: 700px) {
+    .fm > .fm-btn { display: inline-flex !important; flex: 1 1 auto; justify-content: center; }
+    .fm-btn .fm-chev { margin-left: 4px; font-size: 10px; transition: transform .2s; }
+    .fm.fm-aberto .fm-btn .fm-chev { transform: rotate(180deg); }
+    .fm-n { display: inline-flex; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--prim); color: #fff; font-size: 10.5px; align-items: center; justify-content: center; }
+    .fm:not(.fm-aberto) > :not(.busca):not(.seg):not(.fm-btn) { display: none !important; }
+    .fm > .busca { flex: 1 1 100% !important; min-width: 0 !important; }
+    .fm.fm-aberto > select.campo { flex: 1 1 calc(50% - 4px); width: auto !important; min-width: 0; }
+    .heroi .fm-btn { background: rgba(255,255,255,.08); color: #e2e8f0; border-color: rgba(255,255,255,.15); }
+    .heroi { padding: 12px 14px 36px; }
+    .heroi h2 { font-size: 18px; }
+    .heroi p { display: none; }
+    #aba-relatorios .heroi p { display: block; font-size: 11.5px; }
+    .heroi-linha { gap: 10px; }
+    .heroi-linha > .barra-filtros { width: 100%; flex-wrap: wrap; }
+    .heroi .barra-filtros .btn { flex: 1 1 auto; min-width: 0; padding: 0 10px; font-size: 12.5px; white-space: nowrap; }
+    .pn-nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -12px; padding: 8px 12px; border-radius: 0; }
+    .pn-nav::-webkit-scrollbar, .heroi .seg::-webkit-scrollbar { display: none; }
+    .pn-nav button { flex: none; }
+    .heroi .seg { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+    .heroi .seg button { flex: none; }
+    .card-tit { flex-wrap: wrap; row-gap: 8px; }
+    .card-tit > .btn.dir, .card-tit > div.dir { margin-left: 0 !important; flex-basis: 100%; justify-content: flex-start; }
+    .card-pad { padding: 14px; }
+    .kpi { padding: 11px 12px; }
+    .kpi .v { font-size: 21px; }
+    .kpi .s { font-size: 11px; }
+    .modal-pe { flex-wrap: wrap; }
+    .modal-pe .btn { flex: 1 1 auto; justify-content: center; }
+    .tab th, .tab td { padding-left: 10px; padding-right: 10px; }
+    [id$="-grupos"].barra-filtros, [id$="-inaugs"].barra-filtros { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -14px; padding-right: 14px; }
+    [id$="-grupos"].barra-filtros > *, [id$="-inaugs"].barra-filtros > * { flex: none; }
+    .grade.g4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
 </style>
 </head>
 <body>
@@ -757,6 +903,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
     <div class="lat-topo">
         <div class="lat-ic"><i class="fa-solid fa-helmet-safety"></i></div>
         <div class="marca-txt">GAB<span>Obras</span></div>
+        <button id="btn-recolher" onclick="recolherMenu()" title="Recolher menu" aria-label="Recolher menu"><i class="fa-solid fa-angles-left"></i></button>
     </div>
     <nav class="lat-nav" id="lat-nav">
         <button class="lat-btn lat-busca" onclick="abrirBusca()" title="Busca rápida (Ctrl+K)"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar...</span><span class="bolha qtd atalho">Ctrl K</span></button>
@@ -774,8 +921,6 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
         <button class="lat-btn hidden" data-aba="usuarios" id="nav-usuarios" onclick="irPara('usuarios')"><i class="fa-solid fa-user-shield"></i><span>Usuários</span></button>
         <button class="lat-btn" data-aba="config" onclick="irPara('config')"><i class="fa-solid fa-gear"></i><span>Configurações</span></button>
         <button class="lat-btn hidden" id="btn-instalar" onclick="instalarApp()" style="color:#6ee7b7"><i class="fa-solid fa-mobile-screen-button"></i><span>Instalar aplicativo</span></button>
-        <div class="lat-grupo"></div>
-        <button class="lat-btn" id="btn-recolher" onclick="recolherMenu()" title="Recolher menu"><i class="fa-solid fa-angles-left"></i><span>Recolher menu</span></button>
     </nav>
     <div class="lat-rodape">
         <div class="lat-av" id="lat-av">?</div>
@@ -914,6 +1059,13 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
         <div class="conteudo"><div id="config-corpo"></div></div>
     </section>
 </main>
+<nav id="nav-inferior" aria-label="Navegação rápida">
+    <button data-aba="painel" onclick="irPara('painel')"><i class="fa-solid fa-chart-pie"></i><span>Painel</span></button>
+    <button data-aba="gestao" onclick="irPara('gestao')"><i class="fa-solid fa-list-check"></i><span>Obras</span></button>
+    <button data-aba="mapa" onclick="irPara('mapa')"><i class="fa-solid fa-map-location-dot"></i><span>Mapa</span></button>
+    <button data-aba="alertas" onclick="irPara('alertas')"><i class="fa-solid fa-bell"></i><span>Alertas</span><b id="bolha-nav" class="bolha hidden">0</b></button>
+    <button data-aba="mais" onclick="menuMovel(true)"><i class="fa-solid fa-bars"></i><span>Mais</span></button>
+</nav>
 
 <div id="modal-host"></div>
 <div id="gaveta-host"></div>
@@ -925,7 +1077,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.6.0';
+const VERSAO_APP = '2.8.0';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -938,7 +1090,7 @@ const LS = {
 
 let URL_API = LS.get('gob_url') || LINK_PADRAO;
 let sessao = lerSessao();
-const DB = { contratos: [], convenios: [], historico: [], escolas: [], dres: [] };
+const DB = { contratos: [], convenios: [], historico: [], escolas: [], dres: [], tecnicos: [] };
 const TABELAS = Object.keys(DB);
 let usuarios = [];
 let dataVersion = null;
@@ -1484,13 +1636,39 @@ function irPara(aba) {
     abaAtual = aba;
     document.querySelectorAll('.aba').forEach(s => s.classList.toggle('hidden', s.id !== 'aba-' + aba));
     document.querySelectorAll('.lat-btn[data-aba]').forEach(b => b.classList.toggle('ativo', b.dataset.aba === aba));
+    const emNav = ['painel', 'gestao', 'mapa', 'alertas'].includes(aba);
+    document.querySelectorAll('#nav-inferior button').forEach(b => b.classList.toggle('ativo', b.dataset.aba === aba || (!emNav && b.dataset.aba === 'mais')));
     menuMovel(false);
     if (location.hash !== '#' + aba) history.replaceState(null, '', '#' + aba);
     const c = document.querySelector(`#aba-${aba} .conteudo`); if (c) c.scrollTop = 0;
+    const sa = $('aba-' + aba); if (sa) sa.scrollTop = 0;
     document.body.classList.add('animar'); clearTimeout(irPara.t); irPara.t = setTimeout(() => document.body.classList.remove('animar'), 1300);
     renderAtual();
     contarNumeros(document.getElementById('aba-' + aba));
 }
+// ---------- celular: filtros recolhíveis ----------
+function prepararFiltrosMoveis() {
+    document.querySelectorAll('main .barra-filtros').forEach(b => {
+        const sels = [...b.children].filter(c => c.tagName === 'SELECT');
+        if (sels.length < 3 || b.closest('#aba-relatorios')) return;
+        b.classList.add('fm');
+        let btn = b.querySelector(':scope > .fm-btn');
+        if (!btn) {
+            btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn btn-s btn-sm fm-btn'; btn.dataset.n = '-1';
+            btn.onclick = () => { b._fmAberto = !b.classList.contains('fm-aberto'); b.classList.toggle('fm-aberto', b._fmAberto); };
+            const busca = b.querySelector(':scope > .busca'); if (busca) busca.after(btn); else b.append(btn);
+            b.classList.toggle('fm-aberto', !!b._fmAberto);
+        }
+        const n = sels.filter(c => c.options.length && c.options[0].value === '' && c.value !== '').length;
+        if (btn.dataset.n !== String(n)) { btn.dataset.n = String(n); btn.innerHTML = `<i class="fa-solid fa-sliders"></i>Filtros${n ? ` <span class="fm-n">${n}</span>` : ''}<i class="fa-solid fa-chevron-down fm-chev"></i>`; }
+    });
+}
+(() => {
+    let pend = false;
+    const agendar = () => { if (pend) return; pend = true; requestAnimationFrame(() => { pend = false; prepararFiltrosMoveis(); }); };
+    document.addEventListener('DOMContentLoaded', () => { const m = document.querySelector('main'); if (m) new MutationObserver(agendar).observe(m, { childList: true, subtree: true }); agendar(); });
+    document.addEventListener('change', e => { if (e.target.closest && e.target.closest('.fm')) agendar(); });
+})();
 function renderAtual() {
     atualizarContadores();
     const r = { painel: renderPainel, inauguracoes: renderInauguracoes, mapa: renderMapa, gestao: renderGestao, alertas: renderAlertas, contratos: () => renderSecao('contratos'), convenios: () => renderSecao('convenios'),
@@ -1504,6 +1682,7 @@ function atualizarContadores() {
     $('qtd-gestao').textContent = DB.contratos.length + DB.convenios.length;
     const n = calcularAlertas().filter(a => a.nivel !== 'baixa').length;
     const b = $('bolha-alertas'); b.textContent = n > 99 ? '99+' : n; b.classList.toggle('hidden', !n);
+    const bn = $('bolha-nav'); if (bn) { bn.textContent = n > 99 ? '99+' : n; bn.classList.toggle('hidden', !n); }
 }
 
 // =====================================================================================
@@ -1912,7 +2091,7 @@ const inMostrar = {};
 // =====================================================================================
 const SEC = {};
 function estadoSec(t) {
-    if (!SEC[t]) SEC[t] = { busca: '', grupo: '', inaug: '', status: '', municipio: '', objeto: '', extra1: '', extra2: '', ordem: 'padrao', visao: LS.get('gob_visao_' + t) || 'resumo', limite: 100, montado: false };
+    if (!SEC[t]) SEC[t] = { busca: '', grupo: '', inaug: '', status: '', municipio: '', objeto: '', extra1: '', extra2: '', ordem: 'padrao', visao: LS.get('gob_visao_' + t) || (window.innerWidth <= 700 ? 'cards' : 'resumo'), limite: 100, montado: false };
     return SEC[t];
 }
 // Filtros específicos: contratos (INSTRUMENTO, SITUAÇÃO) · convênios (DRE, UNIDADE)
@@ -2379,44 +2558,183 @@ function confirmarImportacao() {
 // ALERTAS
 // =====================================================================================
 const NIVEL = { alta: { rot: 'Urgente', cor: '#dc2626', ic: 'fa-circle-exclamation' }, media: { rot: 'Atenção', cor: '#d97706', ic: 'fa-triangle-exclamation' }, baixa: { rot: 'Para acompanhar', cor: '#2563eb', ic: 'fa-circle-info' } };
+/** Categorias de alerta, na ordem em que aparecem. */
+const CAT_AL = {
+    paralisada:  { rot: 'Paralisadas e pendências', ic: 'fa-circle-pause', nivel: 'alta', cor: '#dc2626', dica: 'Obras paradas ou com pendência de execução' },
+    vencida:     { rot: 'Previsão vencida', ic: 'fa-calendar-xmark', nivel: 'alta', cor: '#b91c1c', dica: 'Em execução e o mês da previsão já passou' },
+    risco:       { rot: 'Risco de atraso', ic: 'fa-hourglass-half', nivel: 'media', cor: '#ea580c', dica: 'Previsão em até 2 meses e execução abaixo de 70%' },
+    rescisao:    { rot: 'Em rescisão', ic: 'fa-file-circle-xmark', nivel: 'media', cor: '#be123c', dica: 'Processos de rescisão em andamento' },
+    financeiro:  { rot: 'Desembolso à frente da obra', ic: 'fa-scale-unbalanced', nivel: 'media', cor: '#c2410c', dica: 'Convênios com execução financeira 25 p.p. acima da física' },
+    inaugurar:   { rot: 'Prontas para inaugurar', ic: 'fa-champagne-glasses', nivel: 'media', cor: '#7c3aed', dica: 'Liberadas para inauguração: agendar o ato' },
+    verificacao: { rot: 'Em verificação pelo fiscal', ic: 'fa-magnifying-glass', nivel: 'baixa', cor: '#0891b2', dica: 'Aguardando verificação para liberar a inauguração' },
+    quase:       { rot: 'Quase concluídas', ic: 'fa-flag-checkered', nivel: 'baixa', cor: '#16a34a', dica: 'Execução física de 95% ou mais' },
+    semprev:     { rot: 'Sem previsão de conclusão', ic: 'fa-calendar-plus', nivel: 'baixa', cor: '#64748b', dica: 'Em execução sem data de previsão válida' },
+    semdef:      { rot: 'Concluídas sem definição de inauguração', ic: 'fa-question', nivel: 'baixa', cor: '#2563eb', dica: 'Falta preencher INAUGURAR (SUOB)' }
+};
+const moedaCurta = v => moeda(v, true);
+const plural = (n, s, p) => `${n} ${n === 1 ? s : p}`;
 function calcularAlertas(lista = todos()) {
     const A = [];
     lista.forEach(x => {
         const r = x.r, nm = `${x.nome} (${x.cod})`, ab = `abrirRegistro('${x.tipo}', ${jsArg(r.id)})`;
-        const add = (nivel, ic, titulo, desc) => A.push({ nivel, ic, titulo, desc, clique: ab, x });
-        const st = norm(r.status);
-        if (x.grupo === 'paralisada') add('alta', 'fa-circle-pause', `${st.startsWith('pendencia') ? 'Pendência de execução' : 'Obra paralisada'}: ${nm}`, `${r.municipio || ''} · ${r.status} · execução ${pct(x.fisico)}${x.valor ? ' · ' + moeda(x.valor) : ''}.`);
-        if (x.prevVencida) add('alta', 'fa-calendar-xmark', `Previsão de conclusão vencida: ${nm}`, `Previsão ${fmtPrev(r.previsao)}, ainda em execução com ${pct(x.fisico)}. Atualize a PREVISÃO CONCLUSÃO OBRA.`);
-        if (x.grupo === 'rescisao' && st.startsWith('em ')) add('media', 'fa-file-circle-xmark', `Em rescisão: ${nm}`, `${r.status} · execução ${pct(x.fisico)}.`);
-        if (x.inaug === 'apta') add('media', 'fa-champagne-glasses', `Pronta para inaugurar: ${nm}`, `INAUGURAR (SUOB) = ${r.inaugurarSuob || '—'} · ATO (GS) = ${r.atoGs || '—'}${r.dataPrevista ? ' · data prevista: ' + r.dataPrevista : ''}. Agendar o ato de inauguração.`);
-        if (x.grupo === 'concluida' && x.inaug === 'indef') add('baixa', 'fa-question', `Concluída sem definição de inauguração: ${nm}`, 'Preencha INAUGURAR (SUOB): SIM, NÃO, INAUGURADA ou outra opção.');
+        const add = (cat, titulo, desc, extra = {}) => A.push({ cat, nivel: CAT_AL[cat].nivel, ic: CAT_AL[cat].ic, titulo, desc, clique: ab, x, atraso: 0, ...extra });
+        const st = norm(r.status), falta = x.fisico === null ? null : Math.max(0, 100 - x.fisico);
+        if (x.grupo === 'paralisada') add('paralisada', `${st.startsWith('pendencia') ? 'Pendência de execução' : 'Obra paralisada'}: ${nm}`,
+            `${r.status || 'Paralisada'} · parou com ${pct(x.fisico)} executado${falta !== null ? ` (faltam ${pct(falta)})` : ''}${x.valor ? ' · ' + moeda(x.valor) + ' contratados' : ''}.`);
+        if (x.prevVencida) { const at = Math.max(1, -(x.mesesAte || 0)); add('vencida', `Previsão de conclusão vencida: ${nm}`,
+            `Previsão era ${fmtPrev(r.previsao)} · ${plural(at, 'mês', 'meses')} de atraso · executado ${pct(x.fisico)}${falta !== null ? `, faltam ${pct(falta)}` : ''}. Atualize a PREVISÃO CONCLUSÃO OBRA.`, { atraso: at }); }
+        if (x.grupo === 'execucao' && !x.prevVencida && x.prev && x.mesesAte !== null && x.mesesAte <= 2 && x.fisico !== null && x.fisico < 70) {
+            const m = Math.max(1, x.mesesAte + 1);
+            add('risco', `Risco de atraso: ${nm}`, `Previsão ${fmtPrev(r.previsao)} (${x.mesesAte <= 0 ? 'este mês' : 'em ' + plural(x.mesesAte, 'mês', 'meses')}) · executado ${pct(x.fisico)} · precisaria de ~${pct(falta / m)} por mês para cumprir.`);
+        }
+        if (x.grupo === 'rescisao' && st.startsWith('em ')) add('rescisao', `Em rescisão: ${nm}`, `${r.status} · execução ${pct(x.fisico)}${r.empresa ? ' · ' + r.empresa : ''}.`);
         if (x.tipo === 'convenios' && x.grupo !== 'concluida' && x.grupo !== 'rescisao' && x.financeiro !== null && x.fisico !== null && x.financeiro - x.fisico >= 25)
-            add('media', 'fa-scale-unbalanced', `Desembolso à frente da obra: ${nm}`, `Execução financeira ${pct(x.financeiro)} × física ${pct(x.fisico)} (${pct(x.financeiro - x.fisico)} de diferença).`);
-        if (x.inaug === 'verificacao') add('baixa', 'fa-magnifying-glass', `Em verificação pelo fiscal: ${nm}`, 'Aguardando a verificação para liberar a inauguração.');
-        if (x.grupo === 'execucao' && x.fisico !== null && x.fisico >= 95) add('baixa', 'fa-flag-checkered', `Quase concluída (${pct(x.fisico)}): ${nm}`, `Previsão ${fmtPrev(r.previsao)}. Prepare a inauguração.`);
-        if (x.grupo === 'execucao' && !x.prev) add('baixa', 'fa-calendar-plus', `Sem previsão de conclusão: ${nm}`, `PREVISÃO CONCLUSÃO OBRA = "${r.previsao || 'vazio'}".`);
+            add('financeiro', `Desembolso à frente da obra: ${nm}`, `Financeira ${pct(x.financeiro)} × física ${pct(x.fisico)} · diferença de ${pct(x.financeiro - x.fisico)}${x.valor ? ` (≈ ${moeda(x.valor * (x.financeiro - x.fisico) / 100)})` : ''}.`);
+        if (x.inaug === 'apta') add('inaugurar', `Pronta para inaugurar: ${nm}`, `INAUGURAR (SUOB) = ${r.inaugurarSuob || '—'} · ATO (GS) = ${r.atoGs || '—'}${r.dataPrevista ? ' · data prevista: ' + r.dataPrevista : ''}. Agendar o ato de inauguração.`);
+        if (x.inaug === 'verificacao') add('verificacao', `Em verificação pelo fiscal: ${nm}`, `Execução ${pct(x.fisico)} · aguardando a verificação para liberar a inauguração.`);
+        if (x.grupo === 'execucao' && x.fisico !== null && x.fisico >= 95) add('quase', `Quase concluída (${pct(x.fisico)}): ${nm}`, `Previsão ${fmtPrev(r.previsao)}. Prepare a inauguração.`);
+        if (x.grupo === 'execucao' && !x.prev) add('semprev', `Sem previsão de conclusão: ${nm}`, `PREVISÃO CONCLUSÃO OBRA = "${r.previsao || 'vazio'}" · execução ${pct(x.fisico)}.`);
+        if (x.grupo === 'concluida' && x.inaug === 'indef') add('semdef', `Concluída sem definição de inauguração: ${nm}`, 'Preencha INAUGURAR (SUOB): SIM, NÃO, INAUGURADA ou outra opção.');
     });
     const peso = { alta: 0, media: 1, baixa: 2 };
     return A.sort((a, b) => peso[a.nivel] - peso[b.nivel] || b.x.valor - a.x.valor);
 }
-let alFiltro = '', alTipo = '', alLimite = {};
+
+// ---------- tela de alertas ----------
+const AL = { nivel: '', cat: '', tipo: '', dre: '', mun: '', busca: '', ordem: 'gravidade', visao: 'cat', limite: {}, fechadas: new Set() };
+const pesoNivel = { alta: 0, media: 1, baixa: 2 };
+const textoAl = a => norm([a.x.nome, a.x.cod, a.x.r.municipio, dreDe(a.x), a.x.r.objeto, a.x.r.empresa, a.x.r.status, a.desc].join(' '));
+function alertasFiltrados(sem = []) {
+    const q = norm(AL.busca).trim(), f = k => !sem.includes(k);
+    return calcularAlertas(todos(AL.tipo)).filter(a =>
+        (!f('nivel') || !AL.nivel || a.nivel === AL.nivel) && (!f('cat') || !AL.cat || a.cat === AL.cat)
+        && (!f('dre') || !AL.dre || dreDe(a.x) === AL.dre) && (!f('mun') || !AL.mun || a.x.r.municipio === AL.mun)
+        && (!q || textoAl(a).includes(q)));
+}
+function ordenarAl(l) {
+    const o = AL.ordem, c = (a, b) => pesoNivel[a.nivel] - pesoNivel[b.nivel];
+    const fn = { gravidade: (a, b) => c(a, b) || b.x.valor - a.x.valor, valor: (a, b) => b.x.valor - a.x.valor, atraso: (a, b) => b.atraso - a.atraso || c(a, b),
+        execucao: (a, b) => (a.x.fisico ?? 101) - (b.x.fisico ?? 101), municipio: (a, b) => str(a.x.r.municipio).localeCompare(str(b.x.r.municipio), 'pt-BR') || str(a.x.nome).localeCompare(str(b.x.nome), 'pt-BR') }[o];
+    return l.slice().sort(fn || ((a, b) => 0));
+}
+const obrasUnicas = l => { const m = new Map(); l.forEach(a => { const k = a.x.tipo + a.x.r.id; if (!m.has(k)) m.set(k, { x: a.x, al: [] }); m.get(k).al.push(a); }); return [...m.values()]; };
+function metricasObra(x, a) {
+    const prevTxt = str(x.r.previsao).trim() ? fmtPrev(x.r.previsao) : '—';
+    return `<div class="al-met">
+        <div class="al-m al-exec"><small>Execução</small>${barraExec(x.fisico, x.fisico !== null && x.fisico < 40 ? '#dc2626' : x.fisico !== null && x.fisico < 75 ? '#d97706' : '#16a34a')}</div>
+        <div class="al-m"><small>Valor</small><b>${x.valor ? moedaCurta(x.valor) : '—'}</b></div>
+        <div class="al-m"><small>Previsão</small><b>${esc(prevTxt)}</b>${a && a.atraso ? `<span class="al-atraso">${plural(a.atraso, 'mês', 'meses')} de atraso</span>` : ''}</div>
+    </div>`;
+}
+function itemAlerta(a, i) {
+    const x = a.x, C = CAT_AL[a.cat];
+    return `<div class="al-item" style="--c:${C.cor};--i:${Math.min(i, 15)}" onclick="${a.clique}">
+        <span class="al-ic"><i class="fa-solid ${C.ic}"></i></span>
+        <div class="al-corpo">
+            <div class="al-tit"><b>${esc(x.nome)}</b><span class="mut peq">${esc(x.cod)}</span>${seloTipo(x.tipo)}</div>
+            <div class="al-loc"><i class="fa-solid fa-location-dot"></i>${esc(x.r.municipio || '—')}${dreDe(x) ? ` · ${esc(dreDe(x).replace(/^DRE /, 'DRE '))}` : ''}${x.r.objeto ? ` · ${esc(x.r.objeto)}` : ''}</div>
+            <div class="al-desc">${esc(a.desc)}</div>
+        </div>
+        ${metricasObra(x, a)}
+        <i class="fa-solid fa-chevron-right al-seta"></i>
+    </div>`;
+}
+function itemObraAl(o, i) {
+    const x = o.x, pior = o.al.reduce((m, a) => pesoNivel[a.nivel] < pesoNivel[m] ? a.nivel : m, 'baixa'), atraso = Math.max(...o.al.map(a => a.atraso));
+    return `<div class="al-item" style="--c:${NIVEL[pior].cor};--i:${Math.min(i, 15)}" onclick="${o.al[0].clique}">
+        <span class="al-ic"><i class="fa-solid ${NIVEL[pior].ic}"></i></span>
+        <div class="al-corpo">
+            <div class="al-tit"><b>${esc(x.nome)}</b><span class="mut peq">${esc(x.cod)}</span>${seloTipo(x.tipo)}</div>
+            <div class="al-loc"><i class="fa-solid fa-location-dot"></i>${esc(x.r.municipio || '—')}${dreDe(x) ? ` · ${esc(dreDe(x))}` : ''} · ${esc(x.r.status || '—')}</div>
+            <div class="al-tags">${o.al.map(a => `<span class="selo" style="--c:${CAT_AL[a.cat].cor}" title="${esc(a.desc)}"><i class="fa-solid ${CAT_AL[a.cat].ic}"></i>${CAT_AL[a.cat].rot}</span>`).join('')}</div>
+        </div>
+        ${metricasObra(x, { atraso })}
+        <i class="fa-solid fa-chevron-right al-seta"></i>
+    </div>`;
+}
+const maisAl = (k, total, lim) => total > lim ? `<div class="al-mais"><button class="btn btn-s btn-sm" onclick="event.stopPropagation();AL.limite['${k}']=${lim + 40};listarAlertas()"><i class="fa-solid fa-angles-down"></i>Mostrar mais ${Math.min(40, total - lim)} de ${total - lim}</button></div>` : '';
+function painelAlertas() {
+    const base = alertasFiltrados(['nivel', 'cat']), total = todos(AL.tipo).length;
+    const ob = obrasUnicas(base), cont = { alta: 0, media: 0, baixa: 0 }; base.forEach(a => cont[a.nivel]++);
+    const obUrg = obrasUnicas(base.filter(a => a.nivel === 'alta')), valorRisco = obUrg.reduce((s, o) => s + o.x.valor, 0);
+    const kN = (k, s) => `<button class="kpi al-kpi${AL.nivel === k ? ' kpi-ativo' : ''}" style="--c:${NIVEL[k].cor}" onclick="AL.nivel=AL.nivel==='${k}'?'':'${k}';renderAlertas()"><div class="r"><i class="fa-solid ${NIVEL[k].ic}"></i>${NIVEL[k].rot}</div><div class="v">${cont[k]}</div><div class="s">${s}</div></button>`;
+    // por categoria
+    const porCat = Object.keys(CAT_AL).map(k => { const l = base.filter(a => a.cat === k); return { k, n: l.length, v: l.reduce((s, a) => s + a.x.valor, 0) }; }).filter(c => c.n);
+    const maxC = Math.max(1, ...porCat.map(c => c.n));
+    // por DRE (urgentes e atenção)
+    const dreL = alertasFiltrados(['dre']).filter(a => a.nivel !== 'baixa' || AL.nivel === 'baixa' || AL.cat);
+    const pd = {}; dreL.forEach(a => { const d = dreDe(a.x) || 'Sem DRE'; (pd[d] = pd[d] || { alta: 0, media: 0, baixa: 0, t: 0 }); pd[d][a.nivel]++; pd[d].t++; });
+    const dres = Object.entries(pd).sort((a, b) => b[1].alta - a[1].alta || b[1].t - a[1].t).slice(0, 8), maxD = Math.max(1, ...dres.map(d => d[1].t));
+    return `<div class="grade al-kpis">
+            ${kpi('#475569', 'fa-helmet-safety', 'Obras com alerta', ob.length, `de ${total} obras · ${total ? Math.round(ob.length / total * 100) : 0}% da carteira`)}
+            ${kN('alta', `${plural(obUrg.length, 'obra', 'obras')} · ação imediata`)}
+            ${kN('media', 'acompanhar de perto')}
+            ${kN('baixa', 'rotina e cadastro')}
+            ${kpi('#b91c1c', 'fa-sack-dollar', 'Valor em risco', valorRisco ? moedaCurta(valorRisco) : 'R$ 0', 'obras com alerta urgente')}
+        </div>
+        <div class="grade al-painel">
+            <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#7c3aed"><i class="fa-solid fa-layer-group"></i></span><div><h3>Alertas por categoria</h3><p>Clique para filtrar</p></div></div>
+                <div class="al-cats">${porCat.length ? porCat.map(c => { const C = CAT_AL[c.k]; return `<button class="al-cat${AL.cat === c.k ? ' ativo' : ''}" style="--c:${C.cor}" onclick="AL.cat=AL.cat==='${c.k}'?'':'${c.k}';renderAlertas()" title="${esc(C.dica)}">
+                    <span class="al-cat-ic"><i class="fa-solid ${C.ic}"></i></span><span class="al-cat-rot">${C.rot}<small>${c.v ? moedaCurta(c.v) : ''}</small></span>
+                    <span class="al-cat-bar"><span style="width:${Math.max(4, c.n / maxC * 100)}%"></span></span><b>${c.n}</b></button>`; }).join('') : '<div class="vazio" style="padding:16px">Nenhum alerta.</div>'}</div></div>
+            <div class="card card-pad"><div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-sitemap"></i></span><div><h3>Onde estão os alertas</h3><p>DREs com mais pontos ${AL.nivel === 'baixa' || AL.cat ? '' : 'urgentes e de atenção '}· clique para filtrar</p></div></div>
+                <div class="al-dres">${dres.length ? dres.map(([d, c]) => `<button class="al-dre${AL.dre === d ? ' ativo' : ''}" onclick="AL.dre=AL.dre===${jsArg(d)}?'':${jsArg(d)};AL.mun='';renderAlertas()">
+                    <span class="al-dre-rot">${esc(d.replace(/^DRE /, ''))}</span>
+                    <span class="al-dre-bar" style="width:${c.t / maxD * 100}%">${['alta', 'media', 'baixa'].map(k => c[k] ? `<span style="flex:${c[k]};background:${NIVEL[k].cor}" title="${NIVEL[k].rot}: ${c[k]}"></span>` : '').join('')}</span><b>${c.t}</b></button>`).join('') : '<div class="vazio" style="padding:16px">Nenhum alerta.</div>'}</div>
+                <div class="legenda" style="margin-top:8px">${['alta', 'media', 'baixa'].map(k => `<span><b class="leg-pt" style="background:${NIVEL[k].cor}"></b>${NIVEL[k].rot}</span>`).join('')}</div></div>
+        </div>`;
+}
 function renderAlertas() {
-    const base = calcularAlertas(todos(alTipo));
-    const lista = alFiltro ? base.filter(a => a.nivel === alFiltro) : base;
-    const cont = { alta: 0, media: 0, baixa: 0 }; base.forEach(a => cont[a.nivel]++);
-    let h = `<div class="card card-pad barra-filtros">
-        <button class="chip${!alFiltro ? ' ativo' : ''}" style="--c:#475569" onclick="alFiltro='';renderAlertas()"><span class="pt"></span>Todos<span class="q">${base.length}</span></button>
-        ${Object.keys(NIVEL).map(k => `<button class="chip${alFiltro === k ? ' ativo' : ''}" style="--c:${NIVEL[k].cor}" onclick="alFiltro='${k}';renderAlertas()"><span class="pt"></span>${NIVEL[k].rot}<span class="q">${cont[k]}</span></button>`).join('')}
-        <select class="campo" style="width:200px;margin-left:auto" onchange="alTipo=this.value;renderAlertas()">${opcoes([['contratos', 'Somente contratos'], ['convenios', 'Somente convênios']], 'Contratos e convênios', alTipo)}</select></div>`;
-    if (!lista.length) h += `<div class="card vazio"><i class="fa-solid fa-circle-check" style="color:#16a34a;opacity:1"></i>${DB.contratos.length + DB.convenios.length ? 'Nenhum alerta. Tudo em ordem!' : 'Importe ou cadastre obras para ver os alertas.'}</div>`;
-    Object.keys(NIVEL).forEach(k => {
-        const g = lista.filter(a => a.nivel === k); if (!g.length) return;
-        const lim = alLimite[k] || 40;
-        h += `<div class="card"><div class="card-pad" style="padding-bottom:6px"><div class="card-tit" style="margin:0"><span class="ico" style="--c:${NIVEL[k].cor}"><i class="fa-solid ${NIVEL[k].ic}"></i></span><div><h3>${NIVEL[k].rot}</h3><p>${g.length} ponto(s)</p></div></div></div>
-            <div class="lista">${g.slice(0, lim).map(a => `<div class="item" onclick="${a.clique}"><span class="ic" style="--c:${NIVEL[k].cor}"><i class="fa-solid ${a.ic}"></i></span><span class="tx"><b>${esc(a.titulo)}</b><span style="white-space:normal">${seloTipo(a.x.tipo)} ${esc(a.desc)}</span></span><i class="fa-solid fa-chevron-right mut"></i></div>`).join('')}</div>
-            ${g.length > lim ? `<div style="text-align:center;padding:10px"><button class="btn btn-s btn-sm" onclick="alLimite['${k}']=${lim + 60};renderAlertas()">Mostrar mais ${Math.min(60, g.length - lim)} de ${g.length - lim}</button></div>` : ''}</div>`;
-    });
-    $('alertas-corpo').innerHTML = h;
+    const todasObras = todos(AL.tipo);
+    const dres = [...new Set(todasObras.map(dreDe).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const muns = [...new Set(todasObras.filter(x => !AL.dre || dreDe(x) === AL.dre).map(x => x.r.municipio).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const sel = (atual, vazio, lista, acao, w = 190) => `<select class="campo" style="width:${w}px" onchange="${acao}">${opcoes(lista, vazio, atual)}</select>`;
+    const ativos = [AL.nivel && ['nivel', NIVEL[AL.nivel].rot, NIVEL[AL.nivel].cor], AL.cat && ['cat', CAT_AL[AL.cat].rot, CAT_AL[AL.cat].cor], AL.dre && ['dre', AL.dre, '#2563eb'], AL.mun && ['mun', AL.mun, '#0891b2'], AL.busca && ['busca', `"${AL.busca}"`, '#475569']].filter(Boolean);
+    $('alertas-corpo').innerHTML = `
+        ${painelAlertas()}
+        <div class="card card-pad al-filtros">
+            <div class="barra-filtros">
+                <div class="busca" style="flex:1;min-width:200px"><i class="fa-solid fa-magnifying-glass"></i><input id="al-busca" class="campo" value="${esc(AL.busca)}" placeholder="Buscar obra, município, empresa, status..." oninput="AL.busca=this.value;AL.limite={};clearTimeout(window._tAl);window._tAl=setTimeout(()=>{renderAlertas();const b=$('al-busca');b.focus();b.setSelectionRange(b.value.length,b.value.length)},250)"></div>
+                ${sel(AL.tipo, 'Contratos e convênios', [['contratos', 'Somente contratos'], ['convenios', 'Somente convênios']], 'AL.tipo=this.value;AL.limite={};renderAlertas()')}
+                ${sel(AL.dre, 'Todas as DREs', dres.map(d => [d, d]), "AL.dre=this.value;AL.mun='';AL.limite={};renderAlertas()")}
+                ${sel(AL.mun, 'Todos os municípios', muns.map(m => [m, m]), 'AL.mun=this.value;AL.limite={};renderAlertas()')}
+                ${sel(AL.ordem, null, [['gravidade', 'Ordenar: gravidade'], ['valor', 'Ordenar: maior valor'], ['atraso', 'Ordenar: maior atraso'], ['execucao', 'Ordenar: menor execução'], ['municipio', 'Ordenar: município']], 'AL.ordem=this.value;listarAlertas()', 200)}
+                <div class="seg"><button class="${AL.visao === 'cat' ? 'ativo' : ''}" onclick="AL.visao='cat';renderAlertas()" title="Agrupar por categoria"><i class="fa-solid fa-layer-group"></i> Categorias</button><button class="${AL.visao === 'obra' ? 'ativo' : ''}" onclick="AL.visao='obra';renderAlertas()" title="Uma linha por obra"><i class="fa-solid fa-helmet-safety"></i> Por obra</button></div>
+                <button class="btn btn-s btn-sm" onclick="exportarAlertas()" title="Baixar os alertas filtrados"><i class="fa-solid fa-file-csv"></i>CSV</button>
+            </div>
+            ${ativos.length ? `<div class="al-ativos">${ativos.map(([k, r, c]) => `<button class="chip ativo" style="--c:${c}" onclick="AL.${k}='';AL.limite={};renderAlertas()">${esc(r)} <i class="fa-solid fa-xmark"></i></button>`).join('')}<button class="btn btn-s btn-sm" onclick="Object.assign(AL,{nivel:'',cat:'',dre:'',mun:'',busca:'',limite:{}});renderAlertas()"><i class="fa-solid fa-filter-circle-xmark"></i>Limpar filtros</button></div>` : ''}
+        </div>
+        <div id="al-lista" class="pilha"></div>`;
+    listarAlertas();
+}
+function listarAlertas() {
+    const alvo = $('al-lista'); if (!alvo) return;
+    const l = ordenarAl(alertasFiltrados());
+    if (!l.length) { alvo.innerHTML = `<div class="card vazio"><i class="fa-solid fa-circle-check" style="color:#16a34a;opacity:1"></i>${DB.contratos.length + DB.convenios.length ? (AL.nivel || AL.cat || AL.dre || AL.mun || AL.busca ? 'Nenhum alerta com esses filtros.' : 'Nenhum alerta. Tudo em ordem!') : 'Importe ou cadastre obras para ver os alertas.'}</div>`; return; }
+    if (AL.visao === 'obra') {
+        const ob = obrasUnicas(l), lim = AL.limite.obra || 40;
+        alvo.innerHTML = `<div class="card"><div class="al-sec-cab" style="cursor:default"><span class="ico" style="--c:#475569"><i class="fa-solid fa-helmet-safety"></i></span><div><h3>${plural(ob.length, 'obra', 'obras')} com alerta</h3><p>${plural(l.length, 'alerta', 'alertas')} · ${moedaCurta(ob.reduce((s, o) => s + o.x.valor, 0))}</p></div></div>
+            <div class="al-itens">${ob.slice(0, lim).map(itemObraAl).join('')}</div>${maisAl('obra', ob.length, lim)}</div>`;
+        return;
+    }
+    alvo.innerHTML = Object.keys(CAT_AL).map(k => {
+        const g = l.filter(a => a.cat === k); if (!g.length) return '';
+        const C = CAT_AL[k], N = NIVEL[C.nivel], lim = AL.limite[k] || 15, fechada = AL.fechadas.has(k);
+        return `<div class="card al-sec${fechada ? ' fechada' : ''}" style="--c:${C.cor}">
+            <div class="al-sec-cab" onclick="AL.fechadas.has('${k}')?AL.fechadas.delete('${k}'):AL.fechadas.add('${k}');this.parentElement.classList.toggle('fechada')">
+                <span class="ico" style="--c:${C.cor}"><i class="fa-solid ${C.ic}"></i></span>
+                <div style="min-width:0;flex:1"><h3>${C.rot} <span class="al-qtd">${g.length}</span></h3><p>${C.dica} · ${moedaCurta(g.reduce((s, a) => s + a.x.valor, 0))}</p></div>
+                <span class="selo al-nivel" style="--c:${N.cor}"><i class="fa-solid ${N.ic}"></i>${N.rot}</span>
+                <i class="fa-solid fa-chevron-down al-chev"></i>
+            </div>
+            <div class="al-itens">${g.slice(0, lim).map(itemAlerta).join('')}${maisAl(k, g.length, lim)}</div>
+        </div>`;
+    }).join('');
+}
+function exportarAlertas() {
+    const l = ordenarAl(alertasFiltrados());
+    baixarCSV(`GABObras_alertas_${hojeISO()}.csv`, [['Nível', 'Categoria', 'Tipo', 'Código', 'Unidade escolar', 'Município', 'DRE', 'Objeto', 'Status', 'Execução física', 'Valor', 'Previsão', 'Meses de atraso', 'Detalhe'],
+        ...l.map(a => [NIVEL[a.nivel].rot, CAT_AL[a.cat].rot, a.x.T.rot, a.x.cod, a.x.nome, a.x.r.municipio, dreDe(a.x), a.x.r.objeto, a.x.r.status, a.x.fisico === null ? '' : pct(a.x.fisico), a.x.valor ? String(a.x.valor).replace('.', ',') : '', str(a.x.r.previsao).trim() ? fmtPrev(a.x.r.previsao) : '', a.atraso || '', a.desc])]);
 }
 
 // =====================================================================================
@@ -2872,7 +3190,7 @@ let CFG_ABA = LS.get('gob_cfg_aba') || 'geral';
 function abaConfig(a) { CFG_ABA = a; LS.set('gob_cfg_aba', a); renderConfig(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function renderConfig() {
     if (!['geral', 'escolas', 'focais'].includes(CFG_ABA)) CFG_ABA = 'geral';
-    $('cfg-abas').innerHTML = [['geral', 'fa-sliders', 'Geral'], ['escolas', 'fa-school', 'Escolas'], ['focais', 'fa-user-tie', 'Pontos focais das DREs']]
+    $('cfg-abas').innerHTML = [['geral', 'fa-sliders', 'Geral'], ['escolas', 'fa-school', 'Escolas'], ['focais', 'fa-user-gear', 'Técnicos e pontos focais']]
         .map(([k, ic, r]) => `<button class="${CFG_ABA === k ? 'ativo' : ''}" style="${CFG_ABA === k ? '' : 'color:#cbd5e1'}" onclick="abaConfig('${k}')"><i class="fa-solid ${ic}"></i> ${r}</button>`).join('');
     if (CFG_ABA === 'escolas') { $('config-corpo').innerHTML = `<div class="cfg-sub">${htmlCfgEscolas()}</div>`; listarEscolasCfg(); return; }
     if (CFG_ABA === 'focais') { $('config-corpo').innerHTML = `<div class="cfg-sub">${htmlCfgFocais()}</div>`; return; }
@@ -3040,7 +3358,7 @@ const COLS_GESTAO = [
     ['APTA PARA INAUGURAÇÃO (SPAT)', 'aptaSpat', 'aptaSpat', 'texto'], ['APTA PARA INAUGURAÇÃO (SAGR)', 'aptaSagr', 'aptaSagr', 'texto'],
     ['ATO DE INAUGURAÇÃO (GS)', 'atoGs', 'atoGs', 'texto'], ['DATA DA INAUGURAÇÃO (GS)', 'dataInauguracao', 'dataInauguracao', 'data'], ['DATA PREVISTA', '', 'dataPrevista', 'texto']
 ];
-const GE = { tipo: '', busca: '', status: '', municipio: '', objeto: '', dre: '', grupo: '', inaug: '', ordem: 'risco', visao: LS.get('gob_visao_gestao') || 'resumo', limite: 100, montado: false };
+const GE = { tipo: '', busca: '', status: '', municipio: '', objeto: '', dre: '', grupo: '', inaug: '', ordem: 'risco', visao: LS.get('gob_visao_gestao') || (window.innerWidth <= 700 ? 'cards' : 'resumo'), limite: 100, montado: false };
 function valGestao(x, col) {
     const k = x.tipo === 'contratos' ? col[1] : col[2]; if (!k) return '';
     const val = x.r[k];
@@ -3476,7 +3794,7 @@ function recolherMenu(forcar) {
     const on = typeof forcar === 'boolean' ? forcar : !document.documentElement.classList.contains('menu-recolhido');
     document.documentElement.classList.toggle('menu-recolhido', on);
     LS.set('gob_menu', on ? 'recolhido' : 'aberto');
-    const b = $('btn-recolher'); if (b) { b.title = on ? 'Expandir menu' : 'Recolher menu'; b.querySelector('span').textContent = on ? 'Expandir menu' : 'Recolher menu'; }
+    const b = $('btn-recolher'); if (b) { b.title = on ? 'Expandir menu' : 'Recolher menu'; b.setAttribute('aria-label', b.title); }
     setTimeout(() => { window.dispatchEvent(new Event('resize')); if (mapaMT) mapaMT.invalidateSize(); }, 280);
 }
 
@@ -4052,62 +4370,206 @@ function salvarEscola(cod) {
     toast(copiou ? 'Escola atualizada. A base completa de escolas foi copiada para a planilha.' : 'Escola atualizada. Enviando para a planilha...');
 }
 
-// ---------- pontos focais das DREs ----------
+// ---------- pontos focais: técnicos (cadastro) e DREs ----------
 function gruposDre() {
     const g = new Map(), contEsc = {};
     listaEscolas().forEach(e => { const k = norm(e.dre).replace(/^dre /, ''); contEsc[k] = (contEsc[k] || 0) + 1; });
     listaDres().forEach(d => {
         const k = norm(d.dre).replace(/^dre /, ''); if (!k) return;
-        if (!g.has(k)) g.set(k, { k, dre: d.dre, responsavel: d.responsavel, email: d.email, telefone: d.telefone, sedes: [], escolas: contEsc[k] || 0 });
+        if (!g.has(k)) g.set(k, { k, dre: d.dre, responsavel: d.responsavel, email: d.email, telefone: d.telefone, tecnicoId: str(d.tecnicoId), sedes: [], escolas: contEsc[k] || 0 });
         if (str(d.sede).trim()) g.get(k).sedes.push(str(d.sede).replace(/^Sede /i, ''));
     });
     return [...g.values()].sort((a, b) => str(a.dre).localeCompare(str(b.dre), 'pt-BR'));
 }
-function htmlCfgFocais() {
-    const G = gruposDre(), ed = pode.tudo();
-    const sem = G.filter(d => !str(d.responsavel).trim() || !/@/.test(str(d.email))).length;
-    return `<div class="grade g4" style="gap:10px;margin-bottom:14px">
-            ${kpi('#2563eb', 'fa-sitemap', 'DREs', G.length, `${G.reduce((s, d) => s + d.sedes.length, 0)} sede(s) no mapa`)}
-            ${kpi('#7c3aed', 'fa-user-tie', 'Com ponto focal', G.length - sem, sem ? `${sem} incompleta(s)` : 'todas completas')}
-            ${kpi('#16a34a', 'fa-school', 'Escolas atendidas', G.reduce((s, d) => s + d.escolas, 0), 'na base de escolas')}
-            ${kpi('#64748b', 'fa-database', 'Origem', DB.dres.length ? 'Planilha' : 'Embutida', DB.dres.length ? 'aba DREs' : 'vai para a planilha na 1ª edição')}
-        </div>
-        <div class="grade g3 focais">${G.map((d, i) => {
-            const ok = str(d.responsavel).trim() && /@/.test(str(d.email));
-            return `<div class="card card-pad focal-card ${ed ? 'clic' : ''}" style="--i:${i}" ${ed ? `onclick="abrirFormDre(${jsArg(d.k)})"` : ''}>
-                <div class="card-tit" style="margin-bottom:8px"><span class="ico" style="--c:${ok ? '#2563eb' : '#d97706'}"><i class="fa-solid fa-sitemap"></i></span><div style="min-width:0"><h3>${esc(d.dre)}</h3><p>${d.escolas} escola(s)${d.sedes.length ? ' · sede: ' + esc(d.sedes.join(', ')) : ''}</p></div>
-                    ${ed ? `<button class="ic-mini dir" title="Editar" onclick="event.stopPropagation();abrirFormDre(${jsArg(d.k)})"><i class="fa-solid fa-pen"></i></button>` : ''}</div>
-                <div class="focal-lin"><i class="fa-solid fa-user-tie"></i>${str(d.responsavel).trim() ? `<b>${esc(d.responsavel)}</b>` : '<span class="mut">sem ponto focal</span>'}</div>
-                <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i>${telLink(d.telefone)}</div>
-                <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-envelope"></i>${mailLink(d.email)}</div></div>`;
-        }).join('')}</div>
-        <div class="dica" style="margin-top:10px"><i class="fa-solid fa-circle-info"></i> O ponto focal da DRE aparece na ficha da obra e no mapa sempre que a escola não tiver um ponto focal próprio.</div>`;
+const semFocal = n => !str(n).trim() || /aguardando/i.test(str(n));
+const backendSemTecnicos = () => versaoBackend && versaoBackend < '2.3';
+/** Técnicos: os da aba Técnicos ou, enquanto ela estiver vazia, os responsáveis que já constam nas DREs. */
+function listaTecnicos() {
+    if (DB.tecnicos.length) return DB.tecnicos.slice().sort((a, b) => str(a.nome).localeCompare(str(b.nome), 'pt-BR'));
+    const m = new Map();
+    listaDres().forEach(d => {
+        const n = str(d.responsavel).trim(); if (semFocal(n)) return;
+        const k = norm(n); if (!m.has(k)) m.set(k, { id: 'v:' + k, nome: n, cargo: '', setor: '', telefone: d.telefone, whatsapp: '', email: d.email, observacoes: '', ativo: 'SIM', virtual: true });
+    });
+    return [...m.values()].sort((a, b) => str(a.nome).localeCompare(str(b.nome), 'pt-BR'));
 }
-function abrirFormDre(k) {
-    if (!pode.tudo()) return toast('Seu perfil não permite alterar.', 'alerta');
-    const d = gruposDre().find(x => x.k === k); if (!d) return;
-    abrirModal({ titulo: esc(d.dre), sub: 'Ponto focal da regional', ic: 'fa-sitemap', cor: '#2563eb', corpo: `<div class="form-grade">
-            ${campo('fd-resp', 'Nome do responsável (ponto focal)', { valor: d.responsavel || '', inteiro: true, attrs: 'maxlength="160"' })}
-            ${campo('fd-tel', 'Telefone', { tipo: 'tel', valor: d.telefone || '', attrs: 'inputmode="tel" placeholder="(65) 9 9999-9999" maxlength="60"' })}
-            ${campo('fd-email', 'E-mail', { tipo: 'email', valor: d.email || '', attrs: 'placeholder="nome@edu.mt.gov.br" maxlength="160"' })}
-        </div>${d.sedes.length > 1 ? `<div class="dica" style="margin-top:8px">Vale para as ${d.sedes.length} sedes: ${esc(d.sedes.join(', '))}.</div>` : ''}<div id="fd-erro"></div>`,
-        pe: `<button class="btn btn-s" onclick="fecharModal()">Cancelar</button><button class="btn btn-p" onclick="salvarDre(${jsArg(k)})"><i class="fa-solid fa-check"></i>Salvar</button>` });
+const tecAtivo = t => norm(t.ativo || 'SIM') !== 'nao';
+function tecnicoPorId(id) {
+    const T = listaTecnicos();
+    return T.find(t => t.id === id) || (str(id).startsWith('v:') ? T.find(t => norm(t.nome) === id.slice(2)) : null) || null;
 }
-function salvarDre(k) {
-    const d = gruposDre().find(x => x.k === k); if (!d) return;
-    const novo = { responsavel: v('fd-resp').toUpperCase(), telefone: fmtTel(v('fd-tel')), email: v('fd-email').toLowerCase() };
-    const erros = [];
-    if (!telOk(novo.telefone)) erros.push('Telefone com poucos dígitos (use DDD + número).');
-    if (!emailOk(novo.email)) erros.push('E-mail inválido.');
-    if (erros.length) { $('fd-erro').innerHTML = `<div class="aviso erro" style="margin-top:10px">${erros.map(esc).join('<br>')}</div>`; return; }
-    const ROT = { responsavel: 'ponto focal', telefone: 'telefone', email: 'e-mail' };
-    const mud = Object.keys(novo).filter(c => str(novo[c]) !== str(d[c] || '').trim());
-    if (!mud.length) { fecharModal(); return toast('Nada foi alterado.'); }
+function tecnicoDaDre(g) {
+    if (semFocal(g.responsavel) && !g.tecnicoId) return null;
+    const T = listaTecnicos();
+    return (g.tecnicoId && T.find(t => t.id === g.tecnicoId)) || T.find(t => norm(t.nome) === norm(g.responsavel)) || null;
+}
+const dresDoTecnico = t => gruposDre().filter(g => { const x = tecnicoDaDre(g); return x && x.id === t.id; });
+const waLink = w => { const d = str(w).replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, ''); return d.length >= 10 ? `<a href="https://wa.me/55${d}" target="_blank" rel="noopener" style="color:#16a34a"><i class="fa-brands fa-whatsapp"></i> ${esc(fmtTel(w))}</a>` : ''; };
+
+/** 1ª gravação: copia DREs e técnicos (derivados das DREs) para a planilha e liga cada DRE ao seu técnico. */
+function prepararTecnicos() {
     garantirDresNaPlanilha();
-    const regs = DB.dres.filter(r => norm(r.dre).replace(/^dre /, '') === k).map(r => { const o = { id: r.id, atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario }; mud.forEach(c => o[c] = novo[c]); return o; });
-    gravarMuitos('dres', regs);
-    registrarHistorico('dre', d.dre, `${d.dre}: ${mud.map(c => `${ROT[c]} "${str(d[c] || '').trim() || '—'}" → "${novo[c] || '—'}"`).join('; ')}.`, 'sistema');
-    fecharModal(); renderConfig(); toast('Ponto focal atualizado. Enviando para a planilha...');
+    if (DB.tecnicos.length) return;
+    const base = Date.now().toString(36);
+    const regs = listaTecnicos().map((t, i) => ({ id: 't' + base + i.toString(36), nome: t.nome, cargo: '', setor: '', telefone: t.telefone, whatsapp: '', email: t.email, observacoes: '', ativo: 'SIM', atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario }));
+    if (!regs.length) return;
+    gravarMuitos('tecnicos', regs);
+    const porNome = new Map(regs.map(r => [norm(r.nome), r.id]));
+    const upd = DB.dres.filter(r => porNome.has(norm(r.responsavel)) && !str(r.tecnicoId)).map(r => ({ id: r.id, tecnicoId: porNome.get(norm(r.responsavel)) }));
+    if (upd.length) gravarMuitos('dres', upd);
+}
+function atribuirDre(k, t) {
+    const regs = DB.dres.filter(r => norm(r.dre).replace(/^dre /, '') === k).map(r => ({ id: r.id, tecnicoId: t ? t.id : '', responsavel: t ? t.nome : '', telefone: t ? t.telefone || '' : '', email: t ? t.email || '' : '', atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario }));
+    if (regs.length) gravarMuitos('dres', regs);
+}
+function avisoBackendTec() {
+    return pode.tudo() && backendSemTecnicos() ? `<div class="aviso alerta" style="margin-bottom:12px"><i class="fa-solid fa-triangle-exclamation"></i> O Apps Script está na versão ${esc(versaoBackend)}. Para cadastrar e trocar técnicos, substitua o <b>Code.gs</b> pela versão 2.3 e publique uma nova versão da implantação (Implantar → Gerenciar implantações → Editar → Nova versão).</div>` : '';
+}
+
+function htmlCfgFocais() {
+    const G = gruposDre(), T = listaTecnicos(), ed = pode.tudo();
+    const porDre = new Map(G.map(g => [g.k, tecnicoDaDre(g)]));
+    const semTec = G.filter(g => !porDre.get(g.k)).length;
+    const dresDe = t => G.filter(g => { const x = porDre.get(g.k); return x && x.id === t.id; });
+    return `${avisoBackendTec()}
+        <div class="grade g4" style="gap:10px;margin-bottom:14px">
+            ${kpi('#7c3aed', 'fa-user-gear', 'Técnicos', T.filter(tecAtivo).length, `${T.length - T.filter(tecAtivo).length ? (T.length - T.filter(tecAtivo).length) + ' inativo(s) · ' : ''}pontos focais cadastrados`)}
+            ${kpi('#2563eb', 'fa-sitemap', 'DREs com técnico', G.length - semTec, `de ${G.length} regionais`)}
+            ${kpi(semTec ? '#d97706' : '#16a34a', semTec ? 'fa-user-clock' : 'fa-circle-check', 'DREs sem técnico', semTec, semTec ? 'aguardando atribuição' : 'todas atendidas')}
+            ${kpi('#16a34a', 'fa-school', 'Escolas atendidas', G.reduce((s, g) => s + (porDre.get(g.k) ? g.escolas : 0), 0), `de ${G.reduce((s, g) => s + g.escolas, 0)} na base`)}
+        </div>
+        <div class="card card-pad" style="margin-bottom:14px">
+            <div class="card-tit"><span class="ico" style="--c:#7c3aed"><i class="fa-solid fa-user-gear"></i></span><div><h3>Técnicos pontos focais</h3><p>Dados de contato de cada técnico · clique para editar</p></div>
+                ${ed ? `<button class="btn btn-p btn-sm dir" onclick="abrirFormTecnico('')"><i class="fa-solid fa-user-plus"></i>Novo técnico</button>` : ''}</div>
+            ${T.length ? `<div class="grade g3 focais">${T.map((t, i) => {
+                const ds = dresDe(t), at = tecAtivo(t);
+                return `<div class="tec-card ${ed ? 'clic' : ''} ${at ? '' : 'inativo'}" style="--i:${i}" ${ed ? `onclick="abrirFormTecnico(${jsArg(t.id)})"` : ''}>
+                    <div class="tec-topo"><span class="tec-av" style="--c:${at ? '#7c3aed' : '#94a3b8'}">${esc(iniciais(t.nome))}</span>
+                        <div style="min-width:0;flex:1"><b class="tec-nome">${esc(t.nome)}</b><div class="peq mut">${esc([t.cargo, t.setor].filter(x => str(x).trim()).join(' · ') || 'Técnico ponto focal')}</div></div>
+                        ${at ? '' : '<span class="selo" style="--c:#94a3b8">inativo</span>'}${ed ? `<button class="ic-mini" title="Editar" onclick="event.stopPropagation();abrirFormTecnico(${jsArg(t.id)})"><i class="fa-solid fa-pen"></i></button>` : ''}</div>
+                    <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-phone"></i>${telLink(t.telefone)}</div>
+                    ${waLink(t.whatsapp) ? `<div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-brands fa-whatsapp"></i>${waLink(t.whatsapp)}</div>` : ''}
+                    <div class="focal-lin" onclick="event.stopPropagation()"><i class="fa-solid fa-envelope"></i>${mailLink(t.email)}</div>
+                    <div class="tec-dres">${ds.length ? ds.map(g => `<span class="selo" style="--c:#2563eb"><i class="fa-solid fa-sitemap"></i>${esc(str(g.dre).replace(/^DRE /, ''))}</span>`).join('') : '<span class="peq mut">nenhuma DRE atribuída</span>'}</div>
+                </div>`;
+            }).join('')}</div>` : '<div class="vazio"><i class="fa-solid fa-user-gear"></i>Nenhum técnico cadastrado.</div>'}
+        </div>
+        <div class="card card-pad">
+            <div class="card-tit"><span class="ico" style="--c:#2563eb"><i class="fa-solid fa-sitemap"></i></span><div><h3>DREs e seus pontos focais</h3><p>Troque o técnico responsável por cada regional</p></div></div>
+            <div class="tab-wrap"><table class="tab tab-escolas"><thead><tr><th>DRE</th><th>Técnico ponto focal</th><th>Contato</th><th></th></tr></thead><tbody>
+            ${G.map(g => { const t = porDre.get(g.k);
+                return `<tr class="${ed ? 'clic' : ''}" ${ed ? `onclick="abrirTrocaDre(${jsArg(g.k)})"` : ''}>
+                    <td><b>${esc(g.dre)}</b><div class="peq mut">${g.escolas} escola(s)${g.sedes.length ? ' · sede: ' + esc(g.sedes.join(', ')) : ''}</div></td>
+                    <td>${t ? `<div style="display:flex;align-items:center;gap:8px"><span class="tec-av peq-av" style="--c:${tecAtivo(t) ? '#7c3aed' : '#94a3b8'}">${esc(iniciais(t.nome))}</span><div><b>${esc(t.nome)}</b>${str(t.cargo).trim() ? `<div class="peq mut">${esc(t.cargo)}</div>` : ''}</div></div>` : '<span class="selo" style="--c:#d97706"><i class="fa-solid fa-user-clock"></i>sem técnico</span>'}</td>
+                    <td class="peq" onclick="event.stopPropagation()">${t ? `${telLink(t.telefone)}<br>${mailLink(t.email)}` : '—'}</td>
+                    <td class="nw">${ed ? `<button class="btn btn-s btn-sm" onclick="event.stopPropagation();abrirTrocaDre(${jsArg(g.k)})"><i class="fa-solid fa-arrows-rotate"></i>Trocar</button>` : ''}</td></tr>`; }).join('')}
+            </tbody></table></div>
+            <div class="dica" style="margin-top:10px"><i class="fa-solid fa-circle-info"></i> O ponto focal da DRE aparece na ficha da obra, no mapa e no cadastro das escolas sempre que a escola não tiver um ponto focal próprio. Ao editar os dados de um técnico, todas as DREs dele são atualizadas.</div>
+        </div>`;
+}
+
+function abrirFormTecnico(id) {
+    if (!pode.tudo()) return toast('Seu perfil não permite alterar.', 'alerta');
+    const t = id ? tecnicoPorId(id) : null;
+    if (id && !t) return toast('Técnico não encontrado.', 'erro');
+    const x = t || { nome: '', cargo: '', setor: '', telefone: '', whatsapp: '', email: '', observacoes: '', ativo: 'SIM' };
+    const G = gruposDre();
+    const chips = G.map(g => {
+        const atual = tecnicoDaDre(g), meu = t && atual && atual.id === t.id;
+        return `<label class="dre-chip"><input type="checkbox" value="${esc(g.k)}" ${meu ? 'checked' : ''}><span><b>${esc(str(g.dre).replace(/^DRE /, ''))}</b><small>${atual && !meu ? 'atual: ' + esc(atual.nome) : atual ? 'atribuída' : 'sem técnico'}</small></span></label>`;
+    }).join('');
+    abrirModal({ titulo: t ? esc(t.nome) : 'Novo técnico ponto focal', sub: t ? 'Dados do técnico e DREs que atende' : 'Cadastre o técnico e escolha as DREs', ic: 'fa-user-gear', cor: '#7c3aed', tam: 'grd', corpo: `
+        <div class="form-grade">
+            ${campo('ft-nome', 'Nome completo', { valor: x.nome, req: true, inteiro: true, attrs: 'maxlength="160"' })}
+            ${campo('ft-cargo', 'Cargo / função', { valor: x.cargo, attrs: 'placeholder="Ex.: Técnico de obras, Engenheiro civil" maxlength="120"' })}
+            ${campo('ft-setor', 'Setor / lotação', { valor: x.setor, attrs: 'placeholder="Ex.: SUOB, SAGR, DRE Cáceres" maxlength="120"' })}
+            ${campo('ft-tel', 'Telefone', { tipo: 'tel', valor: x.telefone, attrs: 'inputmode="tel" placeholder="(65) 9 9999-9999" maxlength="60"' })}
+            ${campo('ft-wa', 'WhatsApp', { tipo: 'tel', valor: x.whatsapp, attrs: 'inputmode="tel" placeholder="se for diferente do telefone" maxlength="60"', dica: '<a href="#" onclick="event.preventDefault();$(\'ft-wa\').value=$(\'ft-tel\').value">usar o mesmo do telefone</a>' })}
+            ${campo('ft-email', 'E-mail', { tipo: 'email', valor: x.email, inteiro: true, attrs: 'placeholder="nome@edu.mt.gov.br" maxlength="160"' })}
+            <label class="inteiro"><span class="rot">Observações</span><textarea id="ft-obs" class="campo" rows="2" style="height:auto;padding:8px 11px" maxlength="500" placeholder="Horário de atendimento, substituto, etc.">${esc(x.observacoes || '')}</textarea></label>
+            <label class="inteiro" style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="ft-ativo" ${tecAtivo(x) ? 'checked' : ''}> <span>Técnico ativo</span></label>
+        </div>
+        <div class="rot" style="margin:16px 0 6px;font-weight:700">DREs que este técnico atende</div>
+        <div class="dre-chips">${chips}</div>
+        <div class="dica" style="margin-top:6px">Marcar uma DRE que já tem outro técnico faz a troca.</div>
+        <div id="ft-erro"></div>`,
+        pe: `${t ? `<button class="btn btn-d" style="margin-right:auto" onclick="excluirTecnico(${jsArg(t.id)})"><i class="fa-solid fa-trash"></i>Excluir</button>` : ''}<button class="btn btn-s" onclick="fecharModal()">Cancelar</button><button class="btn btn-p" onclick="salvarTecnico(${jsArg(id || '')})"><i class="fa-solid fa-check"></i>Salvar</button>` });
+}
+function salvarTecnico(id) {
+    const erroEl = $('ft-erro'), falha = m => { erroEl.innerHTML = `<div class="aviso erro" style="margin-top:10px">${m}</div>`; };
+    if (backendSemTecnicos()) return falha('Atualize o <b>Code.gs</b> para a versão 2.3 e publique uma nova versão antes de cadastrar técnicos.');
+    const novo = { nome: v('ft-nome').toUpperCase(), cargo: v('ft-cargo'), setor: v('ft-setor'), telefone: fmtTel(v('ft-tel')), whatsapp: fmtTel(v('ft-wa')), email: v('ft-email').toLowerCase(), observacoes: v('ft-obs'), ativo: $('ft-ativo').checked ? 'SIM' : 'NÃO' };
+    const erros = [];
+    if (!novo.nome) erros.push('Informe o nome do técnico.');
+    if (!telOk(novo.telefone)) erros.push('Telefone com poucos dígitos (use DDD + número).');
+    if (!telOk(novo.whatsapp)) erros.push('WhatsApp com poucos dígitos.');
+    if (!emailOk(novo.email)) erros.push('E-mail inválido.');
+    const antes = id ? tecnicoPorId(id) : null;
+    if (listaTecnicos().some(t => norm(t.nome) === norm(novo.nome) && (!antes || t.id !== antes.id))) erros.push('Já existe um técnico com esse nome.');
+    if (erros.length) return falha(erros.map(esc).join('<br>'));
+    const marcadas = new Set([...document.querySelectorAll('.dre-chips input:checked')].map(i => i.value));
+    prepararTecnicos();
+    const reg = antes ? tecnicoPorId(antes.id) : null;   // após preparar, ids virtuais (v:nome) apontam para os gravados
+    const rec = { id: reg ? reg.id : novoId('t'), ...novo, atualizadoEm: agoraISO(), atualizadoPor: sessao.usuario };
+    gravar('tecnicos', rec);
+    const mudDre = [];
+    gruposDre().forEach(g => {
+        const atual = tecnicoDaDre(g), meu = atual && atual.id === rec.id;
+        if (marcadas.has(g.k)) { atribuirDre(g.k, rec); if (!meu) mudDre.push(`${g.dre}${atual ? ` (antes: ${atual.nome})` : ''}`); }
+        else if (meu) { atribuirDre(g.k, null); mudDre.push(`${g.dre} retirada`); }
+    });
+    const ROT = { nome: 'nome', cargo: 'cargo', setor: 'setor', telefone: 'telefone', whatsapp: 'WhatsApp', email: 'e-mail', observacoes: 'observações', ativo: 'ativo' };
+    const mud = antes ? Object.keys(novo).filter(k => str(novo[k]) !== str(antes[k] || (k === 'ativo' ? 'SIM' : '')).trim()).map(k => `${ROT[k]} "${str(antes[k] || '').trim() || '—'}" → "${novo[k] || '—'}"`) : ['cadastrado'];
+    registrarHistorico('tecnico', rec.id, `Técnico ${novo.nome}: ${[...mud, ...mudDre.map(d => 'DRE ' + d.replace(/^DRE /, ''))].join('; ') || 'sem alterações'}.`, 'sistema');
+    fecharModal(); renderConfig(); toast(antes ? 'Técnico atualizado. Enviando para a planilha...' : 'Técnico cadastrado. Enviando para a planilha...');
+}
+function excluirTecnico(id) {
+    if (backendSemTecnicos()) return toast('Atualize o Code.gs para a versão 2.3 antes.', 'alerta');
+    const t = tecnicoPorId(id); if (!t) return;
+    const ds = dresDoTecnico(t);
+    if (!confirmar(`Excluir o técnico ${t.nome}?${ds.length ? `\n\n${ds.length} DRE(s) ficarão sem ponto focal: ${ds.map(g => g.dre).join(', ')}.` : ''}`)) return;
+    prepararTecnicos();
+    const reg = tecnicoPorId(id) || DB.tecnicos.find(r => norm(r.nome) === norm(t.nome));
+    ds.forEach(g => atribuirDre(g.k, null));
+    if (reg) gravar('tecnicos', { id: reg.id }, true);
+    registrarHistorico('tecnico', reg ? reg.id : id, `Técnico ${t.nome} excluído${ds.length ? '; DREs sem ponto focal: ' + ds.map(g => g.dre).join(', ') : ''}.`, 'sistema');
+    fecharModal(); renderConfig(); toast('Técnico excluído.');
+}
+function abrirTrocaDre(k) {
+    if (!pode.tudo()) return toast('Seu perfil não permite alterar.', 'alerta');
+    const g = gruposDre().find(x => x.k === k); if (!g) return;
+    const atual = tecnicoDaDre(g), T = listaTecnicos().filter(t => tecAtivo(t) || (atual && t.id === atual.id));
+    abrirModal({ titulo: esc(g.dre), sub: `Técnico ponto focal · ${g.escolas} escola(s)`, ic: 'fa-arrows-rotate', cor: '#2563eb', corpo: `
+        <label><span class="rot">Técnico responsável</span>
+            <select id="fx-tec" class="campo" onchange="previaTroca()">
+                <option value="">— sem ponto focal —</option>
+                ${T.map(t => `<option value="${esc(t.id)}" ${atual && t.id === atual.id ? 'selected' : ''}>${esc(t.nome)}${str(t.cargo).trim() ? ' · ' + esc(t.cargo) : ''}</option>`).join('')}
+                <option value="__novo">✚ Cadastrar novo técnico…</option>
+            </select></label>
+        <div id="fx-previa" style="margin-top:12px"></div>
+        ${g.sedes.length > 1 ? `<div class="dica" style="margin-top:8px">Vale para as ${g.sedes.length} sedes: ${esc(g.sedes.join(', '))}.</div>` : ''}<div id="fx-erro"></div>`,
+        pe: `<button class="btn btn-s" onclick="fecharModal()">Cancelar</button><button class="btn btn-p" onclick="salvarTrocaDre(${jsArg(k)})"><i class="fa-solid fa-check"></i>Salvar</button>` });
+    previaTroca();
+}
+function previaTroca() {
+    const id = v('fx-tec'), el = $('fx-previa');
+    if (id === '__novo') { fecharModal(); return abrirFormTecnico(''); }
+    const t = id ? tecnicoPorId(id) : null;
+    el.innerHTML = t ? `<div class="tec-card" style="cursor:default"><div class="tec-topo"><span class="tec-av" style="--c:#7c3aed">${esc(iniciais(t.nome))}</span><div><b class="tec-nome">${esc(t.nome)}</b><div class="peq mut">${esc([t.cargo, t.setor].filter(x => str(x).trim()).join(' · ') || 'Técnico ponto focal')}</div></div></div>
+        <div class="focal-lin"><i class="fa-solid fa-phone"></i>${telLink(t.telefone)}</div>${waLink(t.whatsapp) ? `<div class="focal-lin"><i class="fa-brands fa-whatsapp"></i>${waLink(t.whatsapp)}</div>` : ''}<div class="focal-lin"><i class="fa-solid fa-envelope"></i>${mailLink(t.email)}</div></div>`
+        : '<div class="aviso alerta"><i class="fa-solid fa-user-clock"></i> A DRE ficará sem ponto focal ("aguardando atribuição").</div>';
+}
+function salvarTrocaDre(k) {
+    if (backendSemTecnicos()) { $('fx-erro').innerHTML = '<div class="aviso erro" style="margin-top:10px">Atualize o <b>Code.gs</b> para a versão 2.3 e publique uma nova versão antes de trocar técnicos.</div>'; return; }
+    const g = gruposDre().find(x => x.k === k); if (!g) return;
+    const antes = tecnicoDaDre(g), id = v('fx-tec');
+    if ((antes ? antes.id : '') === id) { fecharModal(); return toast('Nada foi alterado.'); }
+    const nomeNovo = id ? (tecnicoPorId(id) || {}).nome : '';
+    prepararTecnicos();
+    const t = id ? (tecnicoPorId(id) || DB.tecnicos.find(r => norm(r.nome) === norm(nomeNovo))) : null;
+    atribuirDre(k, t);
+    registrarHistorico('dre', g.dre, `${g.dre}: técnico ponto focal "${antes ? antes.nome : '—'}" → "${t ? t.nome : '—'}".`, 'sistema');
+    fecharModal(); renderConfig(); toast('Ponto focal da DRE atualizado. Enviando para a planilha...');
 }
 </script>
 </body>
