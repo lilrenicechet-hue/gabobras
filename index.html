@@ -850,6 +850,79 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
     [id$="-grupos"].barra-filtros > *, [id$="-inaugs"].barra-filtros > * { flex: none; }
     .grade.g4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+
+/* ===== Capa dos relatórios (PDF) ===== */
+.rel-folha, .rel-capa, .rel-capa * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.rel-capa { position: relative; display: flex; flex-direction: column; min-height: 1060px; margin: -34px -34px 34px; padding: 0; background: #fff; overflow: hidden; border-bottom: 2px dashed #e2e8f0; font-size: 11px; color: #0f172a; }
+.rel-capa::before { content: ''; position: absolute; right: -120px; bottom: 150px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(249,115,22,.10), transparent 68%); pointer-events: none; }
+.rel-capa::after { content: ''; position: absolute; left: -90px; top: 330px; width: 300px; height: 300px; border-radius: 50%; border: 36px solid rgba(15,23,42,.035); pointer-events: none; }
+.capa-topo { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 34px 40px 30px; background: #0f172a; background-image: radial-gradient(520px 200px at 100% 0%, rgba(249,115,22,.35), transparent 70%), linear-gradient(135deg, #0f172a, #1e293b); color: #fff; }
+.capa-marca { display: flex; align-items: center; gap: 16px; }
+.capa-marca svg { border-radius: 14px; box-shadow: 0 8px 22px -8px rgba(249,115,22,.7); }
+.capa-nome { font-size: 38px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+.capa-nome span { color: #f97316; }
+.capa-sist { font-size: 12px; color: #cbd5e1; margin-top: 5px; font-weight: 600; letter-spacing: .02em; }
+.capa-orgao { text-align: right; display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #cbd5e1; }
+.capa-orgao b { color: #fff; font-size: 12.5px; letter-spacing: .08em; }
+.capa-faixa { height: 10px; background: repeating-linear-gradient(-45deg, #f59e0b 0 14px, #111827 14px 28px); }
+.capa-meio { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 30px 56px; position: relative; z-index: 1; }
+.capa-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.capa-titulo { font-size: 38px; line-height: 1.12; font-weight: 900; letter-spacing: -.025em; margin: 18px 0 8px; color: #0f172a; }
+.capa-sub { font-size: 14px; color: #475569; line-height: 1.5; max-width: 620px; }
+.capa-linha { width: 90px; height: 5px; border-radius: 3px; background: linear-gradient(90deg, #f97316, #fdba74); margin: 22px 0 14px; }
+.capa-data { font-size: 12.5px; color: #475569; font-weight: 600; }
+.capa-data i { color: #f97316; margin-right: 4px; }
+.capa-kpis { margin-top: 28px; border-collapse: separate; border-spacing: 10px 0; margin-left: -10px; }
+.capa-kpis td { min-width: 120px; padding: 13px 16px; border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc; vertical-align: top; }
+.capa-kpis td i { font-size: 15px; display: block; margin-bottom: 6px; }
+.capa-kpis td b { display: block; font-size: 22px; font-weight: 900; letter-spacing: -.02em; }
+.capa-kpis td small { display: block; font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; margin-top: 2px; }
+.capa-base { display: flex; gap: 22px; align-items: stretch; padding: 0 40px 22px; position: relative; z-index: 1; }
+.capa-filtros { flex: 1; border: 1px solid #e2e8f0; border-radius: 14px; padding: 14px 16px; background: #fff; }
+.capa-bloco-t { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #0f172a; margin-bottom: 8px; display: flex; align-items: center; gap: 7px; }
+.capa-bloco-t i { color: #f97316; }
+.capa-bloco-t span { margin-left: auto; font-size: 9.5px; font-weight: 700; color: #64748b; letter-spacing: .02em; text-transform: none; background: #f1f5f9; padding: 2px 8px; border-radius: 99px; }
+.capa-fl { display: grid; grid-template-columns: minmax(0,1fr); }
+.capa-fl > div { display: grid; grid-template-columns: 18px 104px minmax(0,1fr); align-items: start; gap: 4px; padding: 4.5px 2px; border-bottom: 1px dashed #e2e8f0; font-size: 10.5px; }
+.capa-fl > div:last-child { border-bottom: 0; }
+.capa-fl i { color: #94a3b8; text-align: center; padding-top: 1px; }
+.capa-fl .r { color: #64748b; font-weight: 600; }
+.capa-fl .v { font-weight: 700; color: #334155; }
+.capa-fl .at i, .capa-fl .at .v { color: #c2410c; }
+.capa-fl .at .v { font-weight: 800; }
+.capa-selo { width: 230px; flex-shrink: 0; border-radius: 14px; padding: 16px 14px 14px; background: linear-gradient(180deg, #fff7ed, #fff); border: 1px solid #fed7aa; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.capa-selo .selo-svg { filter: drop-shadow(0 6px 10px rgba(154,52,18,.25)); }
+.capa-cod-t { margin-top: 8px; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #9a3412; }
+.capa-cod { white-space: nowrap; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 800; letter-spacing: .04em; color: #0f172a; margin-top: 3px; padding: 4px 8px; border: 1px dashed #fdba74; border-radius: 6px; background: #fff; }
+.capa-emit { font-size: 9.5px; color: #64748b; margin-top: 8px; line-height: 1.5; }
+.capa-rodape { padding: 12px 40px; background: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 9.5px; color: #64748b; line-height: 1.5; position: relative; z-index: 1; }
+.capa-rodape i { color: #ea580c; margin-right: 4px; }
+.rel-capa.paisagem { min-height: 720px; }
+.rel-capa.paisagem .capa-topo { padding: 24px 40px 22px; }
+.rel-capa.paisagem .capa-meio { padding: 18px 48px; }
+.rel-capa.paisagem .capa-titulo { font-size: 32px; margin: 12px 0 6px; }
+.rel-capa.paisagem .capa-kpis { margin-top: 16px; }
+.rel-capa.paisagem .capa-linha { margin: 14px 0 10px; }
+.rel-capa.paisagem .capa-fl { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 18px; }
+.rel-capa.paisagem .capa-fl > div { padding: 3.5px 2px; border-bottom: 1px dashed #e2e8f0 !important; }
+.rel-capa.paisagem .capa-topo { padding: 18px 36px 16px; }
+.rel-capa.paisagem .capa-nome { font-size: 32px; }
+.rel-capa.paisagem .capa-meio { padding: 14px 44px 12px; }
+.rel-capa.paisagem .capa-kpis td { padding: 9px 14px; }
+.rel-capa.paisagem .capa-kpis td b { font-size: 19px; }
+.rel-capa.paisagem .capa-base { padding: 0 36px 14px; }
+.rel-capa.paisagem .capa-selo { width: 250px; padding: 10px; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0 10px; }
+.rel-capa.paisagem .selo-svg { width: 112px; height: 112px; }
+.rel-capa.paisagem .capa-rodape { padding: 8px 36px; }
+.rel-capa.paisagem::after { display: none; }
+@media print {
+    .rel-capa { margin: 0; min-height: 0; height: 271mm; border: 0; page-break-after: always; break-after: page; }
+    .rel-capa.paisagem { height: 184mm; min-height: 0; }
+}
+.vf-ok, .vf-nao { display: flex; gap: 12px; padding: 14px; border-radius: 12px; }
+.vf-ok { background: #f0fdf4; border: 1px solid #bbf7d0; } .vf-ok .vf-ic { color: #16a34a; }
+.vf-nao { background: #fef2f2; border: 1px solid #fecaca; } .vf-nao .vf-ic { color: #dc2626; }
+.vf-ic { font-size: 26px; } .vf-ok p, .vf-nao p { margin: 4px 0 0; font-size: 12.5px; }
 </style>
 </head>
 <body>
@@ -1030,6 +1103,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
             <div class="barra-filtros">
                 <button class="btn btn-v" onclick="baixarExcelRelatorio()"><i class="fa-solid fa-file-excel"></i>Excel</button>
                 <button class="btn btn-v" onclick="baixarWordRelatorio()"><i class="fa-solid fa-file-word"></i>Word</button>
+                <button class="btn btn-v" onclick="abrirVerificacao()" title="Conferir o código de verificação de um PDF"><i class="fa-solid fa-shield-halved"></i>Verificar</button>
                 <button class="btn btn-l" onclick="imprimirRelatorio()"><i class="fa-solid fa-print"></i>Imprimir / PDF</button>
             </div>
         </div></div>
@@ -1077,7 +1151,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.8.0';
+const VERSAO_APP = '2.9.0';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -2879,8 +2953,8 @@ function relCabecalho(titulo, filtrosTxt) {
         <td class="dir"><b>Governo de Mato Grosso</b><br>Secretaria de Estado de Educação<br>Emitido em ${new Date().toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })} por ${esc(sessao.usuario)}</td></tr></table>
         <div class="rel-faixa"></div><div class="rel-h1">${esc(titulo)}</div><div class="rel-filtros">${filtrosTxt}</div>`;
 }
-function relAssinatura(nome, cargo, local) {
-    return `<table class="rel-assin2" cellspacing="0"><tr><td class="esq">Documento gerado pelo GABObras a partir da base de dados oficial.<br>${esc(local || 'Cuiabá-MT')}, ${fmtDataExtenso(new Date())}.</td>
+function relAssinatura(nome, cargo, local, codigo) {
+    return `<table class="rel-assin2" cellspacing="0"><tr><td class="esq">Documento gerado pelo GABObras a partir da base de dados oficial.<br>${esc(local || 'Cuiabá-MT')}, ${fmtDataExtenso(new Date())}.${codigo ? `<br><i class="fa-solid fa-shield-halved" style="color:#ea580c"></i> Código de verificação: <b style="font-family:monospace;color:#0f172a">${esc(codigo)}</b>` : ''}</td>
         ${nome ? `<td class="ass"><div class="ln">${esc(nome)}</div>${cargo ? `<div class="cg">${esc(cargo)}</div>` : ''}</td>` : ''}</tr></table>`;
 }
 function relKpis(itens) {   // [[rótulo, valor, detalhe, cor, ícone]] em tabela (funciona no Word)
@@ -2947,11 +3021,33 @@ function relDestaques(L) {
     if (top.length) d.push(['fa-location-dot', '#ea580c', `As obras estão em <b>${top.length}</b> municípios; <b>${esc(top[0][0])}</b> concentra o maior investimento (${moeda(top[0][1])}).`]);
     return relTit('fa-lightbulb', 'Leitura rápida') + `<table class="rel-dest2" cellspacing="0">${d.map(([ic, c, t]) => `<tr><td class="i"><i class="fa-solid ${ic}" style="color:${c}"></i></td><td>${t}</td></tr>`).join('')}</table>`;
 }
-function montarRelatorio() {
+function filtrosCapaRel() {
+    const S = RL.secoes, sec = [S.resumo && 'resumo', S.destaques && 'destaques', S.graficos && 'gráficos', S.lista && 'lista de obras', S.obs && 'observações', S.atencao && 'pontos de atenção'].filter(Boolean);
+    return [
+        ['fa-layer-group', 'Tipo', RL.tipo ? TIPOS[RL.tipo].rotP : 'Contratos e convênios', !!RL.tipo],
+        ['fa-bars-progress', 'Andamento', RL.grupo ? (RL.grupo === 'vencida' ? 'Previsão vencida' : GRUPOS[RL.grupo].rot) : 'Todos', !!RL.grupo],
+        ['fa-ribbon', 'Inauguração', RL.inaug ? INAUG[RL.inaug].rot : 'Todas', !!RL.inaug],
+        ['fa-sitemap', 'DRE', RL.dre || 'Todas', !!RL.dre],
+        ['fa-location-dot', 'Município', RL.municipio || 'Todos', !!RL.municipio],
+        ['fa-shapes', 'Objeto', RL.objeto || 'Todos', !!RL.objeto],
+        ['fa-flag', 'Status', RL.status || 'Todos', !!RL.status],
+        ['fa-folder-tree', 'Agrupamento', RL.agrupar ? AGRUPAR.find(a => a[0] === RL.agrupar)[1] : 'Sem agrupamento', false],
+        ['fa-arrow-down-wide-short', 'Ordenação', (ORDENS.find(o => o[0] === RL.ordem) || ['', '—'])[1], false],
+        ['fa-list-check', 'Conteúdo', sec.join(', ') || '—', false]
+    ];
+}
+function capaRelatorio(L, emissao) {
+    const M = MODELOS[RL.modelo], tot = L.reduce((s, x) => s + x.valor, 0);
+    return relCapa({ rotulo: 'Relatório · ' + M.rot, ic: M.ic, titulo: RL.titulo || M.titulo, subtitulo: RL.nota, local: RL.local, paisagem: RL.paisagem,
+        kpis: [['obras no relatório', L.length, 'fa-building', '#0f172a'], ['valor total', moeda(tot, true), 'fa-sack-dollar', '#f97316'],
+            ['contratos', L.filter(x => x.tipo === 'contratos').length, 'fa-file-contract', '#ea580c'], ['convênios', L.filter(x => x.tipo === 'convenios').length, 'fa-handshake', '#0891b2']],
+        filtros: filtrosCapaRel(), codigo: emissao && emissao.codigo, quando: emissao && emissao.quando });
+}
+function montarRelatorio(emissao) {
     const L = ordenarRel(obrasRelatorio());
     const filtros = [RL.tipo && TIPOS[RL.tipo].rotP, RL.grupo && (RL.grupo === 'vencida' ? 'Previsão vencida' : GRUPOS[RL.grupo].rot), RL.inaug && 'Inauguração: ' + INAUG[RL.inaug].rot,
         RL.municipio && 'Município: ' + RL.municipio, RL.dre && RL.dre, RL.objeto && 'Objeto: ' + RL.objeto, RL.status && 'Status: ' + RL.status].filter(Boolean);
-    let h = relCabecalho(RL.titulo || MODELOS[RL.modelo].titulo, esc(filtros.length ? 'Filtros: ' + filtros.join(' · ') : 'Todos os contratos e convênios') + ` · ${L.length} obra(s)`);
+    let h = capaRelatorio(L, emissao) + relCabecalho(RL.titulo || MODELOS[RL.modelo].titulo, esc(filtros.length ? 'Filtros: ' + filtros.join(' · ') : 'Todos os contratos e convênios') + ` · ${L.length} obra(s)`);
     if (RL.nota) h += `<div class="rel-nota">${esc(RL.nota)}</div>`;
     const S = RL.secoes;
     if (S.resumo) {
@@ -2986,7 +3082,7 @@ function montarRelatorio() {
         const lim = RL.modelo === 'executivo' ? 12 : 150;
         h += relTit('fa-triangle-exclamation', `Pontos de atenção (${al.length})`, '#dc2626') + `${al.length ? `<table class="rel-tab" cellspacing="0"><tbody>${al.slice(0, lim).map(a => `<tr><td style="width:84px;color:${NIVEL[a.nivel].cor};font-weight:800"><i class="fa-solid ${a.ic}"></i> ${NIVEL[a.nivel].rot}</td><td><b>${esc(a.titulo)}</b><br><span style="color:#475569">${esc(a.desc)}</span></td></tr>`).join('')}</tbody></table>${al.length > lim ? `<p class="rel-vazio">… e mais ${al.length - lim} ponto(s). Veja a tela de Alertas.</p>` : ''}` : '<p style="color:#16a34a;font-weight:700">Nenhum ponto de atenção.</p>'}`;
     }
-    h += relAssinatura(RL.assina, RL.cargo, RL.local);
+    h += relAssinatura(RL.assina, RL.cargo, RL.local, emissao && emissao.codigo);
     $('area-relatorio').innerHTML = `<div class="rel-folha${RL.paisagem ? ' paisagem' : ''}${RL.compacto ? ' compacto' : ''}">${h}</div>`;
     $('rl-contagem').textContent = `${L.length} obra(s) · ${RL.paisagem ? 'A4 paisagem' : 'A4 retrato'}`;
     ajustarPreviaRel();
@@ -3001,9 +3097,97 @@ function ajustarPreviaRel() {
 window.addEventListener('resize', () => { if (abaAtual === 'relatorios') ajustarPreviaRel(); });
 
 // ---------- saída ----------
-function imprimirRelatorio() { montarRelatorio(); imprimirHTML($('area-relatorio').innerHTML, RL.titulo, RL.paisagem); }
+// ---------- capa dos relatórios em PDF, com selo de autenticidade ----------
+/** Código de verificação a partir do conteúdo emitido (FNV-1a, 2 × 32 bits). */
+function codigoVerificacao(texto, quando) {
+    let h1 = 0x811c9dc5, h2 = 0x01000193 ^ 0x5bd1e995;
+    for (let i = 0; i < texto.length; i++) { const c = texto.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619) >>> 0; h2 = Math.imul(h2 ^ c, 2246822519) >>> 0; }
+    const hx = (h1.toString(36) + h2.toString(36)).toUpperCase().replace(/[^A-Z0-9]/g, '').padEnd(8, '7').slice(0, 8);
+    const d = quando || new Date(), dt = `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+    return `GOB-${dt}-${hx.slice(0, 4)}-${hx.slice(4)}`;
+}
+function seloAutenticidade(codigo, quando) {
+    const uid = 's' + Math.random().toString(36).slice(2, 7), R = 74, dentes = 40;
+    const pts = []; for (let i = 0; i < dentes * 2; i++) { const a = i / (dentes * 2) * Math.PI * 2, r = i % 2 ? R : R - 5; pts.push(`${(80 + r * Math.cos(a)).toFixed(2)},${(80 + r * Math.sin(a)).toFixed(2)}`); }
+    const d = quando || new Date();
+    return `<svg class="selo-svg" viewBox="0 0 160 160" width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="${uid}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fb923c"/><stop offset=".55" stop-color="#ea580c"/><stop offset="1" stop-color="#9a3412"/></linearGradient>
+            <path id="${uid}c" d="M80,80 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
+        <polygon points="${pts.join(' ')}" fill="url(#${uid}g)"/>
+        <circle cx="80" cy="80" r="64" fill="#0f172a"/><circle cx="80" cy="80" r="61" fill="none" stroke="#fdba74" stroke-width="1"/>
+        <circle cx="80" cy="80" r="42" fill="none" stroke="#fdba74" stroke-width=".8" stroke-dasharray="2 2.4"/>
+        <text font-family="Arial, sans-serif" font-size="8.6" font-weight="700" letter-spacing="1.6" fill="#fed7aa"><textPath href="#${uid}c" startOffset="0">DOCUMENTO AUTÊNTICO • GABOBRAS • SEDUC-MT • VERIFICADO •</textPath></text>
+        <path d="M80 50 l20 7 v13 c0 13 -9 21 -20 25 c-11 -4 -20 -12 -20 -25 v-13 z" fill="#f97316"/>
+        <path d="M71 72 l6 6 l12 -13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="80" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="800" fill="#fff" letter-spacing="1">AUTÊNTICO</text>
+        <text x="80" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.6" fill="#cbd5e1">${d.toLocaleDateString('pt-BR')}</text>
+    </svg>`;
+}
+/**
+ * Capa: { rotulo, ic, titulo, subtitulo, kpis: [[rótulo, valor, ícone, cor]], filtros: [[ícone, rótulo, valor, ativo]], codigo, quando, paisagem }
+ * codigo vazio = prévia (o código é gerado ao emitir o PDF).
+ */
+function relCapa(o) {
+    const q = o.quando || new Date();
+    const ativos = o.filtros.filter(f => f[3]).length;
+    return `<div class="rel-capa${o.paisagem ? ' paisagem' : ''}">
+        <div class="capa-topo">
+            <div class="capa-marca">${logoSVG(62)}<div><div class="capa-nome">GAB<span>Obras</span></div><div class="capa-sist">Sistema de Gestão de Obras Escolares</div></div></div>
+            <div class="capa-orgao"><b>GOVERNO DE MATO GROSSO</b><span>Secretaria de Estado de Educação</span><span>SEDUC-MT</span></div>
+        </div>
+        <div class="capa-faixa"></div>
+        <div class="capa-meio">
+            <div class="capa-tag"><i class="fa-solid ${o.ic || 'fa-file-lines'}"></i> ${esc(o.rotulo || 'Relatório')}</div>
+            <h1 class="capa-titulo">${esc(o.titulo)}</h1>
+            ${o.subtitulo ? `<div class="capa-sub">${esc(o.subtitulo)}</div>` : ''}
+            <div class="capa-linha"></div>
+            <div class="capa-data"><i class="fa-regular fa-calendar"></i> ${esc(o.local || 'Cuiabá-MT')}, ${fmtDataExtenso(q)}</div>
+            ${o.kpis && o.kpis.length ? `<table class="capa-kpis" cellspacing="0"><tr>${o.kpis.map(([r, val, ic, c]) => `<td><i class="fa-solid ${ic}" style="color:${c}"></i><b>${val}</b><small>${esc(r)}</small></td>`).join('')}</tr></table>` : ''}
+        </div>
+        <div class="capa-base">
+            <div class="capa-filtros">
+                <div class="capa-bloco-t"><i class="fa-solid fa-filter"></i> Filtros aplicados <span>${ativos ? `${ativos} ativo(s)` : 'nenhum filtro: base completa'}</span></div>
+                <div class="capa-fl">${o.filtros.map(([ic, r, val, at]) => `<div class="${at ? 'at' : ''}"><i class="fa-solid ${ic}"></i><span class="r">${esc(r)}</span><span class="v">${esc(val)}</span></div>`).join('')}</div>
+            </div>
+            <div class="capa-selo">
+                ${seloAutenticidade(o.codigo, q)}
+                <div class="capa-cod-t">Código de verificação</div>
+                <div class="capa-cod">${o.codigo ? esc(o.codigo) : 'gerado ao emitir o PDF'}</div>
+                <div class="capa-emit">Emitido em ${q.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}<br>por <b>${esc(sessao ? sessao.usuario : '—')}</b>${sessao ? ` (${esc(sessao.perfil)})` : ''}</div>
+            </div>
+        </div>
+        <div class="capa-rodape"><i class="fa-solid fa-shield-halved"></i> Documento gerado eletronicamente pelo GABObras a partir da base oficial de contratos e convênios. Para conferir a autenticidade, abra <b>Relatórios › Verificar autenticidade</b> e informe o código acima.</div>
+    </div>`;
+}
+/** Registra a emissão no Histórico (é o que permite conferir o código depois). */
+function registrarEmissao(codigo, titulo, detalhe) {
+    if (!pode.tudo() && versaoBackend && versaoBackend < '2.4') return;
+    try { gravar('historico', { id: novoId('h'), refTipo: 'relatorio', refId: codigo, data: agoraISO(), acao: `Relatório emitido em PDF: "${titulo}" · ${detalhe}`, tipo: 'relatorio', usuario: sessao.usuario }); } catch (e) { /* não impede a impressão */ }
+}
+function abrirVerificacao() {
+    abrirModal({ titulo: 'Verificar autenticidade', sub: 'Confira se um relatório em PDF foi emitido pelo GABObras', ic: 'fa-shield-halved', cor: '#ea580c', tam: 'peq', corpo: `
+        <label><span class="rot">Código de verificação (na capa do relatório)</span><input id="vf-cod" class="campo" placeholder="GOB-261026-XXXX-XXXX" style="text-transform:uppercase;font-family:monospace;letter-spacing:.06em" onkeydown="if(event.key==='Enter')verificarCodigo()"></label>
+        <div id="vf-res" style="margin-top:12px"></div>`,
+        pe: `<button class="btn btn-s" onclick="fecharModal()">Fechar</button><button class="btn btn-p" onclick="verificarCodigo()"><i class="fa-solid fa-magnifying-glass"></i>Verificar</button>` });
+}
+function verificarCodigo() {
+    const c = v('vf-cod').toUpperCase().replace(/\s+/g, ''), el = $('vf-res');
+    if (!/^GOB-\d{6}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(c)) { el.innerHTML = '<div class="aviso alerta"><i class="fa-solid fa-triangle-exclamation"></i> Formato esperado: GOB-AAMMDD-XXXX-XXXX.</div>'; return; }
+    const h = DB.historico.find(z => z.refTipo === 'relatorio' && str(z.refId).toUpperCase() === c);
+    el.innerHTML = h ? `<div class="vf-ok"><div class="vf-ic"><i class="fa-solid fa-circle-check"></i></div><div><b>Documento autêntico</b><p>${esc(str(h.acao).replace(/^Relatório emitido em PDF: /, ''))}</p><p class="mut peq">Emitido em ${esc(fmtDataHora(h.data))} por <b>${esc(h.usuario || '—')}</b></p></div></div>`
+        : `<div class="vf-nao"><div class="vf-ic"><i class="fa-solid fa-circle-xmark"></i></div><div><b>Código não encontrado</b><p>Nenhum relatório com esse código foi registrado no Histórico. Confira a digitação; se o PDF foi emitido agora, aguarde o envio para a planilha e tente de novo.</p></div></div>`;
+}
+function imprimirRelatorio() {
+    const quando = new Date(), L = ordenarRel(obrasRelatorio()), F = filtrosCapaRel();
+    const codigo = codigoVerificacao([sessao.usuario, quando.toISOString(), RL.titulo, JSON.stringify(F), L.map(x => x.tipo[0] + x.r.id).join(',')].join('|'), quando);
+    montarRelatorio({ codigo, quando });
+    const fAtivos = F.filter(f => f[3]).map(f => `${f[1]}: ${f[2]}`);
+    registrarEmissao(codigo, RL.titulo || MODELOS[RL.modelo].titulo, `${L.length} obra(s) · ${fAtivos.length ? fAtivos.join(' · ') : 'sem filtros (base completa)'}`);
+    imprimirHTML($('area-relatorio').innerHTML, RL.titulo, RL.paisagem);
+}
 function imprimirHTML(html, titulo, paisagem) {
     $('area-impressao').innerHTML = html;
+    $('area-impressao').querySelectorAll('.rel-folha').forEach(f => { f.style.zoom = ''; });   // a prévia encolhe a folha; o PDF sai em tamanho real
     let st = $('estilo-pagina'); if (!st) { st = document.createElement('style'); st.id = 'estilo-pagina'; document.head.appendChild(st); }
     st.textContent = `@media print { @page { size: A4 ${paisagem ? 'landscape' : 'portrait'}; margin: 11mm; } }`;
     const tAnt = document.title; if (titulo) document.title = titulo + ' - GABObras';
@@ -3016,7 +3200,7 @@ function baixarWordRelatorio() {
     const doc = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(RL.titulo)}</title>
         <style>@page Sec { ${pag} margin: 1.6cm 1.4cm; } div.Sec { page: Sec; } body { font-family: Arial, sans-serif; font-size: 10pt; color: #0f172a; } ${css}
         .rel-folha { width: auto !important; padding: 0 !important; box-shadow: none !important; } table { border-collapse: collapse; }</style></head>
-        <body><div class="Sec">${$('area-relatorio').querySelector('.rel-folha').innerHTML}</div></body></html>`;
+        <body><div class="Sec">${(() => { const c = $('area-relatorio').querySelector('.rel-folha').cloneNode(true); c.querySelectorAll('.rel-capa').forEach(n => n.remove()); return c.innerHTML; })()}</div></body></html>`;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['﻿' + doc], { type: 'application/msword' }));
     a.download = `${(RL.titulo || 'Relatorio').replace(/[\\/:*?"<>|]+/g, '').slice(0, 80)} - ${hojeISO()}.doc`;
@@ -3049,8 +3233,17 @@ function imprimirFicha(tipo, id) {
         h += `<div class="rel-tit">${GRUPOS_FORM[g][0]}</div><table class="rel-tab"><tbody>${cs.map(c => `<tr><td style="width:38%;color:#64748b">${esc(c.rot)}</td><td style="white-space:pre-wrap"><b>${valorExibido(r, c) || '—'}</b></td></tr>`).join('')}</tbody></table>`;
     });
     if (hist.length) h += `<div class="rel-tit">Últimos registros</div><table class="rel-tab"><tbody>${hist.map(z => `<tr><td style="width:95px;white-space:nowrap">${fmtDataHora(z.data)}</td><td style="white-space:pre-wrap">${esc(z.acao)}</td><td style="width:90px;color:#64748b">${esc(z.usuario)}</td></tr>`).join('')}</tbody></table>`;
-    h += relAssinatura(sessao.usuario);
-    imprimirHTML(`<div class="rel-folha">${h}</div>`, `Ficha ${x.cod}`);
+    const quando = new Date(), codigo = codigoVerificacao([sessao.usuario, quando.toISOString(), tipo, id, x.cod, r.status, r.valor].join('|'), quando);
+    const v = escolaDe(x);
+    const capa = relCapa({ rotulo: `Ficha do ${T.rot.toLowerCase()}`, ic: T.ic, titulo: x.nome, subtitulo: `${T.rot} ${x.cod}${r.objeto ? ' · ' + r.objeto : ''}`,
+        kpis: [['execução física', pct(x.fisico), 'fa-person-digging', '#2563eb'], ['valor', x.valor ? moeda(x.valor, true) : '—', 'fa-sack-dollar', '#f97316'], ['previsão', fmtPrev(r.previsao), 'fa-calendar-check', '#7c3aed']],
+        filtros: [['fa-hashtag', T.chaveRot || 'Código', x.cod, true], ['fa-layer-group', 'Tipo', T.rot, true], ['fa-school', 'Unidade escolar', x.nome, true], ['fa-location-dot', 'Município', r.municipio || '—', true],
+            ['fa-sitemap', 'DRE', dreDe(x) || '—', false], ['fa-flag', 'Status', r.status || '—', false], ['fa-bars-progress', 'Andamento', GRUPOS[x.grupo].rot, false], ['fa-ribbon', 'Inauguração', INAUG[x.inaug].rot, false],
+            ['fa-building-columns', 'Escola na base', v ? `${v.e.codigo} — ${v.e.nome}` : 'não vinculada', false]],
+        codigo, quando });
+    h += relAssinatura(sessao.usuario, '', '', codigo);
+    registrarEmissao(codigo, `Ficha do ${T.rot.toLowerCase()} ${x.cod}`, `${x.nome} · ${r.municipio || ''}`);
+    imprimirHTML(`<div class="rel-folha">${capa}${h}</div>`, `Ficha ${x.cod}`);
 }
 
 
