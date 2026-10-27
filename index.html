@@ -923,6 +923,25 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 .vf-ok { background: #f0fdf4; border: 1px solid #bbf7d0; } .vf-ok .vf-ic { color: #16a34a; }
 .vf-nao { background: #fef2f2; border: 1px solid #fecaca; } .vf-nao .vf-ic { color: #dc2626; }
 .vf-ic { font-size: 26px; } .vf-ok p, .vf-nao p { margin: 4px 0 0; font-size: 12.5px; }
+
+/* ===== Marca d'água ===== */
+.rel-folha { position: relative; }
+.rel-capa { z-index: 3; }
+.rel-marca { display: none; }
+.rel-marca-pg { position: absolute; left: 50%; transform: translate(-50%, -50%) rotate(-32deg); pointer-events: none; z-index: 2; opacity: .07; user-select: none; }
+.rm-in { display: flex; flex-direction: column; align-items: center; text-align: center; color: #0f172a; white-space: nowrap; }
+.rm-logo svg { filter: grayscale(.2); }
+.rm-nome { font-size: 92px; font-weight: 900; letter-spacing: -.05em; line-height: 1; margin-top: 10px; }
+.rm-nome span { color: #f97316; }
+.rm-sub { font-size: 22px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: 8px; }
+.rm-faixa { margin-top: 18px; font-size: 54px; font-weight: 900; letter-spacing: .16em; padding: 4px 26px; border: 6px solid; border-radius: 14px; }
+.rm-cod { margin-top: 14px; font-family: 'Courier New', monospace; font-size: 22px; font-weight: 800; letter-spacing: .1em; }
+@media print {
+    .rel-marca-pg { display: none !important; }
+    .rel-marca { display: flex !important; position: fixed; inset: 0; align-items: center; justify-content: center; pointer-events: none; z-index: 2; opacity: .065; }
+    .rel-marca .rm-in { transform: rotate(-32deg) scale(.72); }
+    .rel-capa { position: relative; z-index: 3; background: #fff; }
+}
 </style>
 </head>
 <body>
@@ -1151,7 +1170,7 @@ html.escuro .pop-esc { background: #0f172a; border-color: #334155; }
 // =====================================================================================
 // GABObras • front-end v2.0.0 — Contratos e Convênios
 // =====================================================================================
-const VERSAO_APP = '2.9.0';
+const VERSAO_APP = '2.9.1';
 // Cole aqui o endereço /exec do App da Web para fixá-lo para todos (opcional).
 // Se ficar vazio, cada computador informa o endereço em "Configurar conexão".
 const LINK_PADRAO = 'https://script.google.com/macros/s/AKfycbwUeXU8SozwL2ZHetBsWZ0vy6P4corsAsjiDQGjmOI26PSNWYl9CgxKNymM70fENdg/exec';
@@ -2848,7 +2867,7 @@ const MODELOS = {
         agrupar: '', ordem: 'valor', secoes: { resumo: 1, graficos: 1, lista: 0, atencao: 1, obs: 0, destaques: 1 }, colunas: ['tipo', 'codigo', 'municipio', 'unidade', 'status', 'valor', 'exec', 'previsao'] }
 };
 const RL_PADRAO = { modelo: 'geral', titulo: MODELOS.geral.titulo, tituloEditado: false, nota: '', tipo: '', grupo: '', inaug: '', municipio: '', dre: '', objeto: '', status: '',
-    agrupar: '', ordem: 'municipio', colunas: MODELOS.geral.colunas.slice(), secoes: { ...MODELOS.geral.secoes }, paisagem: false, compacto: false, assina: '', cargo: '', local: 'Cuiabá-MT' };
+    agrupar: '', ordem: 'municipio', colunas: MODELOS.geral.colunas.slice(), secoes: { ...MODELOS.geral.secoes }, paisagem: false, compacto: false, assina: '', cargo: '', local: 'Cuiabá-MT', marca: 'padrao' };
 let RL = (() => { try { return { ...RL_PADRAO, ...JSON.parse(LS.get('gob_relatorio') || '{}') }; } catch (e) { return { ...RL_PADRAO }; } })();
 const salvarRL = () => LS.set('gob_relatorio', JSON.stringify(RL));
 function aplicarModelo(k) {
@@ -2872,7 +2891,9 @@ function renderRelatorioConfig() {
             <div class="dica">${esc(MODELOS[RL.modelo].desc)}</div></div>
         <div class="rl-bloco"><div class="rl-tit">2. Título e apresentação</div>
             <input class="campo" value="${esc(RL.titulo)}" oninput="RL.titulo=this.value;RL.tituloEditado=true;salvarRL();relAgendar()" placeholder="Título do relatório">
-            <textarea class="campo" rows="2" style="margin-top:8px" oninput="RL.nota=this.value;salvarRL();relAgendar()" placeholder="Texto de abertura (opcional): finalidade, destinatário, observações...">${esc(RL.nota)}</textarea></div>
+            <textarea class="campo" rows="2" style="margin-top:8px" oninput="RL.nota=this.value;salvarRL();relAgendar()" placeholder="Texto de abertura (opcional): finalidade, destinatário, observações...">${esc(RL.nota)}</textarea>
+            <label style="display:block;margin-top:8px"><span class="rot" style="font-size:11.5px"><i class="fa-solid fa-stamp" style="color:#f97316"></i> Marca d'água</span>
+                <select class="campo" onchange="RL.marca=this.value;salvarRL();renderRelatorio()">${opcoes(Object.entries(MARCAS).map(([k, m]) => [k, m.rot]), null, RL.marca || 'padrao')}</select></label></div>
         <div class="rl-bloco"><div class="rl-tit">3. Quais obras</div>
             <div class="rl-grade2">
                 ${sel('tipo', [['contratos', 'Somente contratos'], ['convenios', 'Somente convênios']], 'Contratos e convênios')}
@@ -3084,6 +3105,8 @@ function montarRelatorio(emissao) {
     }
     h += relAssinatura(RL.assina, RL.cargo, RL.local, emissao && emissao.codigo);
     $('area-relatorio').innerHTML = `<div class="rel-folha${RL.paisagem ? ' paisagem' : ''}${RL.compacto ? ' compacto' : ''}">${h}</div>`;
+    const fl = document.querySelector('#area-relatorio .rel-folha'); fl.style.zoom = 1;
+    aplicarMarcaDagua(fl, RL.marca || 'padrao', emissao && emissao.codigo);
     $('rl-contagem').textContent = `${L.length} obra(s) · ${RL.paisagem ? 'A4 paisagem' : 'A4 retrato'}`;
     ajustarPreviaRel();
 }
@@ -3097,6 +3120,35 @@ function ajustarPreviaRel() {
 window.addEventListener('resize', () => { if (abaAtual === 'relatorios') ajustarPreviaRel(); });
 
 // ---------- saída ----------
+// ---------- marca d'água (todas as páginas, menos a capa) ----------
+const MARCAS = {
+    padrao: { rot: 'GABObras (padrão)', faixa: '' },
+    confidencial: { rot: 'GABObras + CONFIDENCIAL', faixa: 'CONFIDENCIAL', cor: '#dc2626' },
+    interno: { rot: 'GABObras + USO INTERNO', faixa: 'USO INTERNO', cor: '#2563eb' },
+    rascunho: { rot: 'GABObras + RASCUNHO', faixa: 'RASCUNHO', cor: '#d97706' },
+    copia: { rot: 'GABObras + CÓPIA', faixa: 'CÓPIA', cor: '#64748b' },
+    nenhuma: { rot: 'Sem marca d\'água' }
+};
+function marcaDagua(tipo, codigo) {
+    const M = MARCAS[tipo] || MARCAS.padrao;
+    if (tipo === 'nenhuma') return '';
+    return `<div class="rm-in"><div class="rm-logo">${logoSVG(170)}</div><div class="rm-nome">GAB<span>Obras</span></div><div class="rm-sub">SEDUC-MT · Governo de Mato Grosso</div>
+        ${M.faixa ? `<div class="rm-faixa" style="color:${M.cor};border-color:${M.cor}">${M.faixa}</div>` : ''}${codigo ? `<div class="rm-cod">${esc(codigo)}</div>` : ''}</div>`;
+}
+/** Prévia: uma marca por página A4; impressão: uma marca fixa, repetida pelo navegador em cada página. */
+function aplicarMarcaDagua(folha, tipo, codigo) {
+    if (!folha) return;
+    folha.querySelectorAll('.rel-marca, .rel-marca-pg').forEach(n => n.remove());
+    const html = marcaDagua(tipo, codigo); if (!html) return;
+    const fixa = document.createElement('div'); fixa.className = 'rel-marca'; fixa.innerHTML = html; folha.appendChild(fixa);
+    const zoom = parseFloat(folha.style.zoom) || 1;
+    const alturaPg = folha.classList.contains('paisagem') ? 794 : 1123, capa = folha.querySelector('.rel-capa');
+    const inicio = capa ? capa.offsetHeight + 34 : 0, total = folha.scrollHeight;
+    for (let y = inicio; y < total - 200; y += alturaPg) {
+        const m = document.createElement('div'); m.className = 'rel-marca-pg'; m.style.top = (y + Math.min(alturaPg, total - y) / 2) + 'px'; m.innerHTML = html; folha.appendChild(m);
+    }
+    void zoom;
+}
 // ---------- capa dos relatórios em PDF, com selo de autenticidade ----------
 /** Código de verificação a partir do conteúdo emitido (FNV-1a, 2 × 32 bits). */
 function codigoVerificacao(texto, quando) {
@@ -3187,7 +3239,7 @@ function imprimirRelatorio() {
 }
 function imprimirHTML(html, titulo, paisagem) {
     $('area-impressao').innerHTML = html;
-    $('area-impressao').querySelectorAll('.rel-folha').forEach(f => { f.style.zoom = ''; });   // a prévia encolhe a folha; o PDF sai em tamanho real
+    $('area-impressao').querySelectorAll('.rel-folha').forEach(f => { f.style.zoom = ''; f.querySelectorAll('.rel-marca-pg').forEach(n => n.remove()); });   // a prévia encolhe a folha; o PDF sai em tamanho real
     let st = $('estilo-pagina'); if (!st) { st = document.createElement('style'); st.id = 'estilo-pagina'; document.head.appendChild(st); }
     st.textContent = `@media print { @page { size: A4 ${paisagem ? 'landscape' : 'portrait'}; margin: 11mm; } }`;
     const tAnt = document.title; if (titulo) document.title = titulo + ' - GABObras';
@@ -3200,7 +3252,7 @@ function baixarWordRelatorio() {
     const doc = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(RL.titulo)}</title>
         <style>@page Sec { ${pag} margin: 1.6cm 1.4cm; } div.Sec { page: Sec; } body { font-family: Arial, sans-serif; font-size: 10pt; color: #0f172a; } ${css}
         .rel-folha { width: auto !important; padding: 0 !important; box-shadow: none !important; } table { border-collapse: collapse; }</style></head>
-        <body><div class="Sec">${(() => { const c = $('area-relatorio').querySelector('.rel-folha').cloneNode(true); c.querySelectorAll('.rel-capa').forEach(n => n.remove()); return c.innerHTML; })()}</div></body></html>`;
+        <body><div class="Sec">${(() => { const c = $('area-relatorio').querySelector('.rel-folha').cloneNode(true); c.querySelectorAll('.rel-capa, .rel-marca, .rel-marca-pg').forEach(n => n.remove()); return c.innerHTML; })()}</div></body></html>`;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob(['﻿' + doc], { type: 'application/msword' }));
     a.download = `${(RL.titulo || 'Relatorio').replace(/[\\/:*?"<>|]+/g, '').slice(0, 80)} - ${hojeISO()}.doc`;
@@ -3243,7 +3295,7 @@ function imprimirFicha(tipo, id) {
         codigo, quando });
     h += relAssinatura(sessao.usuario, '', '', codigo);
     registrarEmissao(codigo, `Ficha do ${T.rot.toLowerCase()} ${x.cod}`, `${x.nome} · ${r.municipio || ''}`);
-    imprimirHTML(`<div class="rel-folha">${capa}${h}</div>`, `Ficha ${x.cod}`);
+    imprimirHTML(`<div class="rel-folha">${capa}${h}<div class="rel-marca">${marcaDagua('padrao', codigo)}</div></div>`, `Ficha ${x.cod}`);
 }
 
 
